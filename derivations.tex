@@ -1,0 +1,38 @@
+
+\subsection{Preservation of Angles}
+
+For this term the energy depends on the difference of the angles between adjacent edges.
+
+Energy\footnote{It was also considered to multiply $E_\varphi$ by the lengths of the edges, but it hasn't improved the performance of the model.}:
+\begin{eqnarray}
+ E_\varphi(\varphi) & = & \frac{1}{2}k_\varphi(\varphi - \varphi_0) \textmd{   *} \\
+ \varphi(p_i,p_j,p_k) & = & \arccos \left( \dfrac{(p_j - p_i) \cdot (p_k - p_i)}{ \left\| p_j - p_i \right\| \left\|p_k - p_i \right\|} \right)^2 \nonumber
+\end{eqnarray}
+
+Where $\varphi$ is the angle between adjacent edges, $E_\varphi$ is the energy associated to changes in the angle, $k_\varphi$ is the corresponding stiffness constant and the $p_i$s are the Cartesian coordinates of the mass particles.  Contrary to the previous cases, it is not so evident in which direction the force will act.  Given that the force acts in the direction of the gradient, it will tend to restore the angles in the most efficient way, but it may produce tiny or very big triangles if it is not accompanied by some of the other terms proposed by Teschner, that tend to restore the original dimensions, apart from the angles.
+
+% \begin{figure}[htp]
+%  \centering
+% \includegraphics{./Figures/springs/anglepres.png}
+%  \caption{The angular force displaces the vertex of interest in the direction of maximum change of the angle in order to recover its original value.  This direction is a linear combination of the vectors that emerge from both edges forming the angle, and does not respect the original size of the triangle.}\label{fig:angular}
+% \end{figure}
+
+The force emerging from this term is a linear combination of the vectors along the edges that form the angle of interest, it pretends to restore the original angle, but does not take the original size into account. See \fref{fig:forces}(c). Therefore, it helps to recover a similar triangle, but if used alone can collapse or explode the triangle.  The derivation of this force is as follows:  %An additional line in the code also forces an inverted angle to recover its original orientation.
+
+\begin{align}
+ F_\varphi(p_i) & = k_\varphi(\varphi - \varphi_0)\dfrac{\partial \varphi}{\partial p_i} \\
+ \dfrac{\partial \varphi}{\partial p_i} & = \dfrac{\partial}{\partial p_i} arccos \left(\frac{(\vec{p}_j-\vec{p}_i)\cdot(\vec{p}_k-\vec{p}_i)}{\left\|\vec{p}_j-\vec{p}_i\right\|\left\|\vec{p}_k-\vec{p}_i\right\|}\right) \displaybreak[0] \\
+\end{align}
+
+Summarising, the force is:
+\begin{align}
+ F_\varphi(p_i) & = k_\varphi(\varphi - \varphi_0)\dfrac{\partial \varphi}{\partial p_i} \\
+ \dfrac{\partial \varphi}{\partial p_i}(p_i) & =
+    \dfrac{1}{d_{ji}d_{ki}\sqrt{1-\left[\dfrac{pp}{(d_{ji}) (d_{ki})}\right]^2}} \nonumber \\
+ & \left\{\left[1-\dfrac{pp}{d_{ki}^2}\right](p_k-p_i)+\left[1-\dfrac{pp}{d_{ji}^2}\right](p_j-p_i) \right\} \nonumber \\
+ pp(p_i) & =(p_j-p_i)\cdot(p_k-p_i) \nonumber \\
+ d_{ji}(p_i) & = \left\| p_j-p_i \right\| \nonumber \\
+ d_{ki}(p_i) & = \left\| p_k-p_i \right\|
+\end{align}
+
+The terms for the preservation of length and angle model elastic deformations.  Even though the preservation of area by itself would allow some plasticity, it is still necessary to incorporate permanent deformations in the rest lengths of the springs, to stop the triangles of the mesh from trying to recover their original shape.

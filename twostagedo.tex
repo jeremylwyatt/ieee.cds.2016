@@ -1,0 +1,1344 @@
+
+%% bare_jrnl.tex
+%% V1.4
+%% 2012/12/27
+%% by Michael Shell
+%% see http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8 or later) with an IEEE journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex,
+%%                    bare_jrnl_transmag.tex
+%%*************************************************************************
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[journal]{IEEEtran}
+
+\newcommand{\eref}[1]{(\ref{#1})}
+\newcommand{\fref}[1]{Fig.~\ref{#1}}
+\newcommand{\tref}[1]{Table~\ref{#1}}
+\newcommand{\sref}[1]{Section~\ref{#1}}
+\newcommand{\aref}[1]{Appendix~\ref{#1}}
+\newcommand{\alref}[1]{Algorithm~\ref{#1}}
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\usepackage{tikz}
+
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{xcolor}
+% \definecolor{DarkGreen}{rgb}{0,0.5,0}
+% \def\gtick{\textcolor{DarkGreen}{\checkmark}}
+\def\gtick{\checkmark}
+% \definecolor{DarkRed}{rgb}{0.5,0,0}
+% \def\rcross{\textcolor{DarkRed}{x}}
+\def\rcross{x}
+\usepackage[pdftex]{rotating}
+
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[journal]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  \graphicspath{{./figures/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+  \DeclareGraphicsExtensions{.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/tex-archive/info/epslatex/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+\usepackage{framed} % suggested in http://tex.stackexchange.com/questions/65219/how-to-make-a-code-fragment-in-ieeetran-classes
+% My own definition:
+\newcounter{algorithm}
+\newenvironment{algorithmieee}[1]
+{\refstepcounter{algorithm}{1} \begin{figure} \textbf{Algorithm \arabic{algorithm}:} \textit{#1} %
+\begin{algorithmic}[1]}
+{\end{algorithmic}
+ \end{figure}}
+
+% Adapted from http://tex.stackexchange.com/questions/40228/ieeetrans-template-requires-not-to-use-algorithm-package
+\newsavebox{\ieeealgbox}
+\newenvironment{algorithmicieee}[1]
+  {\refstepcounter{algorithm}
+   \begin{lrbox}{\ieeealgbox}
+   \begin{minipage}{\dimexpr\columnwidth-2\fboxsep-2\fboxrule}
+   \textbf{Algorithm \arabic{algorithm}:} \textit{#1} \par
+   \begin{algorithmic}[1]}
+  {\end{algorithmic}
+   \end{minipage}
+   \end{lrbox}\noindent\fbox{\usebox{\ieeealgbox}}}
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Do not use the stfloats baselinefloat ability as IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
+% Basically, \url{my_url_here}.
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% ++++ Used temporarily to make comments between authors
+\newcommand{\redNote}[1]{{\color{red} #1}}
+\usepackage[normalem]{ulem}
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+% Do not put math or special symbols in the title.
+\title{A Multi-Modal Model for Prediction and Classification of Object Deformation during Robotic Manipulation}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{Veronica E.~Arriola-Rios,
+        Jeremy~L.~Wyatt}
+%\author{Veronica E.~Arriola-Rios,~\IEEEmembership{Member,~IEEE,}
+%        John~Doe,~\IEEEmembership{Fellow,~OSA,}
+%        and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
+%\thanks{M. Shell is with the Department
+%of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
+%GA, 30332 USA e-mail: (see http://www.michaelshell.org/contact.html).}% <-this % stops a space
+%\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
+%\thanks{Manuscript received April 19, 2005; revised December 27, 2012.}}
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{IEEE Transactions on Systems, Man, and Cybernetics—Part B: Cybernetics,
+          ~Vol.~11, No.~4, December~2012}%
+{Arriola-Rios \MakeLowercase{\textit{et al.}}: A Multi-Modal Model for Prediction and Classification of Object Deformation during Robotic Manipulation}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2012 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+In this paper we present a new framework for learning generative models of object deformation under robotic action. The model is multi-modal in that it is based on integrating force and visual information. Our framework goes beyond previous techniques by simultaneously enabling i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from both force and visual data, v) prediction of object behaviour after contact by the robot terminates.  While previous work on deformable object behaviour in robotics has offered one or two of these features none has offered them all in a single learning model framework, and none has offered classification from a generative predictable model.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Deformable objects, prediction, classification, learning.
+\end{IEEEkeywords}
+
+
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps.
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+\IEEEPARstart{A} major challenge in robotic manipulation is to plan actions with objects so as to deform them into new shapes. Most objects that are manipulated by animals in natural environments are deformable, and these include objects that are elastic, plastic, breakable, tearable, and spreadable. This work is based on the premise that in order to plan manipulations of deformable objects, predictive models of object deformation are required. Without such models planners cannot reason about the effects of actions, or sequences of actions to achieve desired effects.
+
+There is a wide range of models of deformation used in engineering, that are capable of producing predictions, such as finite element models, but these typically require careful optimisation by hand over many weeks or months. In graphics there are many models used for generating qualitatively plausible simulations of objects, but these are not necessarily easy to tune to real data. By contrast robots must perform system identification of their model parameters from data, on-line, in reasonable amounts of training time. This includes building models from the usually very limited sensing typically available, such as partial visual views of an object, and force-torque monitoring at contact points. Thus tackling this problem in robotics adds additional difficulties to an already challenging problem.
+
+\begin{figure}[!t]
+\centering\includegraphics[width=3.5in]{arrio17.png}
+\caption{Force information acquired while working with a block of sponge (elastic) and a piece of plasticine (plastic).}
+\label{fig:forceElasticPlastic}
+\end{figure}
+
+Previous work on prediction for deformable objects in robotics has been suprisingly limited. Table~\ref{t:advances} summarises the features of the major efforts to date. In each case critical abilities are missing: either models cannot be learned from data; or only address one type of deformation (e.g. elastic); or cannot perform classification; or cannot predict the forces felt; or cannot predict what will happen when the robot loses contact with the object (will it retain or recover from the deformation?). In this paper we present a framework for solving all these problems simultaneously. The key novel contribution we make is to bring together a model of what forces the robot will feel at a contact point with a model of how an object will deform under such applied forces over time. This formulation allows the robot to make predictions about the type of object, and thus it's future behaviour using the resistive forces and the object deformations \fref{fig:forceElasticPlastic} and \fref{fig:sstrain}. A second critical contribution is that our model is both generative and generalisable with respect to contact point.  Finally the third major feature of the model is that it is adaptive: a set of model parameters is learned for each material presented from data, thus creating a model library of materials. This generative property enables both prediction suitable for use in planning, and also classification of materials. The overall model structure is summarised in \fref{fig:system}. Essentially the approach is to use visual tracking of shape deformations to create feedback that is used to train the parameters of a model (Model A) that predicts deformation when coupled with contact forces. The contact forces are themselves predicted using a second model (Model B). In the specific implementation of our system we use a mass spring system for Model A, and a regression model for Model B. These models are learned from the same data, and are both indexable by a known material type from the library. It is important to note, however, that the model structure is separate from the specific model forms used, and that other model types could be substituted for one or both stages.  This behaviour is described in \alref{alg:overall}.
+
+\begin{figure}
+ \begin{algorithmicieee}{Overall Behaviour}\label{alg:overall}
+ {\small
+ \STATE \textbf{Training Phase:}
+ \FORALL {training materials:}
+   \FORALL {finger commands (push down, push up)}
+     \STATE The controler gives the command.
+     \WHILE {the command is executed}
+       \STATE The F/T sensor module records the reaction force.
+       \FORALL {candidate regresion curves}
+         \STATE The F/T sensor module adjusts the curve.
+       \ENDFOR
+       \STATE The visual system tracks and records the modifications of the shape from a 2D camera.
+     \ENDWHILE
+     \STATE The F/T sensor module records a discontinuity in the regresion curve.
+   \ENDFOR
+   \STATE The F/T sensor module returns the best regresion curve as Model B.
+   \STATE The learning algorith for the mass-spring model proposes candidate parameters.
+   \FORALL{frames of captured information}
+     \FORALL{sets of candidate parameters}
+       \STATE Evaluate how similar the mass-spring simulation is to the real object.
+     \ENDFOR
+   \ENDFOR
+   \STATE The values of the best set of parameters is adopted as Model A.
+ \ENDFOR
+ \STATE \textbf{Simulation Phase:}
+ \WHILE{the finger penetrates the material}
+   \STATE Use Model B to predict the reaction force given the distance traversed after contact with the material.
+   \STATE Use this force to run the simulation with Model A.
+   \STATE Model A predicts the shape the material should have.
+ \ENDWHILE
+ \STATE \textbf{Classification Phase:}
+ \FORALL{frames of captured information}
+  \FORALL{previously trained materials}
+    \STATE Run simulation and evaluate similitude
+  \ENDFOR
+ \ENDFOR
+ \STATE Return material with the highest score.}
+ \end{algorithmicieee}
+\caption{Overall algorithmic structure of the system.}
+\end{figure}
+
+In summary the two stage model we present gives us the ability to solve {\em simultaneously} for the first time the following problems. Our model enables i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from either or both force and visual data, v) prediction of object behaviour after contact by the robot is removed. In the rest of the paper we present related work (Section~\ref{sec:background}); describe the model (Section~\ref{sec:model}); describe how the model parameters are learned from real data (Section~\ref{sec:learning}); and the experiments on prediction and classification with both elastic and plastic objects (Section~\ref{sec:experiments}); finishing with a short discussion (Section~\ref{sec:discussion}).
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+
+
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation Results.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+
+
+% An example of a floating table. Note that, for IEEE style tables, the 
+% \caption command should come BEFORE the table. Table text will default to
+% \footnotesize as IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that IEEE does not put floats in the very first column - or typically
+% anywhere on the first page for that matter. Also, in-text middle ("here")
+% positioning is not used. Most IEEE journals use top floats exclusively.
+% Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
+% floats. This can be corrected via the \fnbelowfloat command of the
+% stfloats package.
+
+\section{Model Overview}
+
+As has been mentioned above there are several choices made in our modelling approach. The key choice is that the models are generative, which means that the models can be used to generate predicted sequences of behaviour. The specific approach taken here separates the predictive model out into components in two ways (see Figure~\ref{fig:system}). First we decompose models according to the modality of the information. In this case it is important to note that deformation has a particular causal structure related to the modes of sensing that are most easily employed. The forces and deformations can be measured separately, using force-torque and visual sensors respectively. The sensed forces are the cause of the observed deformation, and this can be exploited by sequencing the models by mode. Thus the input to the first predictor is the planned motion of the robot (or the joint torques), and this predictor predicts the resulting sequence of contact forces. The second predictor takes this sequence of forces as input and predicts a deformation sequence. Both models must be conditioned on the material and the object. This is where we decompose the model space in the second way, by specialising models to particular material and object combinations. This follows the principle of modular motor learning \cite{KopickiICRA11,haruno2001mosaic}, where prediction and control is specialised into many modules, each of which covers a relatively small portion of the input space, such as an object or material type. Thus we aim to acquire many specialist models of different deformable objects rather than a very few rather general models. The specific model forms we choose here could be replaced while retaining the overall scheme. In this paper we implement the scheme using a regression approach to force prediction, and we follow several other authors in employing a mass-spring system with learnable parameters for the deformation prediction.
+
+In each case the models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions. 
+
+The training of the model is performed offline using ground truthed data. The overall algorithm is given in \alref{alg:overall}. For clarity the algorithm is given in three phases: training, simulation (i.e. the prediction phase), and classification (i.e. matching prediction to new data). In testing the model new data is used, where this is typically new deformation actions on an object of known material and approximate shape. Having given an overview of the model we now relate our approach to those in the literature, before proceeding to describe the details of the spring-mass model of deformation (Section~\ref{sec:model}), and then the regression model of contact forces (Section~\ref{sec:forces}).
+
+\section{Background}
+\label{sec:background}
+This work focuses on prediction of response forces and of the deformation of the shape over several frames of elastic and plastic objects when they are pushed and released by a robotic finger.  Acquired models are used to classify materials through recognition of trained samples, even when the interactions are novel.  Even though there is abundant literature in the industrial robotics area for 1D and 2D materials (e.g. strings, hair, metallic sheets and textiles), there is little research about predicting the deformation of 3D deformable objects \cite{Khalil2010review}.
+
+First, Howard and Bekey \cite{Howard2000} address robotic grasping and lifting of viscoelastic objects.  Their model of the material can predict a net amount of deformation given the applied forces, but does not evaluate details of the deformed shape.   This model is inspired in the crystalline structure of atoms in solids.  The space lattice of the crystal is approximated by a particle system where elements with mass are connected by springs and dampers, thus representing the attraction and repulsion between atoms \emph{in equilibrium} with a damped mass-spring system.  The masses are calculated by measuring the force required to lift the object without sliding.  The deformation and damping coefficients are estimated as functions of:
+\begin{itemize}
+ \item the force applied while pushing against the material with two robotic arms in opposite directions and,
+ \item the global displacement and velocity vectors resulting from adding the displacements and velocities of all particles.
+\end{itemize}
+The estimated values of the mass, deformability and damping coefficients are used as the entry of a neural network that outputs the minimum necessary force to lift the object without sliding.  This function is used to compliantly adjust the force during an interaction.  However, they do not evaluate the quality of the overall shape prediction, and use only the final values of the prediction after the system has stabilised; that is, they do not evaluate the predictions during the dynamic phase.
+
+
+\begin{figure}[!t]
+\centering
+\setlength\fboxsep{0pt}    % padding
+\setlength\fboxrule{0.5pt} % line width
+\fbox{\includegraphics[width=3.5in]{arrio3.pdf}}
+\caption{During training time, the system learns to predict the object's shape and reaction forces from real world data.}
+\label{fig:system}
+\end{figure}
+
+%%%
+%%% TODO: Text
+%%%
+% \begin{figure}[!t]
+% \centering
+% \setlength\fboxsep{0pt}    % padding
+% \setlength\fboxrule{0.5pt} % line width
+% \fbox{\includegraphics{arrio3}}
+% \caption{The system learns to predict the object's shape and reaction forces from real world data.}
+% \label{fig:system_old}
+% \end{figure}
+
+
+
+
+Teschner et al.\ \cite{Teschner2004} proposed an enhanced 3D mass-spring model, whose constraints are expressed as potential energy terms.  These terms encode the tendency of springs to recover their length (with damping), of triangular faces of a mesh to recover their area and of tetrahedrons to recover their volume.  He sketches the inclusion of plastic deformation.  Morris and Salisbury \cite{Morris2008} developed a method to calibrate Teschner's model automatically with respect to a FEM model.  The  search begins with a uniform random sampling of possible values for the elasticity constants, which are latter modified using adaptive simulated annealing to minimize the difference between the deformations in the FEM mesh and those in the mass-spring mesh.  However, they only compare the steady states and do not include plastic deformations.  We extend on this work, by changing the FEM model with force and 2D visual data gathered from real materials.  Furthermore, we analysed the quality of the predictions while the deformations take place.
+
+Frank et al.\ \cite{Frank2010} use a force sensor and a bumblebee stereo camera to measure the Young modulus and the Poisson ratio of unknown deformable objects.  By assuming a homogeneous material, they propose candidate values for these constitutive parameters and simulate the expected behaviour of the object with a FEM method.  The volume of the prediction is compared with a 3D reconstruction of the 3D surface of the object.  A gradient descent search is used to minimize the difference.  Once the parameters are selected, a collision detection algorithm informs the model of the position of the actuator thus implying the amount of local deformation.  The FEM simulation provides estimates for the global deformation and response forces.  However, a quasi-static assumption is made and a detailed study of the dynamic process is not offered\footnote{With the quasi-static assumption a small force is applied and a state of equilibrium is reached before a new force is applied.  Therefore the deformation process is approximated 
+by a succession of states of equilibrium.}.  The resulting model is applied to estimating costs of robotic navigation around deformable objects \cite{Frank2011}.
+
+The advances of this work with respect to these related approaches is summarised in \tref{t:advances}.
+
+\begin{table}[htp]
+  %\renewcommand{\arraystretch}{1.3}
+  \caption{Advances over previous work}\label{t:advances}
+  \begin{tabular}{lccccccccc}
+  %\hline\hline \\ [-1.5ex]
+  \hline \\ [-1.5ex]
+ & \begin{sideways}\textbf{Model type}\end{sideways} & \begin{sideways}\textbf{Learned from GT}\end{sideways} & \begin{sideways}\textbf{GT=Real data}\end{sideways} & \begin{sideways}\textbf{Prediction of Shape} \end{sideways} & \begin{sideways}\textbf{Prediction of Forces}\end{sideways} & \begin{sideways}\textbf{Actuator Retrieval} \end{sideways} & \begin{sideways}\textbf{Elastic}\end{sideways} & \begin{sideways}\textbf{Plastic}\end{sideways} & \begin{sideways}\textbf{Classification}\end{sideways} \\
+ \hline\hline \\ [-1.5ex]
+  Howard & MS & \gtick  & \gtick  & \rcross & \gtick & \rcross & \gtick & \rcross & \rcross\\
+Teschner & MS & \rcross & \rcross & \gtick & \rcross & \gtick & \gtick & \gtick & \rcross \\
+  Morris & MS & \gtick  & \rcross & \gtick & \rcross & \rcross & \gtick & \rcross & \rcross \\
+  Frank & FEM & \gtick  & \gtick & \gtick & \rcross & QSA & \gtick & \rcross & \rcross \\
+  This work & MS & \gtick  & \gtick & \gtick & \gtick & \gtick & \gtick & \gtick & \gtick \\
+         & + &&&&&&&&\\
+         & Regression &&&&&&&& \\
+ %[-1.5ex] \\ \hline\hline \\ [-1.5ex]
+ [-1.5ex] \\ \hline \\ [-1.5ex]
+ \end{tabular}
+ *MS = \textit{Mass-spring}\\
+ *QSA = \textit{Quasi-Static Assumption}
+\end{table}
+
+Other interesting variants are: Conti et al.\ \cite{Conti2003} introduce six-degrees of freedom macroscopic elastic spheres described by mass, inertial and volumetric properties that are used to approximate the volume of deformable objects. The open source project Chai3D includes an implementation of this model. The spheres are placed along the skeleton of the object and are connected together with elastic links which model elongation, flexion and torsion properties. Each vertex of the surface mesh is attached to the nearest sphere or link with a damped spring.  In \cite{Burion2008}, Burion and Baur, collaborated with Conti's group to automatically calibrate this model using particle filters.  Again, there is no analysis of the dynamics and no real objects are used.  Furthermore, this model is more adequate for objects that deform preferably around fixed joints.
+
+Finally, Cretu et al., used growing neural gas networks to learn to predictively track the deformation of objects.  Even though they managed to make predictions about the deformation of the overall shape of the object, under previously unseen sets of forces, their predictions were evaluated only for the next frame.
+
+Additionally, there is a vast amount of literature on modelling of deformable shapes and deformation processes \cite{Gibson1997, McInerney1996, Montagnat2001, Moore2007review, Nealen2006review}, particularly within the area of computer graphics.  However, these types of models have not been successfully applied to robotic tasks beyond what was presented above.
+
+%\subsection{Predicting the Shape}
+%Contribution: we analyse the dynamic behaviour of the predictions for several frames.
+%\subsection{Predicting the Force}
+%Physics based models are used to predict reaction forces (surgery simulators).
+%Contribution: we learn to predict with a linear regression model.  Also calibrated automatically.
+
+\section{A Mass-Spring Model of Deformation}
+\label{sec:model}
+\subsection{Elastic Deformation}
+
+\begin{figure}[!t]
+\centering
+%\includegraphics[width=2.5in]{arrio1}
+\includegraphics[width=88mm]{arrio1}
+\caption{Spring Forces. Recovery of: (a) Length, forces act along the spring.  (b) Area, forces act along the heights of the triangles. (c) Angle, masses slide trying to restore the angle.}
+\label{fig:forces}
+\end{figure}
+
+The mass-spring model proposed by Teschner et al.\ in \cite{Teschner2004} was reduced to a 2D model, so that the predictions could be compared with 2D images of the deformable object.  The main idea being that an agent can make rough real time predictions of what it can see and touch and use those predictions to solve various tasks, like classification or grasping.  Here, the surface of the deformable object is approximated by a regular triangular mesh of unitary masses and springs.  The potential energy terms for the preservation of length with damping and preservation of area were included in our system.  To compensate for the lack of a preservation of volume, which tends to avoid distortions of the graph, a new term for the preservation of the angles was included.  The relevant equations are presented in the following paragraphs, while detailed derivations can be found in \cite{Arriola2013thesis}.
+
+For any preservation term, the potential energy $E$ is proportionally dependent on a preservation constraint $C$, where $k$ is the proportionality constant \eref{eq:EConstraint}.  The force $\vec{F}^i$ acting on the $i^{th}$ mass particle is defined as the negative gradient of this potential energy with respect to the position of the particle $\vec{p}_i$ \eref{eq:EForce}.
+\begin{align}
+ E(\vec{p}_0,...,\vec{p}_{n-1}) & = \frac{1}{2}kC^2, \label{eq:EConstraint} \\
+ \vec{F}^i(\vec{p}_0,...,\vec{p}_{n-1}) & = -\frac{\partial}{\partial \vec{p}_i}E = -kC\frac{\partial C}{\partial \vec{p}_i}. \label{eq:EForce}
+\end{align}
+Which with damping becomes:
+\begin{align}
+ \label{eq:Fdamping}
+ \vec{F}^i&(\vec{p}_0,...,\vec{p}_{n-1},\vec{v}_0,...,\vec{v}_{n-1}) = \nonumber \\
+    &\left( -kC-k_d\sum_{0\le j < n} \dfrac{\partial C}{\partial \vec{p}_j}\vec{v}_j \right)
+ \dfrac{\partial C}{\partial \vec{p}_i},
+\end{align}
+where $\vec{v}_j$ is the velocity of the $j^{th}$ particle connected to $i$.
+
+\subsubsection{Preservation of Length}
+The constraint for the potential energy is given by:
+\begin{equation}
+ C = \dfrac{|\vec{p}_j-\vec{p}_i|-D_0}{D_0},
+\end{equation}
+where $D_0$ is the rest length of the spring.  This force pulls the masses in the direction of the spring that joins them [\fref{fig:forces}(a)].  Teschner normalised the value dividing by $D_0$ to make the elasticity constants scale independent.  Morris \cite{Morris2008} omitted that in his final equations for the force.  Here we use the normalised force $\vec{F}^i_D$ \eref{eq:FDlength}, which has the effect that, if we obtain a good set of parameters for a certain mesh of high resolution, the same set can be used for a mesh of lesser resolution that preserves the same type of symmetries.
+\begin{align}
+ \vec{F}^i_D(p_i,p_j,v_i,v_j) &= \dfrac{k_L}{D_0^2} \left( |\vec{p}_j-\vec{p}_i|-D_0 \right) \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|}  + \nonumber \\
+ & \dfrac{k_d}{D_0^2}\left( \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|} \cdot (\vec{v}_j-\vec{v}_i) \right) \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|} \label{eq:FDlength}
+\end{align}
+where $k_L$ is the linear spring constant and $k_d$ the damping constant.
+
+\subsubsection{Preservation of Area}
+Since Teschner and Morris didn't find it helpful to add damping to the preservation of areas, it is avoided here.  Therefore the force $\vec{F}^i_A$ is derived as follows:
+\begin{align}
+ C &= \frac{\frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|-A_0}{A_0} \\
+ Area &= \frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|, \\
+ \vec{F}^i_A(p_i,p_j,p_k) &= -\frac{k_A}{2A_0^2} \left( Area-A_0 \right) \nonumber \\
+ & \frac{(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)}{|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|} [\vec{1} \times (\vec{p}_j-\vec{p}_k)] \label{eq:area_force}
+\end{align}
+where $A_0$ is the initial area of the triangle and $k_A$ the proportionality constant.
+
+It is possible to rewrite \eref{eq:area_force} in a more geometrically intuitive manner by rewriting the direction of the gradient according to Morris' geometric derivation \cite{Morris2008}, but keeping the area normalisation constant\footnote{This substitution is valid because both are expressions for the gradients of the area of the triangle formed by the three verticies.}.  It becomes evident that the forces pull along the heights of the triangles [\fref{fig:forces}(b)].  Then the magnitude of the force is given by:
+\begin{equation}
+ forcemag_A(\vec{p}_i)= \frac{\frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|-A_0}{A_0^2}
+\end{equation}
+
+While the rest becomes:
+\begin{align}
+ \vec{F}_A(\vec{p}_i) & = k_A \cdot forcemag_A(\vec{p}_i) \cdot forcedir_A(\vec{p}_i) \nonumber \\
+ forcedir_A(\vec{p}_i) & = \dfrac{\vec{F}_A(\vec{p}_i)}{|\vec{F}_A(\vec{p}_i)|} = \dfrac{areagradient(\vec{p}_i)}{|areagradient(\vec{p}_i)|} \nonumber \\
+ areagradient(\vec{p}_i) & = (\vec{p}_i-\vec{p}_j)- \nonumber \\
+ & \left( (\vec{p}_k-\vec{p}_j) \cdot \dfrac{(\vec{p}_k-\vec{p}_j) \cdot (\vec{p}_i-\vec{p}_j)}{(\vec{p}_k-\vec{p}_j) \cdot (\vec{p}_k-\vec{p}_j)} \right)
+\end{align}
+
+\subsubsection{Preservation of Angles}
+The previous terms can not do anything to restore the mesh if triangles get flipped during deformation.  For this reason we included a new term that enforces the preservation of the original angles of the triangles.  [\fref{fig:forces}(c)] gives an idea of how these forces look.  Here the energy depends on the difference of the angles between adjacent edges.
+
+Energy\footnote{It was also considered to multiply $E_\varphi$ by the lengths of the edges, but it hasn't improved the performance of the model.}:
+\begin{align}
+ E_\varphi(\varphi) & = \frac{1}{2}k_\varphi(\varphi - \varphi_0)^2 \\
+ \varphi(p_i,p_j,p_k) & = \arccos \left( \dfrac{(p_j - p_i) \cdot (p_k - p_i)}{ \left\| p_j - p_i \right\| \left\|p_k - p_i \right\|} \right)^2 \nonumber
+\end{align}
+
+Where $\varphi$ is the angle between adjacent edges, $E_\varphi$ is the energy associated to changes in the angle, $k_\varphi$ is the corresponding stiffness constant and the $p_i$s are the Cartesian coordinates of the mass particles.
+
+The force emerging from this term is a linear combination of the vectors along the edges that form the angle of interest, acting in the direction of the gradient.  It tends to restore the angles in the most efficient way, but does not take the original size into account [\fref{fig:forces}(c)].  Therefore, it helps to recover a similar triangle, but it also may produce tiny or very big triangles if it is not accompanied by some of the other terms that tend to restore the original dimensions, in addition to the angles.
+The force is derived from:  %An additional line in the code also forces an inverted angle to recover its original orientation.
+\begin{align}
+ F_\varphi(p_i) & = k_\varphi(\varphi - \varphi_0)\dfrac{\partial \varphi}{\partial p_i} \\
+ \dfrac{\partial \varphi}{\partial p_i} & = \dfrac{\partial}{\partial p_i} arccos \left(\frac{(\vec{p}_j-\vec{p}_i)\cdot(\vec{p}_k-\vec{p}_i)}{\left\|\vec{p}_j-\vec{p}_i\right\|\left\|\vec{p}_k-\vec{p}_i\right\|}\right) \displaybreak[0] \\
+\end{align}
+
+The force is:
+\begin{align}
+ F_\varphi(p_i) & = k_\varphi(\varphi - \varphi_0)\dfrac{\partial \varphi}{\partial p_i} \\
+ \dfrac{\partial \varphi}{\partial p_i}(p_i) & =
+    \dfrac{1}{d_{ji}d_{ki}\sqrt{1-\left[\dfrac{pp}{(d_{ji}) (d_{ki})}\right]^2}} \nonumber \\
+ & \left\{\left[1-\dfrac{pp}{d_{ki}^2}\right](p_k-p_i)+\left[1-\dfrac{pp}{d_{ji}^2}\right](p_j-p_i) \right\} \nonumber \\
+ pp(p_i) & =(p_j-p_i)\cdot(p_k-p_i) \nonumber \\
+ d_{ji}(p_i) & = \left\| p_j-p_i \right\| \nonumber \\
+ d_{ki}(p_i) & = \left\| p_k-p_i \right\|
+\end{align}
+
+The terms for the preservation of length and angle model elastic deformations.  Even though the preservation of area by itself would allow some plasticity, it is still necessary to incorporate permanent deformations in the rest lengths of the springs, to stop the triangles of the mesh from trying to recover their original shape.
+
+\subsection{Plastic Deformation}
+\begin{figure}
+ \begin{algorithmicieee}{Plastic Deformation of an Edge}\label{alg:deformEdge}
+ \STATE Let $l$ be the new length of the edge, after an integration step. And $max\_\alpha$ the maximum proportional permanent deformation being allowed.
+ \IF {$\alpha > max\_\alpha$}
+  \STATE $l_0 \gets l$
+ \ELSE
+  \STATE $l_0 \gets (1.0 - \alpha) D_0$
+ \ENDIF
+ \STATE $elastic\_deformation \gets \frac{l_0 - l}{D_0}$
+ \IF {$elastic\_deformation > yield$}
+  \STATE $\alpha \gets \alpha + creep * elastic\_deformation$
+  \IF {$\alpha > max\_\alpha$}
+   \STATE $\alpha \gets max\_\alpha$
+  \ENDIF
+ \ENDIF
+ \end{algorithmicieee}
+\caption{Algorithm to calculate the permanent deformation of an edge.}
+\end{figure}
+
+The simplest method to model plastic deformation consists in changing the length at rest $D_0$ of the springs, in \eref{eq:FDlength}.  The effect of the permanent deformation can be either to permanently compress this length, or to permanently expand it (up to the breaking point).  However, arbitrarily changing the value of $D_0$ can produce geometrical oddities like collapsed edges.  For this reason, in this work, the permanent modification is expressed in terms of a constant of compression $\alpha$, with respect to the original length $D_0$, so that the effective value of the length at rest becomes $l_0 = (1.0 - \alpha) D_0$.  The value of $\alpha$ changes every time the spring is deformed beyond the threshold value \textit{yield}.  A \textit{maximum deformation} limit is introduced to avoid collapsing edges due to compression: if the new length $l$ is smaller than a given fraction of the original length at rest (e.g. $l=0.2 D_0$), the length at rest suffers no further modifications.  See \alref{alg:deformEdge}.
+
+\subsection{Integration Scheme}
+\label{sec:ischeme}
+Rather than using the traditional Newton equations with a numeric integration scheme like Euler of Verlet, we made the velocities proportional to the forces:
+\begin{equation}
+ \vec{x}(t+h) = \vec{x}(t) + h \dfrac{\vec{F(t)}}{m}\label{eq:integration}
+\end{equation}
+with $\vec{F}(t) = \vec{F}_D(t) + \vec{F}_A(t) + F_\varphi(t)$ being the sum of the forces for the preservation of length, area and angle respectively and $\vec{x}(t+h)$, the position of the vertex at time $t+h$.  The simulations obtained were closer to the observed behaviour, because there is not inertia in the oscillation.
+When experimenting with different integration steps, force values were interpolated between measuremente.
+
+
+\subsection{Collision Detection}
+In the scenario, rigid objects are treated as geometric obstacles.  Two types of obstacles are considered: circles and a floor line that can not be crossed.  For the floor obstacle, the collision is roughly solved by pushing vertices back to the border of the floor.  The springs will eventually propagate the effect to the neighbours.  For the circle the resolution is in two stages: vertices and edges.  A vertex will be pushed out to a distance $\epsilon$ of the finger, in the direction of the radius.  For edges, the common algorithm in \alref{alg:point_segment} is used to estimate the shortest distance between the centre of the circle and the edge.  Given this distance, the algorithm in \alref{alg:push_edge} indicates how and in which direction the edge must be displaced.
+
+\begin{figure}
+  \begin{algorithmicieee}{Closest Point on a Segment to Any Other Point}\label{alg:point_segment}
+ \STATE Be $a$, $b$ the ends of the edge $\overline{AB}$, $c$ the external point, and $x$ the closest point to $c$ in the line.
+ \STATE Be the vectors $\vec{AB} = b - a$ and $\vec{AC} = c - a$.
+ \STATE The projection of $\vec{AC}$ over $\vec{AB}$ is $\|x\| = \dfrac{\vec{AC} \cdot \vec{AB}}{\|\vec{AB}\|}$
+ \IF{$\|x\| < 0$}
+  \STATE $closest \gets a$
+ \ELSE
+  \IF{$\|x\| > \|\vec{AB}\| $}
+   \STATE $closest \gets b$
+  \ELSE
+   \STATE $closest \gets a + \|x\| \cdot \dfrac{\vec{AB}}{\|\vec{AB}\|}$
+  \ENDIF
+ \ENDIF
+ \end{algorithmicieee}
+ \caption{Algorithm to find the closest point on a segment to any other point.}
+\end{figure}
+
+\begin{figure}
+  \begin{algorithmicieee}{Push Edge Out}\label{alg:push_edge}
+ \STATE Be $a$, $b$ the ends of the edge $\overline{AB}$, $c$ the centre of the circle.  Use algorithm \ref{alg:point_segment} to find the closest point to the centre in the edge.
+ \IF {$\|(closest - c)\| < radius$ (There is an intersection)}
+  \STATE $displacement = (radius - \|(closest - c)\| + \epsilon) * \dfrac{(closest - c)}{\|(closest - c)\|}$
+  \STATE $ a \gets a + displacement$
+  \STATE $ b \gets b + displacement$
+ \ENDIF
+\end{algorithmicieee}
+ \caption{Algorithm to push an edge out of a circular obstacle.}
+\end{figure}
+
+\subsection{Geometric Constraints}
+Even with the addition of the term for preservation of angles, the discretized mass-spring forces can cause triangles of the mesh to overlap each other and be reversed or to be flattened.  The option of giving additional aid through small geometric subroutines was evaluated as well.  There are two geometric constraints that the mesh is enforced to maintain:
+
+\begin{enumerate}
+ \item For a reversed triangle, (one vertex crossed over an edge): the vertex gets pushed beyond half the distance between the vertex and the edge in the direction of the ``reversed'' height\footnote{$3/4$ this distance was used in our implementation.}, while both ends of the edge get pushed the same amount in the opposite direction.  This is enough for most cases, but triangles in the border of the mesh can still overlap each other.
+
+ \item If a triangle becomes flat: the longest edge and its opposite vertex along the perpendicular to the edge are pushed in opposite directions, to form a tiny triangle\footnote{An area of $2.0$ units was good enough.}.
+\end{enumerate}
+
+\subsection{Many Steps Prediction}
+\label{sec:manysteps}
+
+Given the initial shape of the object and a set of parameters, the mass-spring system allows to make predictions of the deformation of an object for various interactions.  Given the procedures explained in the previous sections, there are three ways to calculate the subsequent deformations of the shape:
+\begin{enumerate}
+ \item \textbf{Collision detection only.} Collision detection is used to determine the compression of the springs around the actuator.  In this case, the neighbouring springs are compressed and their preservation forces propagate the deformation towards their neighbours, and so on.  There is no need to use the force sensor.  It can be equated with observing someone else pushing an object we have touched before.
+ \item \textbf{Forces on vertices.} The forces to be applied on the  vertices around the actuator are approximated by the measured reaction forces.  Both, the series of positions of the actuator and the reaction forces are necessary.  These forces will be solely responsible for the deformation of the mesh.  If the deformation is insufficient, the actuator may trespass invalidly the border of the mesh.  The quality of the simulation is much more sensitive to the values of the elasticity-plasticity constants.  This corresponds to the robot itself pushing the object and feeling the response, while using vision solely to determine the position of the actuator and for evaluation purposes.
+ \item \textbf{Both.} The previous two are combined.  Visual constraints (collision detection) and forces are used to determine the displacement of nodes around the actuator.  Again, the springs propagate the deformation to the rest of the mesh.
+\end{enumerate}
+The mesh as predicted by one step is fed as current shape for the next step and the cycle is repeated until the simulation is stopped.
+
+The next stage of the learning process consists in identifying sets of parameters that produce simulations similar to the ground truth.  This problem is addressed in the following section.
+
+
+
+\section{Learning to Predict the Deformation}
+\label{sec:learning}
+\subsection{Evolutionary Algorithm}
+The evolutionary algorithm listed in \alref{alg:genetic} was used to search the space of parameters of the mass-spring model presented in the previous section.
+From the parameters that must be chosen for the simulation to work, some were fixed while others had to be searched for.  They are:
+\begin{itemize}
+ \item The mass per vertex.  \textit{(For the moment we consider a unitary mass for all vertices.)}
+ \item The elasticity constants: for the preservation of length $k_L$, area $k_A$, angles $k_{\varphi}$ and linear damping $k_d$.  \textit{(All springs will have the same values to favour generalisation.)}
+ \item The plastic parameters: $yield$, $creep$ and the maximum amount of permanent deformation $max\_\alpha$.  \textit{(All springs will have the same values to favour generalisation.)}
+ \item The integration time step $\Delta t$.  \textit{(It has been set to 0.1 seconds, even though values as small as 0.01 were tried as well.)}
+ \item An upper limit for the magnitude of the total estimated forces per vertex $max\_Force$.
+ \item The minimum area before a triangle is considered \textit{flat}.  (It has been set to $2.0$ units.)
+\end{itemize}
+To evaluate the suitability of each set of parameters, the simulation is compared with the ground truth tracked from real objects.
+
+\begin{figure}
+  \begin{algorithmicieee}{Evolutionary Search}\label{alg:genetic}
+ \STATE Be $N$ the number of sets of parameters to be evaluated per generation and $M$ the number of generations to try.
+ \STATE Let $\alpha + \beta + \gamma + \zeta = N$ denote four portions of the $N$ elements.
+ \STATE Be $\sigma_{max} > \sigma_{min}$ standard deviations for a Gaussian
+ \STATE Let $\Delta\sigma \gets (\sigma_{max} - \sigma_{min})/M$.
+ \FOR {$i=1 \to M$}
+ \STATE Run the $N$ simulations and compare prediction with the ground truth (real object), by comparing the area occupied by the real object with the area occupied by the mesh of the simulation [\fref{fig:scene}(b)].
+ \STATE Keep the best $\alpha$ of all simulations.
+ \STATE $\sigma \gets \sigma - \Delta\sigma$
+ \STATE Generate $\beta$ by adding random Gaussian noise, with standard deviation $\sigma$, to the best candidates.
+ \STATE Generate $\gamma$ by selecting values of the parameters from two different sets at random, after eliminating the $\epsilon$ worst.
+ \FOR {$\zeta$ elements}
+   \STATE Generate completely new sample with:
+   \FOR {every parameter}
+     \STATE $n \leftarrow randomNumber \in [0,1)$
+     \STATE $min \leftarrow \log(minValue)$
+     \STATE $max \leftarrow \log(maxValue)$
+     \STATE $param \leftarrow e^{(n (max - min) + min)}$
+   \ENDFOR
+ \ENDFOR
+ \STATE $i \gets i + 1$
+ \ENDFOR
+\end{algorithmicieee}
+ \caption{Evolutionary Search for Automatic Calibration}
+\end{figure}
+
+\subsection{Tracking to Provide Ground Truth}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=88mm]{arrio2}
+\caption{(a) Experimental set up.  A robotic finger pushes a block of deformable material over a table.  A camera registers the events of the plane where the main deformations take place.  (b) Evaluation function.  Left top: Mesh over real block of material.  Left bottom: Tipical error of the model vs the ground truth (red) and tipical error of the tracker (blue).  Right top: tracked ground data.  Middle: TP in yellow, FP in blue, FN in red and TN in gray.  Bottom: simulated mesh. }
+\label{fig:scene}
+\end{figure}
+
+The contour of the deformable object is used to obtain the ground truth for the training phase, which is the area enclosed by the contour. Geometrically, the contour is represented by a polygon with hundreds of sides, which can also be called a \textit{linear spline}.  The tracking of the deformable target in the ground truth has two stages:
+\begin{enumerate}
+ \item The target object is segmented from the environment.  The Canny algorithm is used to extract the edges of the image.  Next, a simple colour segmentation is used to remove edges that are not likely to belong to the object of interest.
+ \item The internal representation of its contour, the linear snake, is adapted to its new shape.  The algorithm assumes that no occlusions take place and that the contour does not bend over itself.
+\end{enumerate}
+For the first frame, the snake is initialised as a rectangle around the target. This rectangle fragments itself into smaller pieces. Each new vertex adheres itself to the closest point on an edge, as reached by growing rings of pixels around its current position, up to a certain threshold distance [\fref{fig:scene}(a)].  If there is no edge within that area, the control point remains were it is. This criterion was selected to make the representation more robust against edges that are easier to detect on some frames than in others.  Once the edge reappears, the control point adapts itself again.  Also, the distance between two consecutive control points is kept within the interval $[min\_distance, max\_distance]$ and two adjacent edges do not form angles smaller than $min\_angle$.  See \alref{alg:regularise}.  This allows the snake to adapt very quickly to the complexity of the contour it represents.
+
+
+\begin{figure}
+ \begin{algorithmicieee}{Regularise Linear Spline}\label{alg:regularise}
+ \STATE Be $L$ a linear spline representing the contour of a $2D$ shape, and $L_i$ the $i^{th}$ control point in a cyclic order.
+ \FORALL {$L_i$ in $L$}
+ \IF {$dist(L_i,L_{i-1}) > max\_distance$}
+  \STATE Insert $midpoint(L_i,L_{i-1})$ after $L_i$
+ \ELSIF {$dist(L_i,L_{i-1}) < min\_distance$}
+  \STATE erase $L_i$
+ \ELSIF {$angle(L_{i-1},L_i,L_{i+1}) < min\_angle$}
+  \STATE erase $L_i$
+ \ENDIF
+ \ENDFOR
+\end{algorithmicieee}
+\caption{Algorithm used to regularise the number of elements of a linear spline, in accordance with the level of detail required.}
+\end{figure}
+
+\subsection{Evaluation Function}
+\label{sec:evaluation}
+
+To evaluate the quality of the predicted shapes, the pixels inside the tracked contour are used as ground truth.  These are  compared against those inside the mesh of the simulation.  In machine learning terms, these pixels can be divided among four classes: the \textit{true positives $TP$}, where the material is present, and the simulation predicted it would be present; the \textit{true negatives $TN$}, where the absence of material is in accordance with the prediction; the \textit{false positives $FP$}, where the prediction said there would be material, but there is not; and the \textit{false negatives $FN$}, where there is material, but the prediction said there wouldn't [\fref{fig:scene}(b)].  Given that maintaining a record of the true negatives (the empty/background space around the material) is mostly irrelevant and highly inefficient, the mark for a whole video was derived from the following quantities:
+\begin{align}
+ Precision &= \frac{TP}{TP+FP}, \\
+ Recall &= \frac{TP}{TP+FN}
+\end{align}
+From which the harmonic average $F$ is derived:
+\begin{align}
+ F = \frac{2}{\frac{1}{Precision} + \frac{1}{Recall}} = \frac{1}{1 + \frac{FN + FP}{2TP}}
+\end{align}
+
+This measurement is used in the computer vision community to evaluate segmentation algorithms.  $F=1$ means that there were no false predictions ($FN+FP = 0$).  $F \rightarrow 0$\footnote{This is read: the value of $F$ goes to zero or $F$ tends to zero.}, if there are no good predictions ($TP\rightarrow0$) or if there are too many errors ($FN+FP \rightarrow \infty$).  $F$ is calculated for every frame and the mark for the video is the mean over all the frames so far, $\mu(F)$.  If the predictions for all the frames were perfect, $\mu(F)$ would be equal to 1; the closest to zero, the more errors there were.  The simulation stops sometimes, if a model has become unstable; from that frame on, the value of $F$ is zero.  The model with the highest final value of $\mu(F)$ is considered the best.
+
+\section{Models of Force Learning}
+%We used two methods to predict the forces.  The first one consists in measuring the total force acting on the vertex of the mesh closest to the actuator, according to the mass-spring model, after solving detected collisions.  This force is feed as input for the following simulation step.
+\label{sec:forces}
+
+Additionally and independently from the mass-spring system,  it is possible to make predictions about the expected reaction force of the material, by using information from the stress-strain diagram obtained from the training data set [\fref{fig:sstrain}].  The curve in this diagram is approximated by segmented regression curves.  Several candidates are proposed using the least squares technique and the best are chosen as follows.  Since there is only one independent variable the equations for adjusting a line are straightforward:
+\begin{align}
+ y & = mx + y_0 + Error \\
+ m & = \dfrac{n\sum x_i y_i-\sum x_i \sum y_i}{n \sum x_i^2 -(\sum x_i)^2} \\
+ y_0 & = \dfrac{\sum y_i}{n} - y_0 \dfrac{\sum x_i}{n} \displaybreak[0] \\
+ Error & = \sum(y_i - (mx_i+y0))^2
+\end{align}
+Where $y$ is the dependent variable, $x$ the independent one, $m$ is the sloop of the line, and $y_0$ the $y$ intercept.  To adjust logarithmic curves a change of variable is used.  Before computing the line, the natural logarithm of the independent variable is calculated, that is: $x'_i = \ln(x_i)$.  In this case, the final equation will be of the form: $y = m \ln x + y_0$.  It would be possible to add other types of curves, but these were enough for the materials covered.
+
+For the automatic calibration of the pushing phase both types of curves are considered.  To determine the place of the discontinuities between the segmentes, several candidates are calculated.  Each candidate is obtained by adjusting a curve through different amounts of data points and calculating the error.  Beginning with a small number of points (e.g. 5), as new measurements are taken, new curves are adjusted until the corresponding normalized error increases beyond a threshold value.  The type of curve that can cover more points with a low fit error is adopted for the model.  This model is used to predict the forces for the mass-spring simulation \fref{fig:diagram} and \fref{fig:sstrain}.%The prediction can be averaged with the spring reaction force calculated from the previous step, to combine the visual and haptic modalities and test whether the quality of the prediction is improved.
+
+\section{Experimental Results}
+\label{sec:experiments}
+\subsection{Scenario}
+For the experimental scenario a rectangular block of deformable material, of $8.5 \unit{cm}$ long, $5 \unit{cm}$ wide and $1.8 \unit{cm}$ depth, is placed on a table; the robot pushes the object with a cylindrical finger, followed by a retrieval movement.  A colour firewire camera records the action perpendicularly, while a force sensor registers the reaction forces in synchrony with each photograph taken [\fref{fig:scene}(a)].  The force sensor was a DAQ-FT-Gamma, that can measure forces up to 200 Newtons in the $z$ direction (up to 65N in the others) and torques up to 5 Newton-metre.  The size of the photographs is $800 \times 600$ pixels.  The scale between the real world measurements and the pixels in the image were: $4600\frac{\unit{pixels}}{\unit{m}}$ \footnote{$\unit{m}=metre$} for the sponge and $4350\frac{\unit{pixels}}{\unit{m}}$ for the plasticine (they are different because the camera was placed at slightly different positions).
+
+For both sets of experiments, each of the blocks was pushed in different positions:
+\begin{enumerate}
+ \item In the middle of its longest side.
+ \item Close to the corner of its longest side.
+ \item In the middle of its shortest side.
+\end{enumerate}
+The first set of data was used to train the model for the respective material.  The set of parameters that allowed the model to behave more like the real object, according to the criterion explained in \sref{sec:evaluation}, was selected.  The other two videos were used to test the quality of the predictions made by the model for the new interactions.
+
+To take into account the cylindrical shape of the actuator, the radial component of the registered force is applied on any vertex that happens to be located within the radius of the robotic finger.  For collision detection routines the finger is considered a circular obstacle.
+
+\begin{figure}[!t]
+\centering
+\setlength\fboxsep{0pt}    % padding
+\setlength\fboxrule{0.5pt} % line width
+\fbox{\includegraphics{arrio8}}
+%\includegraphics[width=88mm]{arrio8}
+\caption{The simulation time system with shape and force prediction.  The position of the actuator is extracted from the image, while the force is predicted by a piece-wise regression model. This information is used by the calibrated mass-spring system to predict the shape of the object for several frames. }\label{fig:diagram}
+\end{figure}
+
+\subsection{Integration Scheme}
+Sets of 24 training sessions were run, using different combinations of elasticity and plasticity terms.  For example: using damped preservation of length only, using preservation of area and angle only or all of them together;  including plastic deformation or removing the collision resolution routines and the aid of geometric constraints.  For this first rounds of experiments three different integration schemes were used: Euler, Verlet and our Customised version.  The resulting marks are summarised in \tref{tab:ischemes}.
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Marks of Sets of Parameters Obtained With Different Integration Schemes}
+\label{tab:ischemes}
+\centering
+\begin{tabular}{cccc}
+\hline
+\bfseries Scheme & \bfseries Best & \bfseries Worst & \bfseries Average \\
+\hline\hline
+Euler & 0.88 $\pm$ 0.04 & 0.44 $\pm$ 0.13 & 0.75 $\pm$ 0.08 \\
+Verlet & 0.76 $\pm$ 0.19 & 0.53 $\pm$ 0.18 & 0.68 $\pm$ 0.19 \\
+Customised & 0.921 $\pm$ 0.008 & 0.60 $\pm$ 0.13 & 0.86 $\pm$ 0.02 \\
+\hline
+\multicolumn{4}{l}{Where the mark is $\mu(F)$ as explained in \sref{sec:evaluation}.}
+\end{tabular}
+\end{table}
+
+The traditional equations of movement, estimated with Euler or Verlet show big oscillations and frequently become unstable.  Verlet seems to be badly affected by the collision resolution routines and geometric aids, that affect drastically the values of the velocity and acceleration.  On the contrary, the customised first degree equations suggested in \sref{sec:ischeme} produce smooth movements that resemble more the ground truth, thus obtaining better marks.  From this group of experiments it was also found that the evolutive learning is as efficient when considering all elastic and plastic terms, as when using only a few of them.
+
+\subsection{Parameters Calibrated Automatically}
+\subsubsection{Performance of the Learning Algorithm for the Mass-spring Model}
+The performance of the genetic learning algorithm was evaluated using the customised integration scheme and the mass-spring elastic-plastic model.  At this point no prediction of the force was included, rather, the reaction forces measured with the force sensor were used.  \fref{fig:performance} shows how the quality of the simulation throughout the whole video improved with each generation.  Both graphs show that even though the enforcing of geometric constraints with aid routines may produce simulations with lower marks at the begining of the training, they perform just as well after enough generations.  These marks reflect the degree at which areas covered by the ground truth and the mesh of the simulation match; however, when looking at the videos produced, it becomes evident that simulations with geometric aids succeed more in keeping the mesh flat. % Should put images? (if there is space left)
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=88mm]{arrio6}
+\includegraphics[width=88mm]{arrio7}
+\caption{Final marks of the videos after each generation of the genetic search.  The filled areas correspond to the standard deviation $\sigma(\bar{\mu}(F))$, across 15 runs of the learning algorithm.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with and without the aid of geometric recovery routines.  The block of material was represented by a mesh of $20 \times 10$ elements.}\label{fig:performance}
+\end{figure}
+
+\subsubsection{Prediction of the Force}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=88mm]{arrio4}
+\includegraphics[width=88mm]{arrio5}
+\caption{The response force during the interaction can be characterised in three phases: pushing, transition and retrieval of the finger.  A different regression curve can be used to approximate the force during the pushing and retrieving phases.  Linear and logarithmic regressions were suggested for the pushing movement and the best was chosen autonomously.  Only linear regression was used while retrieving.}\label{fig:sstrain}
+\end{figure}
+
+Using the readings of the force sensor, and associating the deformation of the material with the displacement of the robotic finger, a regression curve was fitted to the stress-strain graph for the pushing and retrieving movements.  See \fref{fig:sstrain}.  As it was expected from typical stress-strain diagrams of elastic and plastic phases of materials, a linear regression is characteristic of an elastic material, while the logarithmic fits better to a plastic one.  For the retrieving movement only a linear model was considered, since the shape deformation of the plastic material makes it harder to measure the strain from the visual information.  The curves obtained are used to approximately predict the reaction force for unknown interactions.  These forces are used for the mass-spring model as in the diagram of \fref{fig:diagram}.
+
+
+\subsection{Prediction}
+
+One hundred photographs and force readings where taken every $0.17\pm0.007 s$ in average.  The mass spring model runs with an integration step of $0.1s$, where forces that were not measured directly are interpolated.  The push down movement lasts approximately 50 frames and the retrieval, the other 50.  The continuous lines in \fref{fig:sstrain} show the predicted forces, given the amount of compression of the material (strain), while the point-lines show the actual readings.  \fref{fig:simulation_sponge} and \fref{fig:simulation_plasticine} show the shapes predicted by the mesh.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=178mm]{arrio9}
+\includegraphics[width=178mm]{arrio10}
+\includegraphics[width=178mm]{arrio11}
+\caption{Simulation of the sponge obtained with parameters $k_L=1898.22, k_d=1.24705, k_A=18629.2 k_{\phi}=764.649, max\_Force=183.71, yield=0.558793, creep=0.433517, max\_\alpha=0.73364$.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with the aid of geometric recovery routines and collision detection with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements. Top: Training. Middle: Test 1. Bottom: Test 2}\label{fig:simulation_sponge}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=178mm]{arrio12}
+\includegraphics[width=178mm]{arrio13}
+\includegraphics[width=178mm]{arrio14}
+\caption{Simulation of the plasticine obtained with parameters $k_L=4800.43, k_d=0.803787, k_A=7475.74 k_{\phi}=72.7379, max\_Force=571.392, yield=0.848239, creep=0.151826, max\_\alpha=0.126444$.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with the aid of geometric recovery routines with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements. Top: Training. Middle: Test 1. Bottom: Test 2}\label{fig:simulation_plasticine}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=178mm]{arrio16}
+\caption{Simulation of the plasticine obtained with parameters $k_L=0, k_d=0, k_A=28202.1 k_{\phi}=34.5491, max\_Force=780.825, yield=0.772727, creep=0.67466, max\_\alpha=0.656572$.  Using the customised integration scheme, the elastic-plastic model with some preservation terms, furtherly tuned by hand,  with the aid of geometric recovery routines with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements.}\label{fig:simulation_plasticine_hand}
+\end{figure*}
+
+\subsection{Classification}
+
+The calibrated mass-spring models were used to classify objects through recognition of their behaviour, even for novel interactions.  The models make predictions as if the object was known.  The model that makes the best predictions indicates which object is being observed.  There are two criteria for selecting an object:
+
+\begin{enumerate}
+ \item Per frame: an object is selected for each frame of the interaction. See \tref{tab:classperframe}.
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.3}
+\caption{Classification per Frame}
+\label{tab:classperframe}
+\centering
+\begin{tabular}{ccccccccc}
+\hline
+ & & \multicolumn{3}{c}{\bfseries Sponge} & & \multicolumn{3}{c}{\bfseries Plasticine} \\
+Data Set & & TP & FN & Precision & & TP & FN & Precision\\
+\hline\hline
+ \multicolumn{9}{c}{Trained with forces on vertices and no collision resolution.} \\
+\hline
+   training & & 167 & 132 & 0.56 & & 186 & 113 & 0.62 \\
+   test1 & & 167 & 132 & 0.56 & & 271 & 28 & 0.91 \\
+   test2 & & 242 & 57 & 0.81 & & 289 & 10 & 0.97 \\ 
+\hline
+%\multicolumn{7}{p{68mm}}{\begin{footnotesize}* TP and FN measured in number of frames.  Final class assigned according to the performance of the models' predictions across the whole video. \end{footnotesize}}
+\end{tabular}
+\end{table}
+
+ \item Global: The difference in the marks is added for all frames.  Frames where the distinction is more noticeable will receive a greater weight.
+\end{enumerate}
+
+
+
+\section{Discussion}
+\label{sec:discussion}
+We note the following points about the results and the method in general.
+\subsection{The Learning Method}
+Even though the evolutionary algorithm allowed for a uniform exploration of the logarithmic space of parameters, it failed to improve the quality of the simulations as much as it could.  Better simulations have been obtained by hand tunning some of the parameters.  \sout{A factor that this learning algorithm fails to take into account are the significant differences in behaviour when the magnitude of a parameter is modified in factors of 10.  The random uniform distribution used to select parameters favors a given order of magnitude while the system would benefit more from stronger variantions here.}
+
+\subsection{Using Geometric Constraints}
+Adding extra routines to enforce the planarity of the mesh had good aesthetic results, however that did not reflect much on the mark for the best videos of each generation during training.   Also, when attempting to model the plastic material, the geometric constraints provoqued a much more notorious effect comming from any plasticity term, even if its corresponding constant was small.  As a consequence the plastic material also recovered its original shape after some extra frames.  It has been seen that, if the constant for the linear preservation is set to zero, the problem disappears.  Even if the automatic calibration selects these extreme values with probability $\epsilon>0$, in an attempt to reproduce this finding, their derivatives obtained after applying gaussian noise to their parameters obtain better marks, even though they eventually recover their shapes, and get selected in a better position for the next generation.  We hypothesise that humans give greater weight to specific aspects of the simulation, for example: to the begining, instant of greatest deformation and final shape.  Meanwhile, the evaluation function gives the same weight to all frames in the sequence.  It is possible to use the force learning algorithm and the commands given to the robot (push/retreive) to detect these points, since they are corelated to discontinuities in these other modalities.  Future work will evaluate the impact of these modifications on the evaluation function.
+
+\subsection{Training With Collision Resolution with the Finger vs. Without}
+It was found that the overall mark of the best simulations was similar in both cases, since only geometric similarities are under consideration.  However, there was a notorious difference on the rate of success for the classification problem.  If no collision detection with the finger is used during training, the springs react only to the forces and, if the spring coefficients are not adequate, the shape of the mesh will be very different from the shape of the ground truth.
+
+On the other side, if collision detection is used, the geometric constraints strongly favour a correct configuration of the mesh in the vicinity of the actuator, even though the springs did not react properly.  For subsequent frames, it is more likely that the neighbours will succeed in propagating the deformation to the rest of the material, than if the positions of the springs had not been tampered by the collision resolution, thus producing better simulations.  However, this lessens the effectiveness of the mass-spring model in distinguishing the materals.
+
+\subsection{Classification}
+The best results for classification with the mass-spring model are obtained when the training of the models uses only forces to displace the nodes in the mass-spring model\footnote{Case 2 in \sref{sec:manysteps}}, but the combination of force readings and collision resolution is used during classification\footnote{Case 3 in \sref{sec:manysteps}}.  This finding agrees with the fact that the objects are more distinguishable from the data obtained from the force sensor, than from the visual data.  The fact that the spring constants must respond to the applied forces during the training and not only to the visual appearance is reflected in a better differentiation of the behaviour of the models.  When the calibration is more sensitive to the constants of the springs, it is more robust for novel interactions, therefore the difference in quality of the predictions is a better indicator of which material is beeing used.
+
+\subsection{Conclusions}
+In summary we have presented a framework, together with specific algorithms for learning the deformable behaviour of objects from robotic interaction. The main properties of the model are as follows. First, the parameters for the model were adjusted to data from real objects under robotic interaction. Second, we have attempted the automatic callibration of a simulation of plasticity. Third we use regression to predict the reaction forces. Fourth we include a new energy term for the preservation of angles of the mesh's triangles. Fifth we employ a regularization algorithm for a linear snake, that increases or decreases the number of its control points, according to the level of detail required to represent the deformed object. Sixth we provide a detailed evaluation of the dynamic simulation, instead of only during its stable states as in previous work. Finally we showed the application of the model to the problem of classifying deformable materials.
+
+There is considerable future work to be done. The first extension is due to the fact that we restricted the deformation model to 2D, and this can easily revert to the 3D meshes as used in Teschner's original work. The second issue is to explore new methods for the learning phase. The current search procedure doesn't always find good solutions for the plastic deformation model. But a more basic problem is that mass-spring models restrict the range of deformations that can be modelled. While the framework presented here is promising, we regard the actual deformation model representation as an open research problem.
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+% \appendices
+
+% you can choose not to have a title for an appendix
+% if you want by leaving the argument blank
+% \section{}
+% Appendix two text goes here.
+
+
+% use section* for acknowledgement
+\section*{Acknowledgment}
+
+The authors would like to thank Rustam Stolkin for his help in setting up the data gathering experiments and for the construction of the robotic finger. The research leading to this results has received funding from the PhD Scholarships program of CONACYT, Mexico and from the European Community's Seventh Framework Program [FP7/2007-2013] under grant agreements 215181 CogX, and 600918 PaCMan.
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+\bibliographystyle{IEEEtranS}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{twostagedo}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+% \begin{thebibliography}{1}
+% 
+% \bibitem{IEEEhowto:kopka}
+% H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+% 
+% \end{thebibliography}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{arrio}}]{Veronica E. Arriola-Rios}
+  has recently obtained her PhD in Computer Science from the University of Birmingham.
+  She works as full time lecturer at the National Autonomous University of Mexico (UNAM).
+  Veronica holds undergraduate degrees in Physics and Computer Science, and a masters degree in Computer Sciences, in the area of Computer Graphics and Virtual Environments.
+  Her research interests include artificial inteligence, cognitive robotics and natural cognition.
+\end{IEEEbiography}
+
+% if you will not have a photo at all:
+%\begin{IEEEbiographynophoto}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{wyatt}}]{Jeremy L. Wyatt} is Professor of Robotics
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{wyatt}}]{Jeremy L. Wyatt}
+%   is Professor of Robotics and Artificial Intelligence at the University of Birmingham. He
+%   obtained a BA in Theology from the University of Bristol, an MSc in
+%   Knowledge Based Systems from the University of Sussex, and his
+%   Ph.D. in Artificial Intelligence from the University of Edinburgh in
+%   1997. He has published more than 80 refereed articles and edited three books. His interests
+%   include machine learning, robot manipulation, robot learning, robot vision, 
+%   robotic architectures, and planning and learning for robots in uncertain 
+%   and incomplete worlds.
+  is Professor of Robotics
+  and Artificial Intelligence at the University of Birmingham. He
+  obtained a BA in Theology from the University of Bristol, an MSc in
+  Knowledge Based Systems from the University of Sussex, and his
+  Ph.D. in Artificial Intelligence from the University of Edinburgh in
+  1997. He has published more than 80 refereed articles. His interests
+  include machine learning, planning, architectures, vision, mobile robotics and robot manipulation.
+\end{IEEEbiography}
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+%%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{stolk}}]{Rustam Stolkin}
+%%  is currently Senior Research Fellow in robotics, in the School of
+%  Mechanical Engineering, University of Birmingham, UK. Prior to
+%  coming to Birmingham, he was a Research Assistant Professor at
+%  Stevens Institute of Technology, USA. Rustam holds undergraduate and
+%  masters degrees in Engineering Science from University of Oxford,
+%  and a PhD in Robot Vision, undertaken between University College
+%  London and the UK imaging industry. His research interests include
+%  robotics, computer vision, sensor systems, and science and
+%  engineering education
+%\end{IEEEbiography}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+
+
