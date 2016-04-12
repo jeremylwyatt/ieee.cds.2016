@@ -1,0 +1,8 @@
+# Latex aux
+*.aux
+*.log
+*.tex.backup
+*.sty.backup
+*.bbl
+*.blg
+
