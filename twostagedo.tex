@@ -540,7 +540,7 @@ There is a wide range of models of deformation used in engineering, that are cap
 
 \begin{figure}[!t]
 \centering\includegraphics[width=3.5in]{arrio17.png}
-\caption{Force information acquired while working with a block of sponge (elastic) and a piece of plasticine (plastic).}
+\caption{Force information acquired while working with a block of sponge (elastic) and a piece of plasticine (plastic).  Notice the difference in magnitude between the force used with the sponge and the plasticine.}
 \label{fig:forceElasticPlastic}
 \end{figure}
 
@@ -780,24 +780,24 @@ The mass-spring model proposed by Teschner et al.\ in \cite{Teschner2004} was re
 
 For any preservation term, the potential energy $E$ is proportionally dependent on a preservation constraint $C$, where $k$ is the proportionality constant \eref{eq:EConstraint}.  The force $\vec{F}^i$ acting on the $i^{th}$ mass particle is defined as the negative gradient of this potential energy with respect to the position of the particle $\vec{p}_i$ \eref{eq:EForce}.
 \begin{align}
- E(\vec{p}_0,...,\vec{p}_{n-1}) & = \frac{1}{2}kC^2, \label{eq:EConstraint} \\
- \vec{F}^i(\vec{p}_0,...,\vec{p}_{n-1}) & = -\frac{\partial}{\partial \vec{p}_i}E = -kC\frac{\partial C}{\partial \vec{p}_i}. \label{eq:EForce}
+ E(\vec{p}_1,...,\vec{p}_{n}) & = \frac{1}{2}kC(\vec{p}_1,...,\vec{p}_{n})^2, \label{eq:EConstraint} \\
+ \vec{F}^i(\vec{p}_1,...,\vec{p}_{n}) & = -\frac{\partial}{\partial \vec{p}_i}E = -kC\frac{\partial C}{\partial \vec{p}_i}. \label{eq:EForce}
 \end{align}
 Which with damping becomes:
 \begin{align}
  \label{eq:Fdamping}
- \vec{F}^i&(\vec{p}_0,...,\vec{p}_{n-1},\vec{v}_0,...,\vec{v}_{n-1}) = \nonumber \\
-    &\left( -kC-k_d\sum_{0\le j < n} \dfrac{\partial C}{\partial \vec{p}_j}\vec{v}_j \right)
+ \vec{F}^i&(\vec{p}_1,...,\vec{p}_{n},\vec{v}_1,...,\vec{v}_{n}) = \nonumber \\
+    &\left( -kC-k_d\sum_{1 \le j \le n} \dfrac{\partial C}{\partial \vec{p}_j}\vec{v}_j \right)
  \dfrac{\partial C}{\partial \vec{p}_i},
 \end{align}
-where $\vec{v}_j$ is the velocity of the $j^{th}$ particle connected to $i$.
+where $\vec{v}_j$ is the velocity of the $j^{th}$ particle connected to $i$, in a system with $n$ particles.
 
 \subsubsection{Preservation of Length}
 The constraint for the potential energy is given by:
 \begin{equation}
- C = \dfrac{|\vec{p}_j-\vec{p}_i|-D_0}{D_0},
+ C = \dfrac{|\vec{p}_j-\vec{p}_i|-D_0}{D_0}, \label{eq:clength}
 \end{equation}
-where $D_0$ is the rest length of the spring.  This force pulls the masses in the direction of the spring that joins them [\fref{fig:forces}(a)].  Teschner normalised the value dividing by $D_0$ to make the elasticity constants scale independent.  Morris \cite{Morris2008} omitted that in his final equations for the force.  Here we use the normalised force $\vec{F}^i_D$ \eref{eq:FDlength}, which has the effect that, if we obtain a good set of parameters for a certain mesh of high resolution, the same set can be used for a mesh of lesser resolution that preserves the same type of symmetries.
+where $\vec{p}_i$ and $\vec{p}_j$ are connected by a spring and $D_0$ is the rest length of that spring.  The force derived from this constraint pulls the masses in the direction of the spring that joins them [\fref{fig:forces}(a)].  Teschner normalised the value dividing by $D_0$ to make the elasticity constants scale independent.  Morris \cite{Morris2008} omitted that in his final equations for the force.  Here we use the normalised force $\vec{F}^i_D$ \eref{eq:FDlength}, which has the effect that, if we obtain a good set of parameters for a certain mesh of high resolution, the same set can be used for a mesh of lesser resolution that preserves the same type of symmetries.  Therefore, substituting \eref{eq:clength} in \eref{eq:Fdamping} we get:
 \begin{align}
  \vec{F}^i_D(p_i,p_j,v_i,v_j) &= \dfrac{k_L}{D_0^2} \left( |\vec{p}_j-\vec{p}_i|-D_0 \right) \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|}  + \nonumber \\
  & \dfrac{k_d}{D_0^2}\left( \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|} \cdot (\vec{v}_j-\vec{v}_i) \right) \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|} \label{eq:FDlength}
@@ -805,7 +805,7 @@ where $D_0$ is the rest length of the spring.  This force pulls the masses in th
 where $k_L$ is the linear spring constant and $k_d$ the damping constant.
 
 \subsubsection{Preservation of Area}
-Since Teschner and Morris didn't find it helpful to add damping to the preservation of areas, it is avoided here.  Therefore the force $\vec{F}^i_A$ is derived as follows:
+This constraint is applied per triangle in the mesh.  Since Teschner and Morris didn't find it helpful to add damping to the preservation of areas, it is avoided here.  Therefore the force $\vec{F}^i_A$ is derived as follows:
 \begin{align}
  C &= \frac{\frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|-A_0}{A_0} \\
  Area &= \frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|, \\
@@ -1138,7 +1138,7 @@ One hundred photographs and force readings where taken every $0.17\pm0.007 s$ in
 \includegraphics[width=178mm]{arrio12}
 \includegraphics[width=178mm]{arrio13}
 \includegraphics[width=178mm]{arrio14}
-\caption{Simulation of the plasticine obtained with parameters $k_L=4800.43, k_d=0.803787, k_A=7475.74 k_{\phi}=72.7379, max\_Force=571.392, yield=0.848239, creep=0.151826, max\_\alpha=0.126444$.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with the aid of geometric recovery routines with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements. Top: Training. Middle: Test 1. Bottom: Test 2}\label{fig:simulation_plasticine}
+\caption{Simulation of the plasticine obtained with parameters $k_L=642.328, k_d=0.562201, k_A=29.2776 k_{\phi}=72.6202, max\_Force=765.912, yield=0.0790105, creep=0.664469, max\_\alpha=0.48842$.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with the aid of geometric recovery routines and collision detection with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements. Top: Training. Middle: Test 1. Bottom: Test 2}\label{fig:simulation_plasticine}
 \end{figure*}
 
 \begin{figure*}[!t]
