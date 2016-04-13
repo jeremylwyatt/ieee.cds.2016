@@ -684,7 +684,8 @@ As has been mentioned above there are several choices made in our modelling appr
 
 In each case the models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions. 
 
-The training of the model is performed offline using ground truthed data. The overall algorithm is given in \alref{alg:overall}. For clarity the algorithm is given in three phases: training, simulation (i.e. the prediction phase), and classification (i.e. matching prediction to new data). In testing the model new data is used, where this is typically new deformation actions on an object of known material and approximate shape. Having given an overview of the model we now relate our approach to those in the literature, before proceeding to describe the details of the spring-mass model of deformation (Section~\ref{sec:model}), and then the regression model of contact forces (Section~\ref{sec:forces}).
+The training of the model is performed offline using ground truthed data. %The overall algorithm is given in \alref{alg:overall}.
+For clarity the algorithm is given in three phases: training, simulation (i.e. the prediction phase), and classification (i.e. matching prediction to new data). In testing the model new data is used, where this is typically new deformation actions on an object of known material and approximate shape. Having given an overview of the model we now relate our approach to those in the literature, before proceeding to describe the details of the spring-mass model of deformation (Section~\ref{sec:model}), and then the regression model of contact forces (Section~\ref{sec:forces}).
 
 \section{Background}
 \label{sec:background}
@@ -777,26 +778,31 @@ Additionally, there is a vast amount of literature on modelling of deformable sh
 
 The mass-spring model proposed by Teschner et al.\ in \cite{Teschner2004} was reduced to a 2D model, so that the predictions could be compared with 2D images of the deformable object.  The main idea being that an agent can make rough real time predictions of what it can see and touch and use those predictions to solve various tasks, like classification or grasping.  Here, the surface of the deformable object is approximated by a regular triangular mesh of unitary masses and springs.  The potential energy terms for the preservation of length with damping and preservation of area were included in our system.  To compensate for the lack of a preservation of volume, which tends to avoid distortions of the graph, a new term for the preservation of the angles was included.  The relevant equations are presented in the following paragraphs, while detailed derivations can be found in \cite{Arriola2013thesis}.
 
-For any preservation term, the potential energy $E$ is proportionally dependent on a preservation constraint $C$, where $k$ is the proportionality constant \eref{eq:EConstraint}.  The force $\vec{F}^i$ acting on the $i^{th}$ mass particle is defined as the negative gradient of this potential energy with respect to the position of the particle $\vec{p}_i$ \eref{eq:EForce}.
+For every desired constraint $C(\vec{p}_1,...,\vec{p}_{n})$ acting over $n$ vertices, a potential energy $E$ is defined.  When the value of the constraint is zero, the potential energy is zero as well.  When the constraint is not satisfied, the potential energy increases.  This behaviour is obtained through the following definition for the energy:
 \begin{align}
- E(\vec{p}_1,...,\vec{p}_{n}) & = \frac{1}{2}kC(\vec{p}_1,...,\vec{p}_{n})^2, \label{eq:EConstraint} \\
+ E(\vec{p}_1,...,\vec{p}_{n}) & = \frac{1}{2}kC(\vec{p}_1,...,\vec{p}_{n})^2, \label{eq:EConstraint}
+\end{align}
+where $k$ is a proportionality constant \eref{eq:EConstraint} and $p_i$ is the position of particle $i$.
+
+In order to reduce the energy of the system when a constraint is not satisfied, the force $\vec{F}^i$ acting on the $i^{th}$ mass particle is defined as the negative gradient of this potential energy with respect to the position of the particle $\vec{p}_i$ \eref{eq:EForce}.
+\begin{align}
  \vec{F}^i(\vec{p}_1,...,\vec{p}_{n}) & = -\frac{\partial}{\partial \vec{p}_i}E = -kC\frac{\partial C}{\partial \vec{p}_i}. \label{eq:EForce}
 \end{align}
-Which with damping becomes:
+Given the oscilatory nature of these equations, damping can be introduced to stop the oscillations.  This is modelled with a force acting in the opposite direction to the velocity of the affected particles:
 \begin{align}
  \label{eq:Fdamping}
  \vec{F}^i&(\vec{p}_1,...,\vec{p}_{n},\vec{v}_1,...,\vec{v}_{n}) = \nonumber \\
     &\left( -kC-k_d\sum_{1 \le j \le n} \dfrac{\partial C}{\partial \vec{p}_j}\vec{v}_j \right)
  \dfrac{\partial C}{\partial \vec{p}_i},
 \end{align}
-where $\vec{v}_j$ is the velocity of the $j^{th}$ particle connected to $i$, in a system with $n$ particles.
+where $\vec{v}_j = \frac{\partial \vec{p}_j}{\partial t}$ is the velocity of the $j^{th}$ particle connected to $i$, when the constraint acts on $n$ particles.
 
 \subsubsection{Preservation of Length}
 The constraint for the potential energy is given by:
 \begin{equation}
  C = \dfrac{|\vec{p}_j-\vec{p}_i|-D_0}{D_0}, \label{eq:clength}
 \end{equation}
-where $\vec{p}_i$ and $\vec{p}_j$ are connected by a spring and $D_0$ is the rest length of that spring.  The force derived from this constraint pulls the masses in the direction of the spring that joins them [\fref{fig:forces}(a)].  Teschner normalised the value dividing by $D_0$ to make the elasticity constants scale independent.  Morris \cite{Morris2008} omitted that in his final equations for the force.  Here we use the normalised force $\vec{F}^i_D$ \eref{eq:FDlength}, which has the effect that, if we obtain a good set of parameters for a certain mesh of high resolution, the same set can be used for a mesh of lesser resolution that preserves the same type of symmetries.  Therefore, substituting \eref{eq:clength} in \eref{eq:Fdamping} we get:
+where $\vec{p}_i$ and $\vec{p}_j$ are connected by a spring and $D_0$ is the rest length of that spring.  The force derived from this constraint pulls the masses in the direction of the spring that joins them [\fref{fig:forces}(a)].  Teschner normalised the value dividing by $D_0$ to make the elasticity constants scale independent.  Morris \cite{Morris2008} omitted that in his final equations for the force.  Here we use the normalised force $\vec{F}^i_D$ \eref{eq:FDlength}, which has the effect that, if we obtain a good set of parameters for a certain mesh of high resolution, the same set can be used for a mesh of lesser resolution that preserves the same type of symmetries.  Therefore, substituting \eref{eq:clength} in \eref{eq:Fdamping}, after some manipulation we get:
 \begin{align}
  \vec{F}^i_D(p_i,p_j,v_i,v_j) &= \dfrac{k_L}{D_0^2} \left( |\vec{p}_j-\vec{p}_i|-D_0 \right) \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|}  + \nonumber \\
  & \dfrac{k_d}{D_0^2}\left( \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|} \cdot (\vec{v}_j-\vec{v}_i) \right) \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|} \label{eq:FDlength}
@@ -1129,14 +1135,14 @@ One hundred photographs and force readings where taken every $0.17\pm0.007 s$ in
 \includegraphics[width=178mm]{arrio9}
 \includegraphics[width=178mm]{arrio10}
 \includegraphics[width=178mm]{arrio11}
-\caption{Simulation of the sponge obtained with parameters $k_L=1898.22, k_d=1.24705, k_A=18629.2 k_{\phi}=764.649, max\_Force=183.71, yield=0.558793, creep=0.433517, max\_\alpha=0.73364$.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with the aid of geometric recovery routines and collision detection with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements. Top: Training. Middle: Test 1. Bottom: Test 2}\label{fig:simulation_sponge}
+\caption{Simulation of the sponge obtained with parameters $k_L=3034.48, k_d=0.000237, k_A=103.568 k_{\phi}=66.774, max\_Force=1218.81, yield=0.000434973, creep=0.00890343, max\_\alpha=0.45204$.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with the aid of geometric recovery routines and collision detection with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements. Top: Training. Middle: Test 1. Bottom: Test 2}\label{fig:simulation_sponge}
 \end{figure*}
 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=178mm]{arrio12}
 \includegraphics[width=178mm]{arrio13}
-\includegraphics[width=178mm]{arrio14}
+%\includegraphics[width=178mm]{arrio14}
 \caption{Simulation of the plasticine obtained with parameters $k_L=642.328, k_d=0.562201, k_A=29.2776 k_{\phi}=72.6202, max\_Force=765.912, yield=0.0790105, creep=0.664469, max\_\alpha=0.48842$.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with the aid of geometric recovery routines and collision detection with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements. Top: Training. Middle: Test 1. Bottom: Test 2}\label{fig:simulation_plasticine}
 \end{figure*}
 
