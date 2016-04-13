@@ -459,8 +459,7 @@
 
 
 % The paper headers
-\markboth{IEEE Transactions on Systems, Man, and Cybernetics—Part B: Cybernetics,
-          ~Vol.~11, No.~4, December~2012}%
+\markboth{IEEE CDS}%
 {Arriola-Rios \MakeLowercase{\textit{et al.}}: A Multi-Modal Model for Prediction and Classification of Object Deformation during Robotic Manipulation}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
@@ -534,7 +533,7 @@ Deformable objects, prediction, classification, learning.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{A} major challenge in robotic manipulation is to plan actions with objects so as to deform them into new shapes. Most objects that are manipulated by animals in natural environments are deformable, and these include objects that are elastic, plastic, breakable, tearable, and spreadable. This work is based on the premise that in order to plan manipulations of deformable objects, predictive models of object deformation are required. Without such models planners cannot reason about the effects of actions, or sequences of actions to achieve desired effects.
+\IEEEPARstart{A} major challenge in robotic manipulation is to plan actions with objects so as to deform them into new shapes. Most objects that are manipulated by animals in natural environments are deformable, and these include objects that are elastic, plastic, breakable, tearable, and spreadable. This work is based on the premise that in order to plan manipulations of deformable objects, the sensorimotor contingencies governing object deformation are required. These sensorimotor contingencies can then be used to feedback on themselves to predict over long timescales. Without such models planners cannot reason about the effects of actions, or sequences of actions, to achieve desired effects.
 
 There is a wide range of models of deformation used in engineering, that are capable of producing predictions, such as finite element models, but these typically require careful optimisation by hand over many weeks or months. In graphics there are many models used for generating qualitatively plausible simulations of objects, but these are not necessarily easy to tune to real data. By contrast robots must perform system identification of their model parameters from data, on-line, in reasonable amounts of training time. This includes building models from the usually very limited sensing typically available, such as partial visual views of an object, and force-torque monitoring at contact points. Thus tackling this problem in robotics adds additional difficulties to an already challenging problem.
 
@@ -544,49 +543,49 @@ There is a wide range of models of deformation used in engineering, that are cap
 \label{fig:forceElasticPlastic}
 \end{figure}
 
-Previous work on prediction for deformable objects in robotics has been suprisingly limited. Table~\ref{t:advances} summarises the features of the major efforts to date. In each case critical abilities are missing: either models cannot be learned from data; or only address one type of deformation (e.g. elastic); or cannot perform classification; or cannot predict the forces felt; or cannot predict what will happen when the robot loses contact with the object (will it retain or recover from the deformation?). In this paper we present a framework for solving all these problems simultaneously. The key novel contribution we make is to bring together a model of what forces the robot will feel at a contact point with a model of how an object will deform under such applied forces over time. This formulation allows the robot to make predictions about the type of object, and thus it's future behaviour using the resistive forces and the object deformations \fref{fig:forceElasticPlastic} and \fref{fig:sstrain}. A second critical contribution is that our model is both generative and generalisable with respect to contact point.  Finally the third major feature of the model is that it is adaptive: a set of model parameters is learned for each material presented from data, thus creating a model library of materials. This generative property enables both prediction suitable for use in planning, and also classification of materials. The overall model structure is summarised in \fref{fig:system}. Essentially the approach is to use visual tracking of shape deformations to create feedback that is used to train the parameters of a model (Model A) that predicts deformation when coupled with contact forces. The contact forces are themselves predicted using a second model (Model B). In the specific implementation of our system we use a mass spring system for Model A, and a regression model for Model B. These models are learned from the same data, and are both indexable by a known material type from the library. It is important to note, however, that the model structure is separate from the specific model forms used, and that other model types could be substituted for one or both stages.  This behaviour is described in \alref{alg:overall}.
+Previous work on learning sensorimotor contingencies for deformable objects in robotics has been suprisingly limited. Table~\ref{t:advances} summarises the features of the major efforts to date. In each case critical abilities are missing: either models cannot be learned from data; or only address one type of deformation (e.g. elastic); or cannot perform classification; or cannot predict the forces felt; or cannot predict what will happen when the robot loses contact with the object (will it retain or recover from the deformation?). In this paper we present a framework for solving all these problems simultaneously. The key novel contribution we make is to bring together a model of what forces the robot will feel at a contact point with a model of how an object will deform under such applied forces over time. This formulation allows the robot to make predictions about the type of object, and thus it's future behaviour using the resistive forces and the object deformations \fref{fig:forceElasticPlastic} and \fref{fig:sstrain}. A second critical contribution is that our model is both generative and generalisable with respect to contact point.  Finally the third major feature of the model is that it is adaptive: a set of model parameters is learned for each material presented from data, thus creating a model library of materials. This generative property enables both prediction suitable for use in planning, and also classification of materials. The overall model structure is summarised in \fref{fig:system}. Essentially the approach is to use visual tracking of shape deformations to create feedback that is used to train the parameters of a model (Model A) that predicts deformation when coupled with contact forces. The contact forces are themselves predicted using a second model (Model B). In the specific implementation of our system we use a mass spring system for Model A, and a regression model for Model B. These models are learned from the same data, and are both indexable by a known material type from the library. It is important to note, however, that the model structure is separate from the specific model forms used, and that other model types could be substituted for one or both stages.  %This behaviour is described in \alref{alg:overall}.
 
-\begin{figure}
- \begin{algorithmicieee}{Overall Behaviour}\label{alg:overall}
- {\small
- \STATE \textbf{Training Phase:}
- \FORALL {training materials:}
-   \FORALL {finger commands (push down, push up)}
-     \STATE The controler gives the command.
-     \WHILE {the command is executed}
-       \STATE The F/T sensor module records the reaction force.
-       \FORALL {candidate regresion curves}
-         \STATE The F/T sensor module adjusts the curve.
-       \ENDFOR
-       \STATE The visual system tracks and records the modifications of the shape from a 2D camera.
-     \ENDWHILE
-     \STATE The F/T sensor module records a discontinuity in the regresion curve.
-   \ENDFOR
-   \STATE The F/T sensor module returns the best regresion curve as Model B.
-   \STATE The learning algorith for the mass-spring model proposes candidate parameters.
-   \FORALL{frames of captured information}
-     \FORALL{sets of candidate parameters}
-       \STATE Evaluate how similar the mass-spring simulation is to the real object.
-     \ENDFOR
-   \ENDFOR
-   \STATE The values of the best set of parameters is adopted as Model A.
- \ENDFOR
- \STATE \textbf{Simulation Phase:}
- \WHILE{the finger penetrates the material}
-   \STATE Use Model B to predict the reaction force given the distance traversed after contact with the material.
-   \STATE Use this force to run the simulation with Model A.
-   \STATE Model A predicts the shape the material should have.
- \ENDWHILE
- \STATE \textbf{Classification Phase:}
- \FORALL{frames of captured information}
-  \FORALL{previously trained materials}
-    \STATE Run simulation and evaluate similitude
-  \ENDFOR
- \ENDFOR
- \STATE Return material with the highest score.}
- \end{algorithmicieee}
-\caption{Overall algorithmic structure of the system.}
-\end{figure}
+%\begin{figure}
+% \begin{algorithmicieee}{Overall Behaviour}\label{alg:overall}
+% {\small
+% \STATE \textbf{Training Phase:}
+% \FORALL {training materials:}
+%   \FORALL {finger commands (push down, push up)}
+%     \STATE The controler gives the command.
+%     \WHILE {the command is executed}
+%       \STATE The F/T sensor module records the reaction force.
+%       \FORALL {candidate regresion curves}
+%         \STATE The F/T sensor module adjusts the curve.
+%       \ENDFOR
+%       \STATE The visual system tracks and records the modifications of the shape from a 2D camera.
+%     \ENDWHILE
+%     \STATE The F/T sensor module records a discontinuity in the regresion curve.
+%   \ENDFOR
+%   \STATE The F/T sensor module returns the best regresion curve as Model B.
+%   \STATE The learning algorith for the mass-spring model proposes candidate parameters.
+%   \FORALL{frames of captured information}
+%     \FORALL{sets of candidate parameters}
+%       \STATE Evaluate how similar the mass-spring simulation is to the real object.
+%     \ENDFOR
+%   \ENDFOR
+%   \STATE The values of the best set of parameters is adopted as Model A.
+% \ENDFOR
+% \STATE \textbf{Simulation Phase:}
+% \WHILE{the finger penetrates the material}
+%   \STATE Use Model B to predict the reaction force given the distance traversed after contact with the material.
+%   \STATE Use this force to run the simulation with Model A.
+%   \STATE Model A predicts the shape the material should have.
+% \ENDWHILE
+% \STATE \textbf{Classification Phase:}
+% \FORALL{frames of captured information}
+%  \FORALL{previously trained materials}
+%    \STATE Run simulation and evaluate similitude
+%  \ENDFOR
+% \ENDFOR
+% \STATE Return material with the highest score.}
+% \end{algorithmicieee}
+%\caption{Overall algorithmic structure of the system.}
+%\end{figure}
 
 In summary the two stage model we present gives us the ability to solve {\em simultaneously} for the first time the following problems. Our model enables i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from either or both force and visual data, v) prediction of object behaviour after contact by the robot is removed. In the rest of the paper we present related work (Section~\ref{sec:background}); describe the model (Section~\ref{sec:model}); describe how the model parameters are learned from real data (Section~\ref{sec:learning}); and the experiments on prediction and classification with both elastic and plastic objects (Section~\ref{sec:experiments}); finishing with a short discussion (Section~\ref{sec:discussion}).
 
