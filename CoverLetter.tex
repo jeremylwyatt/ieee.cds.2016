@@ -1,0 +1,66 @@
+\documentclass[a4paper,10pt]{letter}
+\usepackage[utf8]{inputenc}
+
+%% --- Font
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+
+%% --- Margins
+
+\setlength\topmargin{-50pt}
+\setlength\textheight{10in}
+\longindentation=0pt
+
+%% --- Logo
+\usepackage{graphicx}
+%\usepackage{fancyhdr}
+%\usepackage{geometry}
+
+\atbegindocument{\includegraphics[width=.98\textwidth]{figures/unam.jpg}}
+
+%\geometry{headheight = 1.1in}
+%\fancypagestyle{firstpage}{\fancyhf{}\fancyhead[L]{\includegraphics[height=1in, keepaspectratio=true]{figures/unam.jpg}}}
+%\fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\includegraphics[height=0.5in, keepaspectratio=true]{figures/unam.jpg}}}
+%\fancypagestyle{empty}{\fancyhf{}\fancyhead[R]{\includegraphics[height=0.5in, keepaspectratio=true]{figures/unam.jpg}}}
+%\pagestyle{plain}
+
+%\vspace*{-2cm}
+
+\begin{document}
+% If you want headings on subsequent pages,
+% remove the ``%'' on the next line:
+% \pagestyle{headings}
+
+\begin{letter}{IEEE Transactions on Cognitive and Developmental Systems\newline
+Special Issue on Sensorimotor Contingencies for Cognitive Robotics}
+\address{Facultad de Ciencias, \\Ciudad Universitaria,\\ UNAM, México, D.F.}
+
+\opening{Dear Dr. Ricardo Téllez,}
+
+Please find attached our submission:
+\begin{center}
+ ``A Multi-Modal Model for Prediction and Classification of Object Deformation during Robotic Manipulation'' \\
+ Veronica E.~Arriola-Rios (UNAM, Mexico), Jeremy~L.~Wyatt (University of Birmingham, UK)
+\end{center}
+
+This work is based on the premise that in order to plan manipulations of deformable objects, the sensorimotor contingencies governing object deformation are required. These sensorimotor contingencies can then be used to feedback on themselves to predict over long timescales. Without such models planners cannot reason about the effects of actions, or sequences of actions, to achieve desired effects.
+Here we present a framework, together with specific algorithms for learning the sensorimotor contingencies for the deformable behaviour of objects under robot manipulation.
+The model is multi-modal in that it is based on integrating force and visual information.
+
+I look forward to hearing from you.
+
+
+\signature{Dra. Verónica Esther Arriola Ríos\\
+Profesora Asociada C de T.C.\newline
+Departamento de Matemáticas, Cub 119.\newline
+Facultad de Ciencias, UNAM \newline
+v.arriola@ciencias.unam.mx \newline
++(52)55 5622 5426}
+
+\closing{Yours sincerely,}
+
+%enclosure listing
+%\encl{}
+
+\end{letter}
+\end{document}
