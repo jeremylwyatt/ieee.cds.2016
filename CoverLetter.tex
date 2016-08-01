@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{letter}
+\documentclass[a4paper,12pt]{letter}
 \usepackage[utf8]{inputenc}
 
 %% --- Font
@@ -6,25 +6,11 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 %% --- Margins
-
-\setlength\topmargin{-50pt}
-\setlength\textheight{10in}
+\usepackage[top=1in, left=1.2in,right=1.2in]{geometry}
 \longindentation=0pt
 
 %% --- Logo
 \usepackage{graphicx}
-%\usepackage{fancyhdr}
-%\usepackage{geometry}
-
-\atbegindocument{\includegraphics[width=.98\textwidth]{figures/unam.jpg}}
-
-%\geometry{headheight = 1.1in}
-%\fancypagestyle{firstpage}{\fancyhf{}\fancyhead[L]{\includegraphics[height=1in, keepaspectratio=true]{figures/unam.jpg}}}
-%\fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\includegraphics[height=0.5in, keepaspectratio=true]{figures/unam.jpg}}}
-%\fancypagestyle{empty}{\fancyhf{}\fancyhead[R]{\includegraphics[height=0.5in, keepaspectratio=true]{figures/unam.jpg}}}
-%\pagestyle{plain}
-
-%\vspace*{-2cm}
 
 \begin{document}
 % If you want headings on subsequent pages,
@@ -33,6 +19,7 @@
 
 \begin{letter}{IEEE Transactions on Cognitive and Developmental Systems\newline
 Special Issue on Sensorimotor Contingencies for Cognitive Robotics}
+\includegraphics[height=3cm, keepaspectratio=true]{figures/unam.jpg}\vspace*{-3cm}
 \address{Facultad de Ciencias, \\Ciudad Universitaria,\\ UNAM, México, D.F.}
 
 \opening{Dear Dr. Ricardo Téllez,}

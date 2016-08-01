@@ -407,8 +407,9 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 % ++++ Used temporarily to make comments between authors
-\newcommand{\redNote}[1]{{\color{red} #1}}
+\newcommand{\comment}[1]{{\color{red} #1}}
 \usepackage[normalem]{ulem}
+\newcommand{\commentErrase}[1]{\comment{\sout{#1}}}
 
 \begin{document}
 %
@@ -587,7 +588,7 @@ Previous work on learning sensorimotor contingencies for deformable objects in r
 %\caption{Overall algorithmic structure of the system.}
 %\end{figure}
 
-In summary the two stage model we present gives us the ability to solve {\em simultaneously} for the first time the following problems. Our model enables i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from either or both force and visual data, v) prediction of object behaviour after contact by the robot is removed. In the rest of the paper we present related work (Section~\ref{sec:background}); describe the model (Section~\ref{sec:model}); describe how the model parameters are learned from real data (Section~\ref{sec:learning}); and the experiments on prediction and classification with both elastic and plastic objects (Section~\ref{sec:experiments}); finishing with a short discussion (Section~\ref{sec:discussion}).
+In summary the two stage model we present gives us the ability to solve {\em simultaneously} for the first time the following problems. Our model enables i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from either or both force and visual data, v) prediction of object behaviour after contact by the robot is removed. In the rest of the paper we present \comment{an overview of the model in more detail (Section~\ref{sec:model_overview});} related work (Section~\ref{sec:background}); describe the model (Section~\ref{sec:model}); describe how the model parameters are learned from real data (Section~\ref{sec:learning}); and the experiments on prediction and classification with both elastic and plastic objects (Section~\ref{sec:experiments}); finishing with a short discussion (Section~\ref{sec:discussion}).
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
@@ -679,8 +680,9 @@ In summary the two stage model we present gives us the ability to solve {\em sim
 % stfloats package.
 
 \section{Model Overview}
+\label{sec:model_overview}
 
-As has been mentioned above there are several choices made in our modelling approach. The key choice is that the models are generative, which means that the models can be used to generate predicted sequences of behaviour. The specific approach taken here separates the predictive model out into components in two ways (see Figure~\ref{fig:system}). First we decompose models according to the modality of the information. In this case it is important to note that deformation has a particular causal structure related to the modes of sensing that are most easily employed. The forces and deformations can be measured separately, using force-torque and visual sensors respectively. The sensed forces are the cause of the observed deformation, and this can be exploited by sequencing the models by mode. Thus our approach can be seen as a sensorimotor contingency in which two contigencies are sequenced to produce an overall prediction. The input to the first predictor is the planned motion of the robot (or the joint torques), and this predictor predicts the resulting sequence of contact forces. The second predictor takes this sequence of forces as input and predicts a deformation sequence. Both models must be conditioned on the material and the object. This is where we decompose the model space in the second way, by specialising models to particular material and object combinations. This follows the principle of modular motor learning \cite{KopickiICRA11,haruno2001mosaic}, where prediction and control is specialised into many modules, each of which covers a relatively small portion of the input space, such as an object or material type. Thus we aim to acquire many specialist models of different deformable objects rather than a very few rather general models. The specific model forms we choose here could be replaced while retaining the overall scheme. In this paper we implement the scheme using a regression approach to force prediction, and we follow several other authors in employing a mass-spring system with learnable parameters for the deformation prediction.
+As has been mentioned above there are several choices made in our modeling approach. The key choice is that the models are generative, which means that the models can be used to generate predicted sequences of behaviour. The specific approach taken here separates the predictive model out into components in two ways (see Figure~\ref{fig:system}). First we decompose models according to the modality of the information. In this case it is important to note that deformation has a particular causal structure related to the modes of sensing that are most easily employed. The forces and deformations can be measured separately, using force-torque and visual sensors respectively. The sensed forces are the cause of the observed deformation, and this can be exploited by sequencing the models by mode. Thus our approach can be seen as a sensorimotor contingency in which two contigencies are sequenced to produce an overall prediction. The input to the first predictor is the planned motion of the robot (or the joint torques), and this predictor predicts the resulting sequence of contact forces. The second predictor takes this sequence of forces as input and predicts a deformation sequence. Both models must be conditioned on the material and the object. This is where we decompose the model space in the second way, by specialising models to particular material and object combinations. This follows the principle of modular motor learning \cite{KopickiICRA11,haruno2001mosaic}, where prediction and control is specialised into many modules, each of which covers a relatively small portion of the input space, such as an object or material type. Thus we aim to acquire many specialist models of different deformable objects rather than a very few rather general models. The specific model forms we choose here could be replaced while retaining the overall scheme. In this paper we implement the scheme using a regression approach to force prediction, and we follow several other authors in employing a mass-spring system with learnable parameters for the deformation prediction.
 
 In each case the models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions. 
 
@@ -756,7 +758,7 @@ Other interesting variants are: Conti et al.\ \cite{Conti2003} introduce six-deg
 
 Finally, Cretu et al., used growing neural gas networks to learn to predictively track the deformation of objects.  Even though they managed to make predictions about the deformation of the overall shape of the object, under previously unseen sets of forces, their predictions were evaluated only for the next frame.
 
-Additionally, there is a vast amount of literature on modelling of deformable shapes and deformation processes \cite{Gibson1997, McInerney1996, Montagnat2001, Moore2007review, Nealen2006review}, particularly within the area of computer graphics.  However, these types of models have not been successfully applied to robotic tasks beyond what was presented above.
+Additionally, there is a vast amount of literature on modeling of deformable shapes and deformation processes \cite{Gibson1997, McInerney1996, Montagnat2001, Moore2007review, Nealen2006review}, particularly within the area of computer graphics.  However, these types of models have not been successfully applied to robotic tasks beyond what was presented above.
 
 %\subsection{Predicting the Shape}
 %Contribution: we analyse the dynamic behaviour of the predictions for several frames.
@@ -765,6 +767,22 @@ Additionally, there is a vast amount of literature on modelling of deformable sh
 %Contribution: we learn to predict with a linear regression model.  Also calibrated automatically.
 
 \section{A Mass-Spring Model of Deformation}
+
+\comment{This work makes use of the ability of a mass-spring model to predict the shape of a deformable object given its shape at time $t$ and the forces acting on it.  The parameters, that attune this generic model to a particular object, will be obtained through machine learning, and that procedure will be explained in \sref{sec:learning}, since it is independent of the model itself.  Also the forces required as inputs by this mass-spring model will be learned by another module, so that the entire system will require only the initial shape of the object, and the command to be executed, to be able to predict the future behaviour of the object and sensed feedback force.  This section explains the details of the mass-spring model we used.
+
+Mass-spring models are a very well established method to approximately simulate the behaviour of solid deformable objects.  Here, the shape of an object is approximated by a uniform geometric mesh, usually made of triangles (2D) or tetrahedrons (3D).  At every vertex $i$ in the mesh, an ideal particle with no volume, but with mass $m_i$, is located.  The edges between vertices roughly model the interactions between particles that attract each other and at the same time repel each other, therefore maintaining the cohesion of the solid, while avoiding the collapse of the material over itself.  The simplest model associates a linear spring with each edge, as if those forces would occur only between connected neighbours.  The resting state of the solid corresponds to a configuration of the masses and particles where the sum of all forces acting over each particle is zero and they are said to be in equilibrium.
+
+When one or more particles are displaced from their positions of equilibrium, the forces that tend to restore the body to its original shape are modeled by the forces of springs (along the edges of the mesh) that try to recover their original length).  These forces act upon the particles modifying their positions in time.  Traditionally, the relationship between the position of the particle $p_i$ and those forces $F$ obeys the second law of Newton:
+\begin{align}
+ F = m \dfrac{\partial^2 p}{{\partial t}^2}
+\end{align}
+where $t$ is time.  However, it is possible to modify this equation according to need if what we are interested in is numerical accuracy, as it will be done here.
+
+Furthermore, the previous equation is a second order differential equation, which is continuous by definition.  In order to obtain a computer simulation from this equation some numerical method will be selected \cite{Nealen2006review}.  Time is discretized in intervals of length $h$, positions and forces at discrete past times are used to estimate the new positions at time $t + h$ according to an integration schemed use to approximately solve the differential equation.  The fact that the value of the forces remain constant for the whole interval $h$ (also know as \textit{time step}), introduces errors which can be severe, depending on their magnitude and the speed at which the force would change during that interval according to the original continuous equation.  For this reason, computer simulations add procedures that pretend to lessen these effects.  
+
+Additionally, the mass spring model of the solid object does not specify how the rest of the world interacts with it.  Usually, any external force is introduced as a vector of forces acting on a vertex or as a deformation of the mesh, which breaks the state of equilibrium, thus causing a reaction of the object due to internal forces produced by the springs.  Therefore, to simulate the effects of interacting with the object of interest the model must include the definition of the interactions with surrounding objects (like the effector of the robot).  Those details are shown below.
+}
+
 \label{sec:model}
 \subsection{Elastic Deformation}
 
@@ -948,12 +966,46 @@ Given the initial shape of the object and a set of parameters, the mass-spring s
 \end{enumerate}
 The mesh as predicted by one step is fed as current shape for the next step and the cycle is repeated until the simulation is stopped.
 
-The next stage of the learning process consists in identifying sets of parameters that produce simulations similar to the ground truth.  This problem is addressed in the following section.
-
+The next stage \commentErrase{of} \comment{is} the learning process \comment{which} consists in identifying sets of parameters that produce simulations similar to the ground truth.  This problem is addressed in the following section.
 
 
 \section{Learning to Predict the Deformation}
 \label{sec:learning}
+
+\subsection{Tracking to Provide Ground Truth}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=88mm]{arrio2}
+\caption{(a) Experimental set up.  A robotic finger pushes a block of deformable material over a table.  A camera registers the events of the plane where the main deformations take place.  (b) Evaluation function.  Left top: Mesh over real block of material.  Left bottom: Tipical error of the model vs the ground truth (red) and tipical error of the tracker (blue).  Right top: tracked ground data.  Middle: TP in yellow, FP in blue, FN in red and TN in gray.  Bottom: simulated mesh. }
+\label{fig:scene}
+\end{figure}
+
+The contour of the deformable object is used to obtain the ground truth for the training phase, which is the area enclosed by the contour. Geometrically, the contour is represented by a polygon with hundreds of sides, which can also be called a \textit{linear spline}.  The tracking of the deformable target in the ground truth has two stages:
+\begin{enumerate}
+ \item The target object is segmented from the environment.  The Canny algorithm is used to extract the edges of the image.  Next, a simple colour segmentation is used to remove edges that are not likely to belong to the object of interest.
+ \item The internal representation of its contour, the linear snake, is adapted to its new shape.  The algorithm assumes that no occlusions take place and that the contour does not bend over itself.
+\end{enumerate}
+For the first frame, the snake is initialised as a rectangle around the target. This rectangle fragments itself into smaller pieces. Each new vertex adheres itself to the closest point on an edge, as reached by growing rings of pixels around its current position, up to a certain threshold distance [\fref{fig:scene}(a)].  If there is no edge within that area, the control point remains were it is. This criterion was selected to make the representation more robust against edges that are easier to detect on some frames than in others.  Once the edge reappears, the control point adapts itself again.  Also, the distance between two consecutive control points is kept within the interval $[min\_distance, max\_distance]$ and two adjacent edges do not form angles smaller than $min\_angle$.  See \alref{alg:regularise}.  This allows the snake to adapt very quickly to the complexity of the contour it represents.
+
+
+\begin{figure}
+ \begin{algorithmicieee}{Regularise Linear Spline}\label{alg:regularise}
+ \STATE Be $L$ a linear spline representing the contour of a $2D$ shape, and $L_i$ the $i^{th}$ control point in a cyclic order.
+ \FORALL {$L_i$ in $L$}
+ \IF {$dist(L_i,L_{i-1}) > max\_distance$}
+  \STATE Insert $midpoint(L_i,L_{i-1})$ after $L_i$
+ \ELSIF {$dist(L_i,L_{i-1}) < min\_distance$}
+  \STATE erase $L_i$
+ \ELSIF {$angle(L_{i-1},L_i,L_{i+1}) < min\_angle$}
+  \STATE erase $L_i$
+ \ENDIF
+ \ENDFOR
+\end{algorithmicieee}
+\caption{Algorithm used to regularise the number of elements of a linear spline, in accordance with the level of detail required.}
+\end{figure}
+
+
 \subsection{Evolutionary Algorithm}
 The evolutionary algorithm listed in \alref{alg:genetic} was used to search the space of parameters of the mass-spring model presented in the previous section.
 From the parameters that must be chosen for the simulation to work, some were fixed while others had to be searched for.  They are:
@@ -994,38 +1046,7 @@ To evaluate the suitability of each set of parameters, the simulation is compare
  \caption{Evolutionary Search for Automatic Calibration}
 \end{figure}
 
-\subsection{Tracking to Provide Ground Truth}
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=88mm]{arrio2}
-\caption{(a) Experimental set up.  A robotic finger pushes a block of deformable material over a table.  A camera registers the events of the plane where the main deformations take place.  (b) Evaluation function.  Left top: Mesh over real block of material.  Left bottom: Tipical error of the model vs the ground truth (red) and tipical error of the tracker (blue).  Right top: tracked ground data.  Middle: TP in yellow, FP in blue, FN in red and TN in gray.  Bottom: simulated mesh. }
-\label{fig:scene}
-\end{figure}
-
-The contour of the deformable object is used to obtain the ground truth for the training phase, which is the area enclosed by the contour. Geometrically, the contour is represented by a polygon with hundreds of sides, which can also be called a \textit{linear spline}.  The tracking of the deformable target in the ground truth has two stages:
-\begin{enumerate}
- \item The target object is segmented from the environment.  The Canny algorithm is used to extract the edges of the image.  Next, a simple colour segmentation is used to remove edges that are not likely to belong to the object of interest.
- \item The internal representation of its contour, the linear snake, is adapted to its new shape.  The algorithm assumes that no occlusions take place and that the contour does not bend over itself.
-\end{enumerate}
-For the first frame, the snake is initialised as a rectangle around the target. This rectangle fragments itself into smaller pieces. Each new vertex adheres itself to the closest point on an edge, as reached by growing rings of pixels around its current position, up to a certain threshold distance [\fref{fig:scene}(a)].  If there is no edge within that area, the control point remains were it is. This criterion was selected to make the representation more robust against edges that are easier to detect on some frames than in others.  Once the edge reappears, the control point adapts itself again.  Also, the distance between two consecutive control points is kept within the interval $[min\_distance, max\_distance]$ and two adjacent edges do not form angles smaller than $min\_angle$.  See \alref{alg:regularise}.  This allows the snake to adapt very quickly to the complexity of the contour it represents.
-
-
-\begin{figure}
- \begin{algorithmicieee}{Regularise Linear Spline}\label{alg:regularise}
- \STATE Be $L$ a linear spline representing the contour of a $2D$ shape, and $L_i$ the $i^{th}$ control point in a cyclic order.
- \FORALL {$L_i$ in $L$}
- \IF {$dist(L_i,L_{i-1}) > max\_distance$}
-  \STATE Insert $midpoint(L_i,L_{i-1})$ after $L_i$
- \ELSIF {$dist(L_i,L_{i-1}) < min\_distance$}
-  \STATE erase $L_i$
- \ELSIF {$angle(L_{i-1},L_i,L_{i+1}) < min\_angle$}
-  \STATE erase $L_i$
- \ENDIF
- \ENDFOR
-\end{algorithmicieee}
-\caption{Algorithm used to regularise the number of elements of a linear spline, in accordance with the level of detail required.}
-\end{figure}
 
 \subsection{Evaluation Function}
 \label{sec:evaluation}
@@ -1248,7 +1269,7 @@ We gratefully acknowledge funding from the PhD Scholarship program of CONACYT, M
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
-\IEEEtriggeratref{15}
+%\IEEEtriggeratref{15}
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
@@ -1345,5 +1366,3 @@ We gratefully acknowledge funding from the PhD Scholarship program of CONACYT, M
 
 % that's all folks
 \end{document}
-
-
