@@ -13,7 +13,8 @@
 \usepackage{graphicx}
 
 \usepackage{color}
-\newcommand{\comment}[1]{\textcolor{red}{#1}}
+\newcommand{\comment}[1]{\textcolor{blue}{#1}}
+\newcommand{\marker}{\hspace*{-1.6em}\textcolor{red}{$\Longrightarrow$}}
 
 \begin{document}
 % If you want headings on subsequent pages,
@@ -75,19 +76,28 @@ In addition, this section is really difficult to follow. For example, in line 27
 
 Besides, there are several technical ambiguities in the manuscript, as listed below. 
 
+\marker
 1, in line 37 of page 1, "sensorimotor contingencies" needs to be defined or referenced. 
 
+\marker
 2, in line 35 of page 1, what does "sequencing the models by mode" mean? 
 
-3, in line 58 of page 1, the authors claim "In each case the models can be run in two modes, prediction and classification". But the classification mode is not explained later, but a filtering mode is included instead. Besides, please clearly illustrate the mentioned modes and processes in Figure 2. 
+\marker
+3, in line 58 of page 1, the authors claim "In each case the models can be run in two modes, prediction and classification". But the classification mode is not explained later, but a filtering mode is included instead. Besides, please clearly illustrate the mentioned modes and processes in Figure 2.
 
-4, in section IV-A, the author needs to explain how they extend the model proposed in [16]. 
+\comment{What does he mean by ``filtering mode instead''?}
+
+4, in section IV-A, the author needs to explain how they extend the model proposed in [16].
+
+\comment{The general idea had been explained in the first paragraph of section IV-A, the details came later.  Since it was not clear enough the wording was modified.}
 
 5, in section IV-A, the author needs to briefly introduce the mass-spring model.
 
-\comment{Added an introductory paragraph to section IV.}
+\comment{Added an introduction at the beginning of section IV.}
 
 6, in equation (1), please explain what "particle i" is. Is it vertex i? 
+
+\comment{Since for comment 5 the introduction explained that a mass particle is located on vertex i, this has been covered already.}
 
 7, in line 27 of page 4, please explain what "mass particle" is. 
 

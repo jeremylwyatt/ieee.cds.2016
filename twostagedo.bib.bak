@@ -1,0 +1,992 @@
+%% This BibTeX bibliography file was created using BibDesk.
+%% http://bibdesk.sourceforge.net/
+
+
+%% Created for Jeremy L Wyatt at 2014-08-03 12:44:41 +0100 
+
+
+%% Saved with string encoding Unicode (UTF-8) 
+
+
+
+@article{haruno2001mosaic,
+	Author = {Haruno, Masahiko and Wolpert, D and Kawato, Mitsuo},
+	Date-Added = {2014-08-03 11:44:34 +0000},
+	Date-Modified = {2014-08-03 11:44:34 +0000},
+	Journal = {Neural computation},
+	Number = {10},
+	Pages = {2201--2220},
+	Publisher = {MIT Press},
+	Title = {Mosaic model for sensorimotor learning and control},
+	Volume = {13},
+	Year = {2001}}
+
+@article{kunze2011simulation,
+	Author = {Kunze, Lars and Dolha, Mihai Emanuel and Guzman, Emitza and Beetz, Michael},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Title = {Simulation-based Temporal Projection of Everyday Robot Object Manipulation},
+	Year = {2011}}
+
+@inproceedings{duff_simulation_2010,
+	Author = {D.J. Duff and J. Wyatt and R. Stolkin},
+	Booktitle = {Robotics and Automation (ICRA), 2010 IEEE International Conference on},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {1511--1517},
+	Title = {Motion estimation using physical simulation},
+	Year = {2010}}
+
+@inproceedings{argyros_tracking_2013,
+	Author = {D. Song and N. Kyriazis and I. Oikonomidis and C. Papazov and A. Argyros and D. Burschka and D. Kragic},
+	Booktitle = {Robotics and Automation, 2010 IEEE International Conference on},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {1600--1607},
+	Title = {Predicting Human Intention in Visual Observations of Hand/Object Interactions},
+	Year = {2013}}
+
+@inproceedings{Chalon2013,
+	Author = {M. Chalon and J. Reinecke and M. Pfanne},
+	Booktitle = {Intelligent Robots and Systems (IROS), 2013 IEEE International Conference on},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {2977--2984},
+	Title = {Online in-hand object localization},
+	Year = {2013}}
+
+@inproceedings{Stoytchev_affordances_2008,
+	Author = {A. Stoytchev},
+	Booktitle = {Springer Lecture Notes in Artificial Intelligence (LNAI) 4760 ({\rm E. Rome et al.})},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {140--158},
+	Title = {Learning the Affordances of Tools using a Behavior-Grounded Approach},
+	Year = {2008}}
+
+@inproceedings{kopicki2010predicting,
+	Author = {Kopicki, Marek and Stolkin, Rustam and Zurek, Sebastian and M{\"o}rwald, Thomas and Wyatt, Jeremy},
+	Booktitle = {Proceedings of the RSS workshop on Representations for object grasping and manipulation in single and dual arm tasks},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Title = {Predicting workpiece motions under pushing manipulations using the principle of minimum energy},
+	Year = {2010}}
+
+@inproceedings{kopicki_prediction_2009,
+	Author = {M. Kopicki and J. Wyatt and R. Stolkin},
+	Booktitle = {Advanced Robotics, 2009. {ICAR} 2009. International Conference on},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {1--6},
+	Title = {Prediction learning in robotic pushing manipulation},
+	Year = {2009}}
+
+@phdthesis{kopicki_prediction_2010,
+	Author = {M. Kopicki},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	School = {University of Birmingham},
+	Title = {Prediction learning in robotic manipulation},
+	Year = {2010}}
+
+@inproceedings{KopickiICRA11,
+	Author = {M. Kopicki and M. Zurek and R. Stolkin and T. Morwald and J. Wyatt},
+	Booktitle = {Robotics and Automation (ICRA), 2011 IEEE International Conference on},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {5722--5729},
+	Title = {Learning to predict how rigid objects behave under simple manipulation},
+	Year = {2011},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QJS4uL0tvcGlja2lQdXNoaW5nSm91cm5hbDIwMTEvbWFpbi5ibGfSFwsYGVdOUy5kYXRhTxEBwgAAAAABwgACAAAMTWFjaW50b3NoIEhEAAAAAAAAAAAAAAAAAAAAzhQ/IkgrAAAADE6kCG1haW4uYmxnAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMUbDOYicjAAAAAAAAAAAAAQACAAAJIAAAAAAAAAAAAAAAAAAAABlLb3BpY2tpUHVzaGluZ0pvdXJuYWwyMDExAAAQAAgAAM4UMRIAAAARAAgAAM5iGRMAAAABABQADE6kAAw46QALWzAAC1plAAISKQACAFJNYWNpbnRvc2ggSEQ6VXNlcnM6AGpsdzEyOgBEb2N1bWVudHM6AHdyaXRpbmc6AEtvcGlja2lQdXNoaW5nSm91cm5hbDIwMTE6AG1haW4uYmxnAA4AEgAIAG0AYQBpAG4ALgBiAGwAZwAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAEBVc2Vycy9qbHcxMi9Eb2N1bWVudHMvd3JpdGluZy9Lb3BpY2tpUHVzaGluZ0pvdXJuYWwyMDExL21haW4uYmxnABMAAS8AABUAAgAM//8AAIAG0hscHR5aJGNsYXNzbmFtZVgkY2xhc3Nlc11OU011dGFibGVEYXRhox0fIFZOU0RhdGFYTlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVkQXJjaGl2ZXLRJidUcm9vdIABAAgAEQAaACMALQAyADcAQABGAE0AVQBgAGcAagBsAG4AcQBzAHUAdwCEAI4AtgC7AMMCiQKLApACmwKkArICtgK9AsYCywLYAtsC7QLwAvUAAAAAAAACAQAAAAAAAAAoAAAAAAAAAAAAAAAAAAAC9w==}}
+
+@book{landau_statistical_1980,
+	Author = {L. D. Landau and E. M. Lifshitz},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Edition = {third},
+	Publisher = {Elsevier {Butterworth-Heinemann}},
+	Series = {Course of Theoretical Physics},
+	Title = {Statistical Physics, Part 1},
+	Volume = {5},
+	Year = {1980}}
+
+@article{hansen2004,
+	Author = {E.B. Hansen},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Journal = {Neural Computation},
+	Number = {2},
+	Pages = {533--559},
+	Title = {Nonparametric Conditional Density Estimation},
+	Volume = {21},
+	Year = {2004}}
+
+@article{storn_differential_1997,
+	Author = {R. Storn and K. Price},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Journal = {Journal of Global Optimization},
+	Number = {4},
+	Pages = {341--359},
+	Title = {Differential evolution - a simple and efficient heuristic for global optimization over continuous spaces},
+	Volume = {11},
+	Year = {1997}}
+
+@inproceedings{segal2005,
+	Address = {Cambridge, USA},
+	Author = {A.V. Segal and D. Haehnel and S. Thrun},
+	Booktitle = {Proceedings of Robotics: Science and Systems},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Title = {Generalized-ICP},
+	Year = {2005}}
+
+@book{mason_mechanics_2001,
+	Author = {M. T. Mason},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Publisher = {{MIT} press},
+	Title = {Mechanics of robotic manipulation},
+	Year = {2001}}
+
+@inproceedings{morwald_edge_2009,
+	Address = {Moscow, Russia},
+	Author = {T. M{\"o}rwald and M. Zillich and M. Vincze},
+	Booktitle = {Proceedings of the Graphicon 2009},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Title = {Edge Tracking of Textured Objects with a Recursive Particle Filter},
+	Year = {2009}}
+
+@inbook{scott2004multi-dimensional,
+	Author = {Scott, D. W. and Sain, S. R.},
+	Booktitle = {Handbook of Statistics Vol 23: Data Mining and Computational Statistics},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {229--263},
+	Publisher = {Elsevier},
+	Title = {"Multi-Dimensional Density Estimation"},
+	Year = {2004}}
+
+@inproceedings{damien_jade_duff_motion_2010,
+	Address = {Alaska},
+	Author = {Damien Jade Duff and Jeremy Wyatt and Rustam Stolkin},
+	Booktitle = {{IEEE} International Conference on Robotics and Automation},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Month = May,
+	Note = {To be published.},
+	Publisher = {{IEEE}},
+	Title = {Motion Estimation Using Physical Simulation},
+	Year = {2010}}
+
+@misc{nvidia_physx,
+	Author = {{NVIDIA PhysX}},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Howpublished = {http://developer.nvidia.com/object/physx.html},
+	Title = {Physics Simulation for Developers},
+	Url = {http://developer.nvidia.com/object/physx.html},
+	Year = {2009},
+	Bdsk-Url-1 = {http://developer.nvidia.com/object/physx.html}}
+
+@misc{neuronics_ag_katana_2004,
+	Author = {{Neuronics AG}},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Howpublished = {http://www.neuronics.ch},
+	Title = {Katana User Manual and Technical Description},
+	Url = {http://www.neuronics.ch},
+	Year = {2004},
+	Bdsk-Url-1 = {http://www.neuronics.ch}}
+
+@phdthesis{mason_manipulator_1982,
+	Abstract = {The primary goal of this research is to develop theoretical tools for analysis, synthesis, and application of primitive manipulator operations. The primary method is to extend an apply traditional tools of classical mechanics. The results are of such a general nature that they address many different aspects of industrial robotics, including effector and sensor design, planning and programming tools, and design of auxiliary equipment. Some of the manipulator operations studied are: Grasping an object: The object will usually slide and rotate during the period between first contact and prehension; Placing an object: The object may slip slightly in the fingers upon contact with the table as the base aligns with the table; and Pushing: Often the final stage of mating two parts involves pushing one object into the other. In each of these operations the motion of the object is determined partly by the manipulator and partly by frictional forces. Hence the theoretical analysis focuses on the problem of partially constrained motion with friction.},
+	Author = {M. T. Mason},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	School = {{MIT}},
+	Title = {Manipulator grasping and pushing operations},
+	Type = {{PhD} Thesis},
+	Year = {1982}}
+
+@article{peshkin_motion_1988,
+	Author = {M. A. Peshkin and A. C. Sanderson},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Journal = {{IEEE} Journal on Robotics and Automation},
+	Pages = {569--598},
+	Title = {The motion of a pushed, sliding workpiece},
+	Volume = {4},
+	Year = {1988}}
+
+@inproceedings{lynch_mechanics_1992,
+	Author = {Kevin Lynch},
+	Booktitle = {{IEEE} Int. Conf. on Robotics and Automation},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {2269--2276},
+	Title = {The Mechanics of Fine Manipulation by Pushing},
+	Year = {1992}}
+
+@inproceedings{cappelleri_designing_2006,
+	Author = {D. J. Cappelleri and J. Fink and B. Mukundakrishnan and V. Kumar and J. C. Trinkle},
+	Booktitle = {Robotics and Automation, 2006. {ICRA} 2006. Proceedings 2006 {IEEE} International Conference on},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {637--642},
+	Title = {Designing open-loop plans for planar micro-manipulation},
+	Year = {2006}}
+
+@inproceedings{fitzpatrick_learning_2003,
+	Author = {P. Fitzpatrick and G. Metta and L. Natale and S. Rao and G. Sandini},
+	Booktitle = {{IEEE} Int. Conf. on Robotics and Automation},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Title = {Learning about objects through action-initial steps towards artificial cognition},
+	Volume = {3},
+	Year = {2003}}
+
+@inproceedings{paletta_learning_2007,
+	Author = {L. Paletta and G. Fritz and F. Kintzler and J. Irran and G. Dorffner},
+	Booktitle = {{IEEE} 6th International Conference on Development and Learning, 2007. {ICDL} 2007},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Pages = {110--115},
+	Title = {Learning to perceive affordances in a framework of developmental embodied cognition},
+	Year = {2007}}
+
+@inproceedings{ridge_towards_2008,
+	Author = {B. Ridge and D. Skocaj and A. Leonardis},
+	Booktitle = {Proceedings of the 2008 International Conference on Cognitive Systems},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Title = {Towards Learning Basic Object Affordances from Object Properties},
+	Year = {2008}}
+
+@article{vijayakumar_incremental_2005,
+	Author = {S. Vijayakumar and A. D'souza and S. Schaal},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Journal = {Neural Computation},
+	Number = {12},
+	Pages = {2602--2634},
+	Title = {Incremental online learning in high dimensions},
+	Volume = {17},
+	Year = {2005},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QFC4uLy4uL2JpYi9rYXdhdG8uYmli0hcLGBlXTlMuZGF0YU8RAXQAAAAAAXQAAgAADE1hY2ludG9zaCBIRAAAAAAAAAAAAAAAAAAAAM4UPyJIKwAAAQNNcAprYXdhdG8uYmliAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA01y0APexgAAAAAAAAAAAAIAAgAACSAAAAAAAAAAAAAAAAAAAAADYmliAAAQAAgAAM4UMRIAAAARAAgAANAD0LYAAAABABABA01wAAtbMAALWmUAAhIpAAIANU1hY2ludG9zaCBIRDpVc2VyczoAamx3MTI6AERvY3VtZW50czoAYmliOgBrYXdhdG8uYmliAAAOABYACgBrAGEAdwBhAHQAbwAuAGIAaQBiAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAJFVzZXJzL2psdzEyL0RvY3VtZW50cy9iaWIva2F3YXRvLmJpYgATAAEvAAAVAAIADP//AACABtIbHB0eWiRjbGFzc25hbWVYJGNsYXNzZXNdTlNNdXRhYmxlRGF0YaMdHyBWTlNEYXRhWE5TT2JqZWN00hscIiNcTlNEaWN0aW9uYXJ5oiIgXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0AMgA3AEAARgBNAFUAYABnAGoAbABuAHEAcwB1AHcAhACOAKUAqgCyAioCLAIxAjwCRQJTAlcCXgJnAmwCeQJ8Ao4CkQKWAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAApg=}}
+
+@article{klanke_library_2008,
+	Author = {S. Klanke and S. Vijayakumar and S. Schaal},
+	Date-Added = {2014-08-03 11:30:54 +0000},
+	Date-Modified = {2014-08-03 11:30:54 +0000},
+	Journal = {The Journal of Machine Learning Research},
+	Pages = {623--626},
+	Title = {A library for locally weighted projection regression},
+	Volume = {9},
+	Year = {2008}}
+
+@inproceedings{detry2013a,
+	Author = {R. Detry and C. Henrik Ek and M. Madry and D. Kragic},
+	Booktitle = {{IEEE ICRA}},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {Learning a Dictionary of Prototypical Grasp-predicting Parts from Grasping Experience},
+	Year = {2013}}
+
+@inproceedings{herzog2012a,
+	Author = {Herzog, A. and Pastor, P. and Kalakrishnan, M. and Righetti, L. and Asfour, T. and Schaal, S.},
+	Booktitle = {{IEEE ICRA}},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {Template-based Learning of Grasp Selection},
+	Year = {2012}}
+
+@inproceedings{kroemer2012a,
+	Author = {Kroemer, O. and Ugur, E. and Oztop, E. and Peters, J.},
+	Booktitle = {{IEEE ICRA}},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {A kernel-based approach to direct action perception},
+	Year = {2012}}
+
+@inproceedings{ben2012generalization,
+	Author = {Ben Amor, H. and Kroemer, O. and Hillenbrand, U. and Neumann, G. and Peters, J.},
+	Booktitle = {IROS},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Organization = {IEEE},
+	Pages = {2043--2050},
+	Title = {Generalization of human grasping for multi-fingered robot hands},
+	Year = {2012}}
+
+@inproceedings{hillenbrand2012transferring,
+	Author = {Hillenbrand, U. and Roa, M.A.},
+	Booktitle = {IROS},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Organization = {IEEE},
+	Pages = {2963--2970},
+	Title = {Transferring functional grasps through contact warping and local replanning},
+	Year = {2012}}
+
+@inproceedings{hillenbrand2010non,
+	Author = {Hillenbrand, Ulrich},
+	Booktitle = {Pattern Recognition (ICPR)},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Organization = {IEEE},
+	Pages = {2656--2659},
+	Title = {Non-parametric 3D shape warping},
+	Year = {2010}}
+
+@inproceedings{bicchi2000a,
+	Author = {Bicchi, A. and Kumar, V.},
+	Booktitle = {{IEEE} International Conference on Robotics and Automation},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {Robotic grasping and contact: a review},
+	Year = {2000}}
+
+@inproceedings{thrun2005a,
+	Author = {Thrun, S. and Wegbreit, B.},
+	Booktitle = {{IEEE ICCV}},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Pages = {1824--1831},
+	Title = {Shape from symmetry},
+	Volume = {2},
+	Year = {2005}}
+
+@inproceedings{bohg2011a,
+	Ages = {686--693},
+	Author = {Bohg, J. and Johnson-Roberson, M. and Le{\'o}n, B. and Felip, J. and Gratal, X. and Bergstrom, N. and Kragic, D. and Morales, A.},
+	Booktitle = {{IEEE ICRA}},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {Mind the gap -- robotic grasping under incomplete observation},
+	Year = {2011}}
+
+@inproceedings{fischinger2012a,
+	Author = {Fischinger, D. and Vincze, M.},
+	Booktitle = {IEEE IROS},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {Empty the basket -- a shape based learning approach for grasping piles of unknown objects},
+	Year = {2012}}
+
+@inproceedings{coelho2000a,
+	Author = {Coelho, J. and Piater, J. and Grupen, R.},
+	Booktitle = {Robotics and Autonomous Systems},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Pages = {7--8},
+	Title = {Developing haptic and visual perceptual categories for reaching and grasping with a humanoid robot},
+	Volume = {37},
+	Year = {2000}}
+
+@article{morales2004a,
+	Author = {Morales, A. and Chinellato, E. and Fagg, A. H. and del Pobil, A. P.},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Journal = {Int. Journ. of Humanoid Robotics},
+	Number = {4},
+	Pages = {671--691},
+	Title = {Using Experience for Assessing Grasp Reliability},
+	Volume = {1},
+	Year = {2004},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QJC4uL0lDUkEyMDE0LkRvbS9sYXRleC9yZWZlcmVuY2VzLmJpYtIXCxgZV05TLmRhdGFPEQG+AAAAAAG+AAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADOFD8iSCsAAAAMRi0OcmVmZXJlbmNlcy5iaWIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIkAW88ZmycAAAAAAAAAAAABAAMAAAkgAAAAAAAAAAAAAAAAAAAABWxhdGV4AAAQAAgAAM4UMRIAAAARAAgAAM8ZmycAAAABABgADEYtAAxGIgAMOOkAC1swAAtaZQACEikAAgBSTWFjaW50b3NoIEhEOlVzZXJzOgBqbHcxMjoARG9jdW1lbnRzOgB3cml0aW5nOgBJQ1JBMjAxNC5Eb206AGxhdGV4OgByZWZlcmVuY2VzLmJpYgAOAB4ADgByAGUAZgBlAHIAZQBuAGMAZQBzAC4AYgBpAGIADwAaAAwATQBhAGMAaQBuAHQAbwBzAGgAIABIAEQAEgA/VXNlcnMvamx3MTIvRG9jdW1lbnRzL3dyaXRpbmcvSUNSQTIwMTQuRG9tL2xhdGV4L3JlZmVyZW5jZXMuYmliAAATAAEvAAAVAAIADP//AACABtIbHB0eWiRjbGFzc25hbWVYJGNsYXNzZXNdTlNNdXRhYmxlRGF0YaMdHyBWTlNEYXRhWE5TT2JqZWN00hscIiNcTlNEaWN0aW9uYXJ5oiIgXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0AMgA3AEAARgBNAFUAYABnAGoAbABuAHEAcwB1AHcAhACOALUAugDCAoQChgKLApYCnwKtArECuALBAsYC0wLWAugC6wLwAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAvI=}}
+
+@article{kroemer2010c,
+	Ages = {1105--1116},
+	Author = {O. Kroemer and R. Detry and J. Piater and J. Peters},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Journal = {RAS},
+	Ournal = {Robotics and Auton. Sys.},
+	Title = {Combining Active Learning and Reactive Control for Robot Grasping},
+	Umber = {9},
+	Volume = {58},
+	Year = {2010}}
+
+@inproceedings{saxena2008b,
+	Author = {Saxena, A. and Wong, L. and Ng, A.Y.},
+	Booktitle = {AAAI},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {Learning grasp strategies with partial shape information},
+	Year = {2008}}
+
+@inproceedings{bard1990a,
+	Ages = {865--872},
+	Author = {Bard, C. and Troccaz, J.},
+	Booktitle = {{IEEE} IROS},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {Automatic preshaping for a dextrous hand from a simple description of objects},
+	Year = {1990}}
+
+@article{caflisch1998a,
+	Author = {Caflisch, R.E.},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Journal = {Acta Numerica},
+	Pages = {1--49},
+	Publisher = {Cambridge Univ Press},
+	Title = {Monte carlo and quasi-monte carlo methods},
+	Volume = {7},
+	Year = {1998},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QFC4uLy4uL2JpYi9rYXdhdG8uYmli0hcLGBlXTlMuZGF0YU8RAXQAAAAAAXQAAgAADE1hY2ludG9zaCBIRAAAAAAAAAAAAAAAAAAAAM4UPyJIKwAAAQNNcAprYXdhdG8uYmliAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA01y0APexgAAAAAAAAAAAAIAAgAACSAAAAAAAAAAAAAAAAAAAAADYmliAAAQAAgAAM4UMRIAAAARAAgAANAD0LYAAAABABABA01wAAtbMAALWmUAAhIpAAIANU1hY2ludG9zaCBIRDpVc2VyczoAamx3MTI6AERvY3VtZW50czoAYmliOgBrYXdhdG8uYmliAAAOABYACgBrAGEAdwBhAHQAbwAuAGIAaQBiAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAJFVzZXJzL2psdzEyL0RvY3VtZW50cy9iaWIva2F3YXRvLmJpYgATAAEvAAAVAAIADP//AACABtIbHB0eWiRjbGFzc25hbWVYJGNsYXNzZXNdTlNNdXRhYmxlRGF0YaMdHyBWTlNEYXRhWE5TT2JqZWN00hscIiNcTlNEaWN0aW9uYXJ5oiIgXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0AMgA3AEAARgBNAFUAYABnAGoAbABuAHEAcwB1AHcAhACOAKUAqgCyAioCLAIxAjwCRQJTAlcCXgJnAmwCeQJ8Ao4CkQKWAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAApg=}}
+
+@inproceedings{chiuso2000a,
+	Author = {Chiuso, A. and Soatto, S.},
+	Booktitle = {Proc. of IEEE CDC},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Month = {December},
+	Pages = {304--309},
+	Title = {Monte Carlo filtering on Lie groups},
+	Volume = {1},
+	Year = {2000}}
+
+@book{silverman1986a,
+	Author = {B. W. Silverman},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Journal = {Monographs on Statistics and Applied Probability},
+	Publisher = {{Chapman \& Hall/CRC}},
+	Title = {Density Estimation for Statistics and Data Analysis},
+	Year = {1986}}
+
+@inproceedings{fisher1953a,
+	Author = {Fisher, R. A.},
+	Booktitle = {Proc. Roy. Soc. London Ser. A.},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Title = {Dispersion on a sphere},
+	Year = {1953}}
+
+@phdthesis{sudderth2006a,
+	Address = {Cambridge, MA},
+	Author = {Erik B. Sudderth},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	School = {MIT},
+	Title = {Graphical models for visual object recognition and tracking},
+	Year = {2006}}
+
+@book{spivak1979comprehensive,
+	Author = {Spivak, M.},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Publisher = {Publish or Perish Berkeley},
+	Title = {A comprehensive introduction to differential geometry},
+	Volume = {1},
+	Year = {1999}}
+
+@inproceedings{Rusu_ICRA2011_PCL,
+	Address = {Shanghai, China},
+	Author = {R. Rusu and S. Cousins},
+	Booktitle = {ICRA 2011},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Month = {May 9-13},
+	Title = {{3D is here: Point Cloud Library (PCL)}},
+	Year = {2011}}
+
+@inproceedings{hsiao2006imitation,
+	Author = {Hsiao, K. and Lozano-Perez, T.},
+	Booktitle = {Intelligent Robots and Systems, 2006 IEEE/RSJ International Conference on},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Organization = {IEEE},
+	Pages = {5657--5662},
+	Title = {Imitation learning of whole-body grasps},
+	Year = {2006}}
+
+@article{ciocarlie2009hand,
+	Author = {Ciocarlie, M.T. and Allen, P.K.},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Journal = {IJRR},
+	Number = {7},
+	Pages = {851--867},
+	Publisher = {Sage Publications},
+	Title = {Hand posture subspaces for dexterous robotic grasping},
+	Volume = {28},
+	Year = {2009}}
+
+@inproceedings{borst1999fast,
+	Author = {Borst, C. and Fischer, M. and Hirzinger, G.},
+	Booktitle = {ICRA 1999},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Organization = {IEEE},
+	Pages = {1890--1896},
+	Title = {A fast and robust grasp planner for arbitrary 3D objects},
+	Volume = {3},
+	Year = {1999}}
+
+@article{shoemake_animating_1985,
+	Author = {Shoemake, Ken},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Issn = {0097-8930},
+	Journal = {{SIGGRAPH} Comput. Graph.},
+	Month = jul,
+	Number = {3},
+	Pages = {245{\~n}254},
+	Title = {Animating rotation with quaternion curves},
+	Volume = {19},
+	Year = {1985}}
+
+@article{ankerst1999optics,
+	Author = {Ankerst, M. and Breunig, M.M. and Kriegel, H.P. and Sander, J.},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Journal = {ACM SIGMOD Record},
+	Number = {2},
+	Pages = {49--60},
+	Publisher = {ACM},
+	Title = {OPTICS: ordering points to identify the clustering structure},
+	Volume = {28},
+	Year = {1999}}
+
+@article{popovic2010a,
+	Author = {M. Popovi{\'c} and D. Kraft and L. Bodenhagen and E. Ba{\c s}eski and N. Pugeault and D. Kragic and T. Asfour and N. Kr{\"u}ger},
+	Date-Added = {2014-08-03 11:29:49 +0000},
+	Date-Modified = {2014-08-03 11:29:49 +0000},
+	Journal = {RAS},
+	Ournal = {Robotics and Autonomous Systems},
+	Title = {A Strategy for Grasping Unknown Objects based on Co-Planarity and Colour Information},
+	Year = {2010}}
+
+@phdthesis{Arriola2013thesis,
+	Author = {Arriola-Rios, Veronica Esther},
+	Owner = {blackzafiro},
+	School = {University of Birmingham},
+	Timestamp = {2013.02.20},
+	Title = {Learning to Predict the Behaviour of Deformable Objects through and for Robotic Interaction},
+	Year = {2013}}
+
+@article{Burion2008,
+	Abstract = {This paper presents a new approach for estimating physical properties
+	of deformable models from experimental measurements. In contrast
+	to most previous work, we introduce a new method based on particle
+	filters which identifies the different stiffness properties for spring-based
+	models. This approach addresses some important limitations encountered
+	with gradient descent techniques which often converge towards ill
+	solutions or remain fixed in local minima conditions.},
+	Author = {Burion, Steve. and Conti, Francois. and Petrovskaya, Anna. and Baur, Charles. and Khatib, Oussama.},
+	Cl = {Pasadena, CA},
+	Ct = {IEEE International Conference on Robotics and Automation},
+	Cy = {MAY 19-23, 2008},
+	Journal = {2008 Ieee International Conference On Robotics And Automation},
+	Keywords = {Modelling, simulation, mass-spring, particle filters},
+	Labels = {DO, mass--spring, simulation, skeleton},
+	Month = {May},
+	Number = {9},
+	Owner = {vxa855},
+	Pages = {1112--1117},
+	Relevance = {5*},
+	Sn = {1050-4729},
+	Tc = {0},
+	Timestamp = {2009.02.18},
+	Title = {Identifying physical properties of deformable objects by using particle filters},
+	Ut = {WOS:000258095000176},
+	Volume = {1},
+	Year = {2008}}
+
+@inproceedings{Conti2003,
+	Author = {Conti, F. and Khatib, O. and Baur, C.},
+	Booktitle = {Robotics and Automation, 2003. Proceedings. ICRA '03. IEEE International Conference on},
+	Doi = {10.1109/ROBOT.2003.1242167},
+	Issn = {1050-4729},
+	Keywords = {3D elastic links; 6 degree of freedom; anisotropic materials; collision detection; damped springs; deformable objects interactive rendering; finite elements; isotropic materials; macroscopic elastic sphere; mass-spring systems; mesh nodes; objects medial axis transformation; real-time deformable objects; setting point masses; volumetric model; finite element analysis; haptic interfaces; real-time systems; rendering (computer graphics); solid modelling;},
+	Month = {sept.},
+	Owner = {vxa855},
+	Pages = {3716 - 3721},
+	Timestamp = {2011.05.26},
+	Title = {Interactive rendering of deformable objects based on a filling sphere modeling approach},
+	Volume = {3},
+	Year = {2003},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/ROBOT.2003.1242167}}
+
+@inproceedings{Frank2010,
+	Abstract = {In this paper, we consider the problem of determining
+	
+	the elasticity properties of deformable objects with
+	
+	a mobile manipulator equipped with a force sensor.b We
+	
+	learn the parameters by establishing a relation between the
+	
+	applied forces and the corresponding surface deformations.
+	
+	To determine the parameters, we minimize the difference
+	
+	between the observed surface of an object that is deformed
+	
+	by a real manipulator and the deformed surface obtained
+	
+	with a deformation simulator based on finite element methods.
+	
+	To establish the correspondences between the surfaces, our
+	
+	approach applies a 3D registration technique based on pointclouds
+	
+	which is used as the basis for comparing the results
+	
+	of the simulation system with the observations of the real
+	
+	deformations. As we demonstrate in real-world experiments,
+	
+	our system is able to estimate appropriate parameters that can
+	
+	be used to predict future deformations. This information can
+	
+	directly be incorporated into motion planning approaches that
+	
+	are designed for robots operating with deformable objects.},
+	Author = {Barbara Frank and Ruediger Schmedding and Cyrill Stachniss and Matthias Teschner and Wolfram Burgard},
+	Booktitle = {Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+	Labels = {robotics, FEM},
+	Owner = {vxa855},
+	Timestamp = {2011.06.10},
+	Title = {Learning the Elasticity Parameters of Deformable Objects with a Manipulation Robot.},
+	Year = {2010}}
+
+@inproceedings{Frank2011,
+	Abstract = {The ability to plan their own motions and to reliably execute them
+	is an important precondition for autonomous robots. In this paper,
+	we consider the problem of planning the motion of a mobile manipulation
+	robot in the presence of deformable objects. Our approach combines
+	probabilistic roadmap planning with a physical deformation simulation
+	system. Since the physical deformation simulation is computationally
+	demanding, we use efficient Gaussian process regression to estimate
+	the deformation cost for individual objects based on training examples.
+	We generate the training data by employing a simulation system in
+	a preprocessing step. Consequently, no simulations are needed during
+	runtime. We implemented and tested our approach on a mobile manipulation
+	robot. Our experiments show that the robot is able to accurately
+	predict and thus consider the deformation cost its manipulator introduces
+	to the environment during motion planning. Simultaneously, the computation
+	time is substantially reduced compared to a system that employs physical
+	simulations online.},
+	Address = {San Francisco, CA, USA},
+	Author = {Barbara Frank and Cyrill Stachniss and Nichola Abdo and Wolfram Burgard},
+	Booktitle = {Proc. of the IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+	Owner = {blackzafiro},
+	Timestamp = {2012.04.22},
+	Title = {Efficient Motion Planning for Manipulation Robots in Environments with Deformable Objects.},
+	Year = {2011}}
+
+@techreport{Gibson1997,
+	Abstract = {This paper presents a survey of the work done in modeling deformable
+	objects within the computer graphics research community. The research
+	has a long history and a wide variety of approaches have been used.
+	This paper organizes the diversity of research by the technique used
+	rather than by the application, although applications are discussed
+	throughout. This paper presents some purely geometric approaches
+	for modeling deformable objects, but focuses on physically based
+	approaches. In the latter category are mass-spring models,
+	
+	nite element models, approximate continuum models, and low degree
+	of freedom models. Special emphasis is placed on nite element models,
+	which o er the greatest accuracy, but have seen limited use in computer
+	graphics. The paper also suggests important areas for future research.},
+	Author = {Sarah F. F. Gibson and Brian Mirtich},
+	Institution = {MERL (Mitsubishi Electric Research Laboratory)},
+	Labels = {review},
+	Owner = {vxa855},
+	Timestamp = {2011.05.26},
+	Title = {A survey of deformable modeling in computer graphics},
+	Year = {1997}}
+
+@article{Howard2000,
+	Abstract = {The majority of manipulation systems are designed with the assumption
+	that the objects being handled are rigid and do not deform when grasped.
+	This paper addresses the problem of robotic grasping and manipulation
+	of 3-D deformable objects, such as rubber balls or bags filled with
+	sand. Specifically, we have developed a generalized learning algorithm
+	for handling of 3-D deformable objects in which prior knowledge of
+	object attributes is not required and thus it can be applied to a
+	large class of object types. Our methodology relies on the implementation
+	of two main tasks. Our first task is to calculate deformation characteristics
+	for a non-rigid object represented by a physically-based model. Using
+	nonlinear partial differential equations, we model the particle motion
+	of the deformable object in order to calculate the deformation characteristics.
+	For our second task, we must calculate the minimum force required
+	to successfully lift the deformable object. This minimum lifting
+	force can be learned using a technique called `iterative lifting'.
+	Once the deformation characteristics and the associated lifting force
+	term are determined, they are used to train a neural network for
+	extracting the minimum force required for subsequent deformable object
+	manipulation tasks. Our developed algorithm is validated with two
+	sets of experiments. The first experimental results are derived from
+	the implementation of the algorithm in a simulated environment. The
+	second set involves a physical implementation of the technique whose
+	outcome is compared with the simulation results to test the real
+	world validity of the developed methodology.},
+	Address = {SPUIBOULEVARD 50, PO BOX 17, 3300 AA DORDRECHT, NETHERLANDS},
+	Affiliation = {Howard, AM (Reprint Author), Univ So Calif, Sch Engn, Inst Robot \& Intelligent Syst, Los Angeles, CA 90089 USA. Univ So Calif, Sch Engn, Inst Robot \& Intelligent Syst, Los Angeles, CA 90089 USA.},
+	Author = {Howard, AM and Bekey, GA},
+	Issn = {0929-5593},
+	Journal = {Autonomous Robots},
+	Labels = {DO, grasping, integration},
+	Language = {English},
+	Month = {AUG},
+	Note = {1999 IEEE International Symposium on Computational Intelligence in Robotics and Automation (CIRA 99), MONTEREY, CALIFORNIA, NOV 08-09, 1999},
+	Number = {1},
+	Organization = {IEEE, Robot \& Automat Soc},
+	Owner = {blackzafiro},
+	Pages = {51-58},
+	Publisher = {KLUWER ACADEMIC PUBL},
+	Timestamp = {2013.01.10},
+	Title = {Intelligent learning for deformable object manipulation},
+	Type = {Proceedings Paper},
+	Volume = {9},
+	Year = {2000}}
+
+@article{Khalil2010review,
+	Author = {F. F. Khalil and P. Payeur},
+	Journal = {Robot Manipulators, Trends and Development},
+	Labels = {Grasping},
+	Note = {A. Jimenez and B. M. Al Hadithi, Eds.},
+	Owner = {blackzafiro},
+	Pages = {587--619},
+	Relevance = {4* read},
+	Timestamp = {2012.11.17},
+	Title = {Dexterous robotic manipulation of deformable objects with multi-sensory feedback--A review},
+	Volume = {Vukovar, Croatia: In-Tech},
+	Year = {2010}}
+
+@article{McInerney1996,
+	Abstract = {This article surveys deformable models, a promising and vigorously
+	researched computer-assisted medical image analysis technique. Among
+	model-based techniques, deformable models offer a unique and powerful
+	approach to image analysis that combines geometry, physics and approximation
+	theory. They have proven to be effective in segmenting, matching
+	and tracking anatomic structures by exploiting (bottom-up) constraints
+	derived from the image data together with (top-down) a priori knowledge
+	about the location, size and shape of these structures. Deformable
+	models are capable of accommodating the significant variability of
+	biological structures over time and across different individuals.
+	Furthermore, they support highly intuitive interaction mechanisms
+	that, when necessary, allow medical scientists and practitioners
+	to bring their expertise to bear on the model-based image interpretation
+	task. This article reviews the rapidly expanding body of work on
+	the development and application of deformable models to problems
+	of fundamental importance in medical image analysis, including segmentation,
+	shape representation, matching and motion tracking.},
+	Author = {McInerney, Tim. and Terzopoulos, Demetri.},
+	Journal = {Med Image Anal},
+	Keywords = {Modelling, medicine, review},
+	Labels = {Image processing, physics models},
+	Number = {2},
+	Owner = {varriola},
+	Pages = {91--108},
+	Relevance = {**},
+	Tc = {0},
+	Timestamp = {2009.04.07},
+	Title = {Deformable models in medical image analysis: a survey.},
+	Url = {http://www.cs.ucla.edu/~dt/papers/mia96/mia96.pdf},
+	Ut = {MEDLINE:9873923},
+	Volume = {1},
+	Year = {1996},
+	Bdsk-Url-1 = {http://www.cs.ucla.edu/~dt/papers/mia96/mia96.pdf}}
+
+@article{Montagnat2001,
+	Abstract = {Deformable models have raised much interest and found various applications
+	in the fields of computer vision and medical imaging. They provide
+	an extensible framework to reconstruct shapes. Deformable surfaces,
+	in particular, are used to represent 3D objects. They have been used
+	for pattern recognition [Computer Vision and Image Understanding
+	69(2) (1998) 201; IEEE Transactions on Pattern Analysis and Machine
+	Intelligence 19(10) (1997) 1115], computer animation [ACM Computer
+	Graphics (SIGGRAPH'87) 21(4) (1987) 205], geometric modelling [61][Computer
+	Aided Design (CAD) 24(4) (1992) 178], simulation [Visual Computer
+	16(8) (2000) 437], boundary tracking [ACM Computer Graphics (SIGGRAPH'94)
+	(1994) 185], image segmentation [Computer Integrated Surgery, Technology
+	and Clinical Applications (1996) 59; IEEE Transactions on Medical
+	Imaging 14 (1995) 442; Joint Conference on Computer Vision, Virtual
+	Reality and Robotics in Medicine (CVRMed-MRCAS'97) 1205 (1997) 13;
+	Medical Image Computing and Computer-Assisted Intervention (MICCAI'99)
+	1679 (1999) 176; Medical Image Analysis 1(1) (1996) 19], etc. In
+	this paper we propose a survey on deformable surfaces. Many surface
+	representations have been proposed to meet different 3D reconstruction
+	problem requirements. We classify the main representations proposed
+	in the literature and we study the influence of the representation
+	on the model evolution behavior, revealing some similarities between
+	different approaches.},
+	Author = {J. Montagnat and H. Delingette and Ayache, Nicholas},
+	Doi = {10.1016/S0262-8856(01)00064-6},
+	Issn = {0262-8856},
+	Journal = {Image and Vision Computing},
+	Keywords = {Deformable surface, Model representation, Surface geometry, Surface topology, 3D reconstruction},
+	Labels = {3D models, review},
+	Number = {14},
+	Owner = {blackzafiro},
+	Pages = {1023--1040},
+	Relevance = {5*},
+	Timestamp = {2012.01.03},
+	Title = {A review of deformable surfaces: topology, geometry and deformation},
+	Url = {http://www.sciencedirect.com/science/article/pii/S0262885601000646},
+	Volume = {19},
+	Year = {2001},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0262885601000646},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1016/S0262-8856(01)00064-6}}
+
+@inproceedings{Moore2007review,
+	Abstract = {This paper presents a survey of the research carried out to date in
+	the area of computer-based deformable modelling. Due to their cross-disciplinary
+	nature, deformable modelling techniques have been the subject of
+	vigorous research over the past three decades and have found numerous
+	applications in the fields of machine vision (image analysis, image
+	segmentation, image matching, and motion tracking), visualisation
+	(shape representation and data fitting), and computer graphics (shape
+	modelling, simulation, and animation). Previous review papers have
+	been field/application specific and have therefore been limited in
+	their coverage of techniques. This survey focuses on general deformable
+	models for computer-based modelling, which can be used for computer
+	graphics, visualisation, and various image processing applications.
+	The paper organizes the various approaches by technique and provides
+	a description, critique, and overview of applications for each. Finally,
+	the state of the art of deformable modelling is discussed, and areas
+	of importance for future research are suggested.},
+	Address = {10662 LOS VAQUEROS CIRCLE, PO BOX 3014, LOS ALAMITOS, CA 90720-1264 USA},
+	Affiliation = {{Moore, P (Reprint Author), Dublin City Univ, Sch Elect Engn, Vis Syst Grp, Dublin 9, Ireland. Moore, Patricia; Molloy, Derek, Dublin City Univ, Sch Elect Engn, Vis Syst Grp, Dublin 9, Ireland.}},
+	Author = {Moore, Patricia and Molloy, Derek},
+	Author-Email = {{patricia.moore@eeng.dcu.ie}},
+	Booktitle = {IMVIP 2007: INTERNATIONAL MACHINE VISION AND IMAGE PROCESSING CONFERENCE, PROCEEDINGS},
+	Doc-Delivery-Number = {{BGZ20}},
+	Doi = {10.1109/IMVIP.2007.31},
+	Editor = {McDonald, J and Markham, C and Ghent, J},
+	Isbn = {{978-0-7695-2887-8}},
+	Keywords-Plus = {{ACTIVE CONTOUR MODELS; PARTICLE-SYSTEM; SIMULATION; ANIMATION; BALLOONS; OBJECTS}},
+	Labels = {review},
+	Language = {{English}},
+	Note = {International Machine Vision and Image Processing Conference, Natl Univ Ireland Maynooth, Maynooth, IRELAND, SEP 05-07, 2007},
+	Number-Of-Cited-References = {{48}},
+	Organization = {Irish Pattern Recognit \& Classificat Soc},
+	Owner = {blackzafiro},
+	Pages = {55-64},
+	Publisher = {IEEE COMPUTER SOC},
+	Review = {Summary: Non physical techniques: * Splines and patches * Form Deformation (FFD). Barr, Sederberg and Parry Free, Coquillart. A latice of control points is used to deform any surface. Schein et. al. introduce discontinuities (DFFD). Physical Techniques: * Mass spring damper methods (good discussion of drawbacks) * Finite Element Method (FEM), Finite Volume Method (FVM), Boundary Element Method (BEM); adding condensation, preprocessing and modal analysis. * Finite Difference Method (FDM) Approximate Physical Techniques: * Active Contour Models/Snakes. Kass; Cohen; Hsu and Prince: Gradient Vector Flow (GVF) snakes.},
+	Subject-Category = {{Computer Science; Imaging Science \& Photographic Technology}},
+	Times-Cited = {{2}},
+	Timestamp = {2013.06.10},
+	Title = {A survey of computer-based deformable models},
+	Type = {{Proceedings Paper}},
+	Unique-Id = {{ISI:000251462400009}},
+	Year = {2007},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/IMVIP.2007.31}}
+
+@article{Morris2008,
+	Abstract = {Many simulation environments - particularly those intended for medical
+	simulation - require solid objects to deforrn at interactive rates,
+	with deformation properties that correspond to real materials. Furthermore,
+	new objects may be created frequently (for example, each time a new
+	patient's data is processed), prohibiting manual intervention in
+	the model preparation process. This paper provides a pipeline for
+	rapid preparation of deformable objects with no manual intervention,
+	specifically focusing on mesh generation (preparing solid meshes
+	from surface models), automated calibration of models to finite element
+	reference analyses (including a novel approach to reducing the complexity
+	of calibrating nonhomogeneous objects), and automated skinning of
+	meshes for interactive simulation.},
+	Author = {Morris, D. and Salisbury, K.},
+	Di = {10.1080/10255840701769606},
+	File = {:/home/blackzafiro/Documents/My Research/Articles/Morris2008.pdf:PDF},
+	Journal = {Computer Methods In Biomechanics And Biomedical Engineering},
+	Keywords = {Modelling, mesh, skinning, FEM->mass-spring},
+	Labels = {mass-spring, meshing},
+	Number = {3},
+	Owner = {vxa855},
+	Pages = {263--279},
+	Relevance = {5*},
+	Sn = {1025-5842},
+	Tc = {0},
+	Timestamp = {2009.02.18},
+	Title = {Automatic preparation, calibration, and simulation of deformable objects},
+	Ut = {WOS:000257669000006},
+	Volume = {11},
+	Year = {2008},
+	Bdsk-File-1 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QJi4uL0lDUkEyMDE0LkdyYXNwL2xhdGV4L3JlZmVyZW5jZXMuYmli0hcLGBlXTlMuZGF0YU8RAcIAAAAAAcIAAgAADE1hY2ludG9zaCBIRAAAAAAAAAAAAAAAAAAAAM4UPyJIKwAAAAxH8A5yZWZlcmVuY2VzLmJpYgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAj+zRzyQEVQAAAAAAAAAAAAEAAwAACSAAAAAAAAAAAAAAAAAAAAAFbGF0ZXgAABAACAAAzhQxEgAAABEACAAAzyQEVQAAAAEAGAAMR/AADEdTAAw46QALWzAAC1plAAISKQACAFRNYWNpbnRvc2ggSEQ6VXNlcnM6AGpsdzEyOgBEb2N1bWVudHM6AHdyaXRpbmc6AElDUkEyMDE0LkdyYXNwOgBsYXRleDoAcmVmZXJlbmNlcy5iaWIADgAeAA4AcgBlAGYAZQByAGUAbgBjAGUAcwAuAGIAaQBiAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAQVVzZXJzL2psdzEyL0RvY3VtZW50cy93cml0aW5nL0lDUkEyMDE0LkdyYXNwL2xhdGV4L3JlZmVyZW5jZXMuYmliAAATAAEvAAAVAAIADP//AACABtIbHB0eWiRjbGFzc25hbWVYJGNsYXNzZXNdTlNNdXRhYmxlRGF0YaMdHyBWTlNEYXRhWE5TT2JqZWN00hscIiNcTlNEaWN0aW9uYXJ5oiIgXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0AMgA3AEAARgBNAFUAYABnAGoAbABuAHEAcwB1AHcAhACOALcAvADEAooCjAKRApwCpQKzArcCvgLHAswC2QLcAu4C8QL2AAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAvg=},
+	Bdsk-File-2 = {YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAFgAdccmVsYXRpdmVQYXRoWWFsaWFzRGF0YV8QFC4uLy4uL2JpYi9rYXdhdG8uYmli0hcLGBlXTlMuZGF0YU8RAXQAAAAAAXQAAgAADE1hY2ludG9zaCBIRAAAAAAAAAAAAAAAAAAAAM4UPyJIKwAAAQNNcAprYXdhdG8uYmliAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA01y0APexgAAAAAAAAAAAAIAAgAACSAAAAAAAAAAAAAAAAAAAAADYmliAAAQAAgAAM4UMRIAAAARAAgAANAD0LYAAAABABABA01wAAtbMAALWmUAAhIpAAIANU1hY2ludG9zaCBIRDpVc2VyczoAamx3MTI6AERvY3VtZW50czoAYmliOgBrYXdhdG8uYmliAAAOABYACgBrAGEAdwBhAHQAbwAuAGIAaQBiAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAJFVzZXJzL2psdzEyL0RvY3VtZW50cy9iaWIva2F3YXRvLmJpYgATAAEvAAAVAAIADP//AACABtIbHB0eWiRjbGFzc25hbWVYJGNsYXNzZXNdTlNNdXRhYmxlRGF0YaMdHyBWTlNEYXRhWE5TT2JqZWN00hscIiNcTlNEaWN0aW9uYXJ5oiIgXxAPTlNLZXllZEFyY2hpdmVy0SYnVHJvb3SAAQAIABEAGgAjAC0AMgA3AEAARgBNAFUAYABnAGoAbABuAHEAcwB1AHcAhACOAKUAqgCyAioCLAIxAjwCRQJTAlcCXgJnAmwCeQJ8Ao4CkQKWAAAAAAAAAgEAAAAAAAAAKAAAAAAAAAAAAAAAAAAAApg=}}
+
+@article{Nealen2006review,
+	Abstract = {Physically based deformable models have been widely embraced by the
+	Computer Graphics community. Many problems outlined in a previous
+	survey by Gibson and Mirtich have been addressed, thereby making
+	these models interesting and useful for both offline and real-time
+	applications, such as motion pictures and video games. In this paper,
+	we present the most significant contributions of the past decade,
+	which produce such impressive and perceivably realistic animations
+	and simulations: finite element/difference/volume methods, mass-spring
+	systems, mesh-free methods, coupled particle systems and reduced
+	deformable models-based on modal analysis. For completeness, we also
+	make a connection to the simulation of other continua, such as fluids,
+	gases and melting objects. Since time integration is inherent to
+	all simulated phenomena, the general notion of time discretization
+	is treated separately, while specifics are left to the respective
+	models. Finally, we discuss areas of application, such as elastoplastic
+	deformation and fracture, cloth and hair animation, virtual surgery
+	simulation, interactive entertainment and fluid/smoke animation,
+	and also suggest areas for future research.},
+	Address = {{COMMERCE PLACE, 350 MAIN ST, MALDEN 02148, MA USA}},
+	Affiliation = {{Nealen, A (Reprint Author), Tech Univ Berlin, Berlin, Germany. Tech Univ Berlin, Berlin, Germany. ETH, Comp Graph Lab, Zurich, Switzerland. Ubisoft Montreal, Montreal, PQ, Canada.}},
+	Author = {Nealen, Andrew and Mueller, Matthias and Keiser, Richard and Boxerman, Eddy and Carlson, Mark},
+	Author-Email = {{andy@nealen.net mmuller@ageia.com keiser@inf.ethz.ch eddybox@gmail.com mark.t.carlson@gmail.com}},
+	Doi = {10.1111/j.1467-8659.2006.01000.x},
+	Issn = {{0167-7055}},
+	Journal = {COMPUTER GRAPHICS FORUM},
+	Journal-Iso = {{Comput. Graph. Forum}},
+	Keywords = {physically based animation; deformation; continuum elasticity; time integration; FEM; mass-spring; mesh-free methods; modal analysis; fluid animation},
+	Keywords-Plus = {{SMOOTHED PARTICLE HYDRODYNAMICS; REAL-TIME; COLLISION DETECTION; SURGERY SIMULATION; OBJECTS; DEFORMATIONS; ANIMATION; MANIPULATION; SYSTEM; FLUID}},
+	Labels = {simulation, physics, review},
+	Language = {{English}},
+	Month = {December},
+	Note = {18th Brazilian Symposium on Computer Graphics and Image Processing (SIBGRAPI 2005), Natal, BRAZIL, OCT 09-12, 2005},
+	Number = {4},
+	Number-Of-Cited-References = {{179}},
+	Organization = {{UFRN; UFAL; UNIFOR; CNPq; CAPES; SBC; FINEP; FAPERN; DIGIZAP}},
+	Owner = {blackzafiro},
+	Pages = {809-836},
+	Publisher = {{WILEY-BLACKWELL}},
+	Subject-Category = {{Computer Science}},
+	Times-Cited = {{69}},
+	Timestamp = {2012.04.23},
+	Title = {Physically based deformable models in computer graphics},
+	Type = {{Article; Proceedings Paper}},
+	Volume = {25},
+	Year = {2006},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1111/j.1467-8659.2006.01000.x}}
+
+@inproceedings{Teschner2004,
+	Abstract = {In this paper, we present a versatile and robust model for geometrically
+	complex deformable solids. Our approach can be applied to deformable
+	tetrahedral meshes and to deformable triangle meshes. The model considers
+	elastic and plastic deformation. It handles a large variety of material
+	properties ranging from stiff to fluid-like behavior. Due to the
+	computational efficiency of our approach, complex environments consisting
+	of up to several thousand primitives can be simulated at interactive
+	speed.
+	
+	The presented approach to deformable modeling is part of a simulation
+	environment with integrated collision handling for tetrahedral meshes.
+	For visualization purposes, tetrahedral meshes can be coupled with
+	highresolution surface meshes. Results are presented for deformable
+	tetrahedral meshes and for deformable triangle meshes which are used
+	to represent cloth and discrete shells.},
+	Address = {Crete, Greece},
+	Author = {Teschner, Matthias and Heidelberger, Bruno and Muller, Matthias and Gross, Markus},
+	Booktitle = {Proceedings of Computer Graphics International (CGI'04)},
+	Labels = {mass-spring},
+	Month = {June 16-19},
+	Owner = {blackzafiro},
+	Pages = {312-319},
+	Relevance = {5*},
+	Timestamp = {2009.10.13},
+	Title = {A Versatile and Robust Model for Geometrically Complex Deformable Solids},
+	Year = {2004}}
