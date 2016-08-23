@@ -48,6 +48,7 @@ For these purposes, the authors propose two models, including an extension of th
 
 However, there are several structural problems, as listed below. 
 
+\marker
 1: in the abstract, the authors claim that five features are simultaneously enabled by the proposed single learning model framework, but the article actually presents a collection of different models and methods to solve different problems, thus it is inappropriate to claim them as a single unified model framework. Besides, it seems that only robot pushing is modeled, not general "robot actions". 
 
 2: section II is not included in the final paragraph of section I, and this section should be included in section I or section IV.
@@ -99,23 +100,41 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 \comment{Since for comment 5 the introduction explained that a mass particle is located on vertex i, this has been covered already.}
 
-7, in line 27 of page 4, please explain what "mass particle" is. 
+7, in line 27 of page 4, please explain what "mass particle" is.
 
-8, in line 33 of page 4, please explain why the equations are oscillatory. 
+\comment{The term was introduced on the second paragraph of section IV.}
 
-9, please explain how equation (3) is derived. 
+8, in line 33 of page 4, please explain why the equations are oscillatory.
+
+\comment{Added explanation that it happens when/because we use $C$s that model springs.}
+
+9, please explain how equation (3) is derived.
+
+\comment{It is not within the scope of the article to explain that derivation, since it belongs to Teschner's model, however the cite to the article we got it from was repeated here.}
 
 10, in line 54 of page 4, please add reference to "Teschner normalised the value dividing by D0 to make the elasticity constants scale independent." 
 
-11, in line 13, please explain "Since Teschner and Morris didn’t find it helpful to add damping to the preservation of areas, it is avoided here". 
+\comment{Added.}
+
+11, in line 13, please explain "Since Teschner and Morris didn’t find it helpful to add damping to the preservation of areas, it is avoided here".
+
+\comment{Changed phrase for the explanation that Teschner gave.}
 
 12, in line 50 of page 4, please explain "the angles between adjacent edges". As adjacent edges form one angle, do the authors mean adjacent angles? Similar ambiguity exists in line 2 of page 5. 
 
+\comment{Corrected.}
+
 13, in Algorithm 1, please explain how "an integration step" leads to new length of the edge. 
+
+\comment{Reworded sentence to add more detail.}
 
 14, in line 25 of page 4, please explain what "Euler of Verlet" means. Euler or Verlet? 
 
-15, in equation (17), please explain if $x(t+h)$ is a position, how does $h*\frac{F(t)}{m}$ generate a position vector, since $h*\frac{F(t)}{m}$ seems to be the production of $h$ and acceleration? And please explain "we made the velocities proportional to the forces". Which variable is the velocity? What does "m" mean? The mass? 
+\comment{It was ``or''.  Corrected.}
+
+15, in equation (17), please explain if $x(t+h)$ is a position, how does $h*\frac{F(t)}{m}$ generate a position vector, since $h*\frac{F(t)}{m}$ seems to be the production of $h$ and acceleration? And please explain "we made the velocities proportional to the forces". Which variable is the velocity? What does "m" mean? The mass?
+
+\comment{Explained in more detail and changed notations to make it consistent with previous paragraphs.}
 
 16, in section IV-D, please explain what "collision detection" means, the collision between robot and objects, or the collision between objects? 
 

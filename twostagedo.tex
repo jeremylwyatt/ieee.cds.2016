@@ -769,11 +769,11 @@ Additionally, there is a vast amount of literature on modeling of deformable sha
 \section{A Mass-Spring Model of Deformation}
 
 \comment{
-A mass-spring model is a very well established abstraction used to emulate the behaviour of deformable objects.  As a physics based model, once its parameters are properly assigned, its behaviour is determined by the evolution of a set of differential equations.  Therefore, by offering a method to automatically calibrate those parameters, this model can make long term predictions about the behaviour of deformable objects, under previously unseen interactions, if only the interacting forces are know.  The range of validity of these predictions greatly depends on the quality of the calibration, but also on the suitability of the mass-spring model for the particular object.  For this reason, there are variations that address specific issues, like \cite{Bourguignon2000} and \cite{Teschner2004}.  In this work we focus on the machinery required to achieve this automatic calibration of a physics based model and its integration to a system that exploits it to solve prediction and classification tasks.  We emphasize that the physics based model could be easily substituted by another equivalent model.  For example, the same machine will work if another type of mass-spring model is used, or a FEM model, even though numerical results will differ to some extent.  For these experiments we chose to use a slightly modified version of the mass-spring model proposed by Teschner in \cite{Teschner2004}.
+A mass-spring model is a very well established abstraction used frequently to simulate the behaviour of some deformable objects.  As a physics based model, once its parameters are properly assigned, its behaviour is determined by the evolution of a set of differential equations.  Therefore, by offering a method to automatically calibrate those parameters, this model can make long term predictions about the behaviour of deformable objects, under previously unseen interactions, if only the interacting forces are know.  The range of validity of these predictions greatly depends on the quality of the calibration, but also on the suitability of the mass-spring model for the particular object.  For this reason, there are variations that address specific issues, like \cite{Bourguignon2000} and \cite{Teschner2004}.  In this work we focus on the machinery required to achieve this automatic calibration of a physics based model and its integration to a system that exploits it to solve prediction and classification tasks.  We emphasize that the physics based model could be easily substituted by another equivalent model.  For example, the same machine will work if another type of mass-spring model is used, or a FEM model, even though numerical results will differ to some extent.  For these experiments we chose to use a slightly modified version of the mass-spring model proposed by Teschner in \cite{Teschner2004}.
 
 %This work makes use of the ability of a mass-spring model to predict the shape of a deformable object given its shape at time $t$ and the forces acting on it.  The parameters, that attune this generic model to a particular object, will be obtained through machine learning, and that procedure will be explained in \sref{sec:learning}, since it is independent of the model itself.  Also the forces required as inputs by this mass-spring model will be learned by another module, so that the entire system will require only the initial shape of the object, and the command to be executed, to be able to predict the future behaviour of the object and sensed feedback force.  This section explains the details of the mass-spring model we used.
 
-In a simple mass-spring model, the shape of an object is approximated by a uniform geometric mesh, usually made of triangles (2D) or tetrahedrons (3D).  At every vertex $i$ in the mesh, an ideal particle with no volume, but with mass $m_i$, is located.  The edges between vertices roughly model the interactions between particles that attract each other and at the same time repel each other, therefore maintaining the cohesion of the solid, while avoiding the collapse of the material over itself.  The simplest model associates a linear spring with each edge, as if those forces would occur only between connected neighbours.  The resting state of the solid corresponds to a configuration of the masses and particles where the sum of all forces acting over each particle is zero and they are said to be in equilibrium.
+In a simple mass-spring model, the shape of an object is approximated by a uniform geometric mesh, usually made of triangles (2D) or tetrahedrons (3D).  At every vertex $i$ in the mesh, an ideal particle with no volume, but with mass $m_i$, is located, and is known as a \textit{mass particle}.  The edges between vertices roughly model the interactions between particles, that attract each other up to a certain critical distance, but repel each other if they become closer, therefore maintaining the cohesion of the solid, while avoiding the collapse of the material over itself.  The simplest model associates a linear spring with each edge, as if those forces would occur only between connected neighbours.  The resting state of the solid corresponds to a configuration of the masses and springs where the sum of all forces acting over each particle is zero, and they are said to be in equilibrium.
 
 When one or more particles are displaced from their positions of equilibrium, the forces that tend to restore an elastic body to its original shape are modeled by the forces of springs (along the edges of the mesh) that try to recover their original length).  These forces act upon the particles modifying their positions in time.  Traditionally, the relationship between the position of the particle $p_i$ and those forces $F$ obeys the second law of Newton:
 \begin{align}
@@ -801,19 +801,19 @@ Another option could be to induce response forces by displacing vertices from th
 \label{fig:forces}
 \end{figure}
 
-The mass-spring model proposed by Teschner et al.\ in \cite{Teschner2004} was reduced to a 2D model, so that the predictions could be compared with 2D images of the deformable object.  The main idea being that an agent can make rough real time predictions of what it can see and touch and use those predictions to solve various tasks, like classification or grasping.  Here, the surface of the deformable object is approximated by a regular triangular mesh of unitary masses and springs.  The potential energy terms for the preservation of length with damping and preservation of area were included in our system \comment{exactly as they were defined by Teschner}.  To compensate for the lack of a preservation of volume, which tends to avoid distortions of the graph \comment{in the original model}, \comment{we derived } a new term for the preservation of the angles \comment{in every triangle} \sout{was included}.  The relevant equations are presented in the following paragraphs, while detailed derivations can be found in \cite{Arriola2013thesis}.
+The mass-spring model proposed by Teschner et al.\ in \cite{Teschner2004}, which is explained below, was reduced to a 2D model, so that the predictions could be compared with 2D images of the deformable object.  The main idea being that an agent can make rough real time predictions of what it can see and touch and use those predictions to solve various tasks, like classification or grasping.  Here, the surface of the deformable object is approximated by a regular triangular mesh of unitary masses and springs.  The potential energy terms for the preservation of length with damping and preservation of area were included in our system \comment{exactly as they were defined by Teschner}.  To compensate for the lack of a preservation of volume, which tends to avoid distortions of the graph \comment{in the original model}, \comment{we derived } a new term for the preservation of the angles \comment{in every triangle} \sout{was included}.  The relevant equations are presented in the following paragraphs, while detailed derivations can be found in \cite{Arriola2013thesis}.
 
 \comment{Teschner defined a generalized version of the simple mass-spring model by using the concept of \emph{constraint}.  He makes use of different constraints to model the tendency of an object to recover several of its attributes.} For every desired constraint $C(\vec{p}_1,...,\vec{p}_{n})$ acting over $n$ vertices, a potential energy $E$ is defined.  When the value of the constraint is zero, the potential energy is zero as well.  When the constraint is not satisfied, the potential energy increases.  This behaviour is obtained through the following definition for the energy:
 \begin{align}
  E(\vec{p}_1,...,\vec{p}_{n}) & = \frac{1}{2}kC(\vec{p}_1,...,\vec{p}_{n})^2, \label{eq:EConstraint}
 \end{align}
-where $k$ is a proportionality constant \sout{\eref{eq:EConstraint}} and $p_i$ is the position of particle $i$.
+where $k$ is a proportionality constant \comment{\sout{\eref{eq:EConstraint}}} and $p_i$ is the position of particle $i$.
 
 In order to reduce the energy of the system when a constraint is not satisfied, the force $\vec{F}^i$ acting on the $i^{th}$ mass particle is defined as the negative gradient of this potential energy with respect to the position of the particle $\vec{p}_i$ \eref{eq:EForce}.
 \begin{align}
  \vec{F}^i(\vec{p}_1,...,\vec{p}_{n}) & = -\frac{\partial}{\partial \vec{p}_i}E = -kC\frac{\partial C}{\partial \vec{p}_i}. \label{eq:EForce}
 \end{align}
-Given the oscilatory nature of these equations, damping can be introduced to stop the oscillations.  This is modelled with a force acting in the opposite direction to the velocity of the affected particles:
+Given the oscilatory nature of these equations, \comment{when using constraints that model the behaviour of springs,} damping can be introduced to stop the oscillations.  This is modelled with a force acting in the opposite direction to the velocity of the affected particles\comment{, thus slowing down motion.  Teschner wrote this as a function of the constraints as well \cite{Teschner2004}}:
 \begin{align}
  \label{eq:Fdamping}
  \vec{F}^i&(\vec{p}_1,...,\vec{p}_{n},\vec{v}_1,...,\vec{v}_{n}) = \nonumber \\
@@ -827,7 +827,7 @@ The constraint for the potential energy is given by:
 \begin{equation}
  C = \dfrac{|\vec{p}_j-\vec{p}_i|-D_0}{D_0}, \label{eq:clength}
 \end{equation}
-where $\vec{p}_i$ and $\vec{p}_j$ are connected by a spring and $D_0$ is the rest length of that spring.  The force derived from this constraint pulls the masses in the direction of the spring that joins them [\fref{fig:forces}(a)].  Teschner normalised the value dividing by $D_0$ to make the elasticity constants scale independent.  Morris \cite{Morris2008} omitted that in his final equations for the force.  Here we use the normalised force $\vec{F}^i_D$ \eref{eq:FDlength}, which has the effect that, if we obtain a good set of parameters for a certain mesh of high resolution, the same set can be used for a mesh of lesser resolution that preserves the same type of symmetries.  Therefore, substituting \eref{eq:clength} in \eref{eq:Fdamping}, after some manipulation we get:
+where $\vec{p}_i$ and $\vec{p}_j$ are connected by a spring and $D_0$ is the rest length of that spring.  The force derived from this constraint pulls the masses in the direction of the spring that joins them [\fref{fig:forces}(a)].  Teschner normalised the value dividing by $D_0$ to make the elasticity constants scale independent \cite{Teschner2004}.  Morris \cite{Morris2008} omitted that in his final equations for the force.  Here we use the normalised force $\vec{F}^i_D$ \eref{eq:FDlength}, which has the effect that, if we obtain a good set of parameters for a certain mesh of high resolution, the same set can be used for a mesh of lesser resolution that preserves the same type of symmetries.  Therefore, substituting \eref{eq:clength} in \eref{eq:Fdamping}, after some manipulation we get:
 \begin{align}
  \vec{F}^i_D(p_i,p_j,v_i,v_j) &= \dfrac{k_L}{D_0^2} \left( |\vec{p}_j-\vec{p}_i|-D_0 \right) \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|}  + \nonumber \\
  & \dfrac{k_d}{D_0^2}\left( \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|} \cdot (\vec{v}_j-\vec{v}_i) \right) \dfrac{\vec{p}_j-\vec{p}_i}{|\vec{p}_j-\vec{p}_i|} \label{eq:FDlength}
@@ -835,7 +835,7 @@ where $\vec{p}_i$ and $\vec{p}_j$ are connected by a spring and $D_0$ is the res
 where $k_L$ is the linear spring constant and $k_d$ the damping constant.
 
 \subsubsection{Preservation of Area}
-This constraint is applied per triangle in the mesh.  Since Teschner and Morris didn't find it helpful to add damping to the preservation of areas, it is avoided here.  Therefore the force $\vec{F}^i_A$ is derived as follows:
+This constraint is applied per triangle in the mesh.  Since Teschner and Morris \comment{\sout{didn't find it helpful to add damping to the preservation of areas, it is avoided here.} found that the use of damping for the preservation of areas does not improve significantly the stability of the simulation, it is not included here either.}  Therefore the force $\vec{F}^i_A$ is derived as follows:
 \begin{align}
  C &= \frac{\frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|-A_0}{A_0} \\
  Area &= \frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|, \\
@@ -858,7 +858,7 @@ While the rest becomes:
 \end{align}
 
 \subsubsection{Preservation of Angles}
-The previous terms can not do anything to restore the mesh if triangles get flipped during deformation.  For this reason we included a new term that enforces the preservation of the original angles of the triangles.  [\fref{fig:forces}(c)] gives an idea of how these forces look.  Here the energy depends on the difference of the angles between adjacent edges.
+The previous terms can not do anything to restore the mesh if triangles get flipped during deformation.  For this reason we included a new term that enforces the preservation of the original angles of the triangles.  [\fref{fig:forces}(c)] gives an idea of how these forces look.  Here the energy depends on the difference \comment{\sout{of the angles between adjacent edges.} between the current angle, between adjacent edges, and the angle between them at the equilibrium position.}
 
 Energy\footnote{It was also considered to multiply $E_\varphi$ by the lengths of the edges, but it hasn't improved the performance of the model.}:
 \begin{align}
@@ -891,7 +891,8 @@ The terms for the preservation of length and angle model elastic deformations.  
 \subsection{Plastic Deformation}
 \begin{figure}
  \begin{algorithmicieee}{Plastic Deformation of an Edge}\label{alg:deformEdge}
- \STATE Let $l$ be the new length of the edge, after an integration step. And $max\_\alpha$ the maximum proportional permanent deformation being allowed.
+ %\STATE Let $l$ be the new length of the edge, after an integration step. And $max\_\alpha$ the maximum proportional permanent deformation being allowed.
+ \comment{\STATE Let $l$ be the length of the edge at time $t+h$, after an integration step where new positions of its vertices $p_i(t+h)$ where calculated.} And $max\_\alpha$ the maximum proportional permanent deformation being allowed.
  \IF {$\alpha > max\_\alpha$}
   \STATE $l_0 \gets l$
  \ELSE
@@ -912,12 +913,16 @@ The simplest method to model plastic deformation consists in changing the length
 
 \subsection{Integration Scheme}
 \label{sec:ischeme}
-Rather than using the traditional Newton equations with a numeric integration scheme like Euler of Verlet, we made the velocities proportional to the forces:
+Rather than using the traditional Newton equations with a numeric integration scheme like Euler \comment{or} Verlet, \comment{used twice to solve the second order differential equiations,} we made the \comment{\sout{velocities proportional to the forces:} force proportional to the velocity:
+\begin{align}
+ F(t) = m \dfrac{\partial \vec{p}}{\partial t}
+\end{align}
+and applied Euler only once to solve for $p$:
 \begin{equation}
- \vec{x}(t+h) = \vec{x}(t) + h \dfrac{\vec{F(t)}}{m}\label{eq:integration}
-\end{equation}
-with $\vec{F}(t) = \vec{F}_D(t) + \vec{F}_A(t) + F_\varphi(t)$ being the sum of the forces for the preservation of length, area and angle respectively and $\vec{x}(t+h)$, the position of the vertex at time $t+h$.  The simulations obtained were closer to the observed behaviour, because there is not inertia in the oscillation.
-When experimenting with different integration steps, force values were interpolated between measuremente.
+ \vec{p}(t+h) = \vec{p}(t) + h \dfrac{\vec{F(t)}}{m}\label{eq:integration}
+\end{equation}}
+with $\vec{F}(t) = \vec{F}_D(t) + \vec{F}_A(t) + F_\varphi(t)$ being the sum of the forces for the preservation of length, area and angle respectively and $\vec{p}(t+h)$, the position of the vertex at time $t+h$.  \comment{We acknowledge that this is not the proper Newtonian model, however t}he simulations obtained were closer to the observed behaviour, because there is not inertia in the oscillation.
+When experimenting with different integration steps, force values were interpolated between measurements.
 
 
 \subsection{Collision Detection}
