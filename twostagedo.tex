@@ -1021,6 +1021,8 @@ For the first frame, the snake is initialised as a rectangle around the target. 
 
 
 \subsection{Evolutionary Algorithm}
+\comment{Since a mass-spring model is not a constitutive model, its parameters are not directly derived from the physical properties of the material, they depend on the geometry of object, and there can be several sets of parameters in different regions of the space of parameters that produce adequate simulations \cite{Morris2008}, we chose to use an evolutionary algorithm to expore different regions and try improvements in the vecinity of successful individuals.}
+
 The evolutionary algorithm listed in \alref{alg:genetic} was used to search the space of parameters of the mass-spring model presented in the previous section.
 From the parameters that must be chosen for the simulation to work, some were fixed while others had to be searched for.  They are:
 \begin{itemize}
