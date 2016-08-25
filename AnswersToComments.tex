@@ -42,7 +42,7 @@ Comments to the Author
 
 This article aims at tracking three-dimensional deformable objects under robot motion and predicting the force causing the deformation.
 
-\comment{There is an omission here: the article aims at predicting the force and deformation on the visual plane of the three-dimensional object.  The tracking of the shape is used only during training and for evaluation purposes.}
+\comment{It is important to make a precision here: the article aims at predicting the force and deformation on the visual plane of the three-dimensional object.  The tracking of the shape is used only during training as part of the evaluation function.}
 
 For these purposes, the authors propose two models, including an extension of the mass-spring model and a regression model, where the parameters of the mass-spring model are learned with an evolutionary searching algorithm on visual data and force data, and the parameters of the regression model are learned with least-square methods on stress-strain graph. These models are tested on a sponge and a plasticine, and evaluated based on the balanced F-score. The results are presented both quantitatively and qualitatively. 
 
@@ -136,11 +136,15 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 \comment{Explained in more detail and changed notations to make it consistent with previous paragraphs.}
 
-16, in section IV-D, please explain what "collision detection" means, the collision between robot and objects, or the collision between objects? 
+16, in section IV-D, please explain what "collision detection" means, the collision between robot and objects, or the collision between objects?
 
-17, is algorithm 2 designed by the authors? 
+\comment{Improved the description across the whole subsection.}
 
-18, in section V-A, please explain why evolutionary algorithm is used. In algorithm 4, please explain what $\alpha, \beta,\gamma,\zeta$ represent. 
+17, is algorithm 2 designed by the authors?
+
+\comment{No, that is why we mentioned in the text that it is a common algorithm.  It can be found across the web in many sites.  Should we mention something about that in the caption?}
+
+18, in section V-A, please explain why evolutionary algorithm is used. In algorithm 4, please explain what $\alpha, \beta, \gamma, \zeta$ represent. 
 
 19, in line 60 of page 7, please explain how the object is segmented from the environment, which "simple colour segmentation is used", and how to define "edges that not likely to belong to the object of interest". 
 
@@ -162,7 +166,9 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 28, in Table III, what does "test 1, test 2" mean? Please explain how these numbers are computed. Besides, object classification is typically evaluated with precision-recall curve. 
 
-29, please include more related works, since there are tons of articles on deformable object tracking. 
+29, please include more related works, since there are tons of articles on deformable object tracking.
+
+\comment{We don't focus on tracking, we want to predict several frames ahead, not follow, that is why closely related works are few.}
 
 Associate Editor's Comments to Author: 
 
