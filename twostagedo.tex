@@ -461,7 +461,7 @@
 
 % The paper headers
 \markboth{IEEE CDS}%
-{Arriola-Rios \MakeLowercase{\textit{et al.}}: A Multi-Modal Model for Prediction and Classification of Object Deformation during Robotic Manipulation}
+{Arriola-Rios \MakeLowercase{\textit{et al.}}: Multi-Modal Modular Sensorimotor Contingencies for Deformable Objects}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
 % 
@@ -493,18 +493,13 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-In this paper we present a new framework for learning generative models of object deformation under robotic action. The model is multi-modal in that it is based on integrating force and visual information. Our framework goes beyond previous techniques by simultaneously enabling i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from both force and visual data, v) prediction of object behaviour after contact by the robot terminates.  While previous work on deformable object behaviour in robotics has offered one or two of these features none has offered them all in a single learning model framework, and none has offered classification from a generative predictable model.
+\comment{In this paper we present a modular, multi-modal framework for learning generative models of object deformation under robotic pushing. The model is multi-modal in that it is based on integrating force and visual information. The framework is also modular, being composed of a learned module for each type of material. Each such module is learned by parameter estimation for a general model form. When presented with a test example--a robot finger pushing a deformable object made of an unidentified, but previously learned, material--the predictions of the modules are compared so as to classify the material.} Our framework goes beyond previous techniques by simultaneously enabling i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from both force and visual data, v) prediction of object behaviour after contact by the robot terminates.  While previous work on deformable object behaviour in robotics has offered one or two of these features none has offered them all in a single learning framework, and none has offered classification from a generative model.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Deformable objects, prediction, classification, learning.
+deformable objects, prediction, classification, learning.
 \end{IEEEkeywords}
-
-
-
-
-
 
 % For peer review papers, you can put extra information on the cover
 % page as needed:
@@ -534,9 +529,9 @@ Deformable objects, prediction, classification, learning.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{A} major challenge in robotic manipulation is to plan actions with objects so as to deform them into new shapes. Most objects that are manipulated by animals in natural environments are deformable, and these include objects that are elastic, plastic, breakable, tearable, and spreadable. This work is based on the premise that in order to plan manipulations of deformable objects, the sensorimotor contingencies governing object deformation are required. These sensorimotor contingencies can then be used to feedback on themselves to predict over long timescales. Without such models planners cannot reason about the effects of actions, or sequences of actions, to achieve desired effects.
+\IEEEPARstart{A} major challenge in robotic manipulation is to plan actions with objects so as to deform them into new shapes. Most objects that are manipulated by animals in natural environments are deformable, including objects that are elastic, plastic, breakable, tearable, and spreadable. \comment{The work reported here is based on the premise that in order to plan manipulations of deformable objects, the sensorimotor contingencies governing object deformation are required. A sensorimotor contingency is simply defined as the relationship between the robot's actions and the resultant changes in its observations. Thus different materials (elastic, plastic) present have different sensorimotor contingencies. The main hypothesis is that predictive models of these sensorimotor contingencies can be learned from data. These learned models can then be used to make the predictions required for planning. The predictions of a learned model can be fed back into the model, to predict an object's deformation behaviour over a variety of time scales. Without such predictions planners cannot reason about the effects of actions, or sequences of actions, to achieve desired effects.
 
-There is a wide range of models of deformation used in engineering, that are capable of producing predictions, such as finite element models, but these typically require careful optimisation by hand over many weeks or months. In graphics there are many models used for generating qualitatively plausible simulations of objects, but these are not necessarily easy to tune to real data. By contrast robots must perform system identification of their model parameters from data, on-line, in reasonable amounts of training time. This includes building models from the usually very limited sensing typically available, such as partial visual views of an object, and force-torque monitoring at contact points. Thus tackling this problem in robotics adds additional difficulties to an already challenging problem.
+Various models of deformation are used in engineering, such as finite element models, but these typically require careful optimisation by hand, and cannot run in real time. In graphics there are many methods used for generating qualitatively plausible simulations of deformable objects, but these are not easy to fit to real data. In contrast, robots must learn model parameters from data, on-line, in reasonable amounts of training time. This includes learning from the limited sensing typically available, such as partial visual views of an object, and force-torque monitoring only at contact points. Thus, tackling the prediction problem in robotics adds additional difficulties to an already challenging problem.}
 
 \begin{figure}[!t]
 \centering\includegraphics[width=3.5in]{arrio17.png}
@@ -544,7 +539,11 @@ There is a wide range of models of deformation used in engineering, that are cap
 \label{fig:forceElasticPlastic}
 \end{figure}
 
-Previous work on learning sensorimotor contingencies for deformable objects in robotics has been suprisingly limited. Table~\ref{t:advances} summarises the features of the major efforts to date. In each case critical abilities are missing: either models cannot be learned from data; or only address one type of deformation (e.g. elastic); or cannot perform classification; or cannot predict the forces felt; or cannot predict what will happen when the robot loses contact with the object (will it retain or recover from the deformation?). In this paper we present a framework for solving all these problems simultaneously. The key novel contribution we make is to bring together a model of what forces the robot will feel at a contact point with a model of how an object will deform under such applied forces over time. This formulation allows the robot to make predictions about the type of object, and thus it's future behaviour using the resistive forces and the object deformations \fref{fig:forceElasticPlastic} and \fref{fig:sstrain}. A second critical contribution is that our model is both generative and generalisable with respect to contact point.  Finally the third major feature of the model is that it is adaptive: a set of model parameters is learned for each material presented from data, thus creating a model library of materials. This generative property enables both prediction suitable for use in planning, and also classification of materials. The overall model structure is summarised in \fref{fig:system}. Essentially the approach is to use visual tracking of shape deformations to create feedback that is used to train the parameters of a model (Model A) that predicts deformation when coupled with contact forces. The contact forces are themselves predicted using a second model (Model B). In the specific implementation of our system we use a mass spring system for Model A, and a regression model for Model B. These models are learned from the same data, and are both indexable by a known material type from the library. It is important to note, however, that the model structure is separate from the specific model forms used, and that other model types could be substituted for one or both stages.  %This behaviour is described in \alref{alg:overall}.
+\comment{Previous work on learning sensorimotor contingencies for deformable objects in robotics has been limited. Table~\ref{t:advances} summarises the features of the major efforts to date. In each case some abilities are missing: either models cannot be learned from data; or only address one type of deformation (e.g. elastic); or cannot perform classification; or cannot predict the forces felt; or cannot predict what will happen when the robot loses contact with the object (will it retain or recover from the deformation?). In this paper we present a framework for solving all these problems simultaneously. 
+
+There are several novel contributions. First, we show how the modular learning framework of \cite{harunowolpert,kopickiwyatt16} can be applied to deformable objects. Second, we show how each module can be decomposed into two separate learning problems, one for predicting forces from finger motions, and one for predicting object deformations from forces. Both models are generative, and we show how to learn each from data. Third, we show how to use these learned generative models not only to predict deformation, but also to classify an unidentified material.}
+
+ %This behaviour is described in \alref{alg:overall}.
 
 %\begin{figure}
 % \begin{algorithmicieee}{Overall Behaviour}\label{alg:overall}
@@ -588,7 +587,7 @@ Previous work on learning sensorimotor contingencies for deformable objects in r
 %\caption{Overall algorithmic structure of the system.}
 %\end{figure}
 
-In summary the two stage model we present gives us the ability to solve {\em simultaneously} for the first time the following problems. Our model enables i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from either or both force and visual data, v) prediction of object behaviour after contact by the robot is removed. In the rest of the paper we present \comment{an overview of the model in more detail (Section~\ref{sec:model_overview});} related work (Section~\ref{sec:background}); describe the model (Section~\ref{sec:model}); describe how the model parameters are learned from real data (Section~\ref{sec:learning}); and the experiments on prediction and classification with both elastic and plastic objects (Section~\ref{sec:experiments}); finishing with a short discussion (Section~\ref{sec:discussion}).
+In summary the framework we present gives us the ability to solve {\em simultaneously} for the first time the following problems. Our model enables i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from either or both force and visual data, v) prediction of object behaviour after contact by the robot is removed. In the rest of the paper we present \comment{an overview of the model in more detail (Section~\ref{sec:model_overview});} related work (Section~\ref{sec:background}); describe the model (Section~\ref{sec:model}); describe how the model parameters are learned from real data (Section~\ref{sec:learning}); and the experiments on prediction and classification with both elastic and plastic objects (Section~\ref{sec:experiments}); finishing with a short discussion (Section~\ref{sec:discussion}).
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
