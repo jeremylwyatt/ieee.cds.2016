@@ -42,12 +42,13 @@ Comments to the Author
 
 This article aims at tracking three-dimensional deformable objects under robot motion and predicting the force causing the deformation.
 
-\comment{There is an omission here: the article aims at predicting the force and deformation on the visual plane of the three-dimensional object.  The tracking of the shape is used only during training and for evaluation purposes.}
+\comment{It is important to make a precision here: the article aims at predicting the force and deformation on the visual plane of the three-dimensional object.  The tracking of the shape is used only during training as part of the evaluation function.}
 
 For these purposes, the authors propose two models, including an extension of the mass-spring model and a regression model, where the parameters of the mass-spring model are learned with an evolutionary searching algorithm on visual data and force data, and the parameters of the regression model are learned with least-square methods on stress-strain graph. These models are tested on a sponge and a plasticine, and evaluated based on the balanced F-score. The results are presented both quantitatively and qualitatively. 
 
 However, there are several structural problems, as listed below. 
 
+\marker
 1: in the abstract, the authors claim that five features are simultaneously enabled by the proposed single learning model framework, but the article actually presents a collection of different models and methods to solve different problems, thus it is inappropriate to claim them as a single unified model framework. Besides, it seems that only robot pushing is modeled, not general "robot actions". 
 
 2: section II is not included in the final paragraph of section I, and this section should be included in section I or section IV.
@@ -99,29 +100,53 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 \comment{Since for comment 5 the introduction explained that a mass particle is located on vertex i, this has been covered already.}
 
-7, in line 27 of page 4, please explain what "mass particle" is. 
+7, in line 27 of page 4, please explain what "mass particle" is.
 
-8, in line 33 of page 4, please explain why the equations are oscillatory. 
+\comment{The term was introduced on the second paragraph of section IV.}
 
-9, please explain how equation (3) is derived. 
+8, in line 33 of page 4, please explain why the equations are oscillatory.
+
+\comment{Added explanation that it happens when/because we use $C$s that model springs.}
+
+9, please explain how equation (3) is derived.
+
+\comment{It is not within the scope of the article to explain that derivation, since it belongs to Teschner's model, however the cite to the article we got it from was repeated here.}
 
 10, in line 54 of page 4, please add reference to "Teschner normalised the value dividing by D0 to make the elasticity constants scale independent." 
 
-11, in line 13, please explain "Since Teschner and Morris didn’t find it helpful to add damping to the preservation of areas, it is avoided here". 
+\comment{Added.}
+
+11, in line 13, please explain "Since Teschner and Morris didn’t find it helpful to add damping to the preservation of areas, it is avoided here".
+
+\comment{Changed phrase for the explanation that Teschner gave.}
 
 12, in line 50 of page 4, please explain "the angles between adjacent edges". As adjacent edges form one angle, do the authors mean adjacent angles? Similar ambiguity exists in line 2 of page 5. 
 
+\comment{Corrected.}
+
 13, in Algorithm 1, please explain how "an integration step" leads to new length of the edge. 
+
+\comment{Reworded sentence to add more detail.}
 
 14, in line 25 of page 4, please explain what "Euler of Verlet" means. Euler or Verlet? 
 
-15, in equation (17), please explain if $x(t+h)$ is a position, how does $h*\frac{F(t)}{m}$ generate a position vector, since $h*\frac{F(t)}{m}$ seems to be the production of $h$ and acceleration? And please explain "we made the velocities proportional to the forces". Which variable is the velocity? What does "m" mean? The mass? 
+\comment{It was ``or''.  Corrected.}
 
-16, in section IV-D, please explain what "collision detection" means, the collision between robot and objects, or the collision between objects? 
+15, in equation (17), please explain if $x(t+h)$ is a position, how does $h*\frac{F(t)}{m}$ generate a position vector, since $h*\frac{F(t)}{m}$ seems to be the production of $h$ and acceleration? And please explain "we made the velocities proportional to the forces". Which variable is the velocity? What does "m" mean? The mass?
 
-17, is algorithm 2 designed by the authors? 
+\comment{Explained in more detail and changed notations to make it consistent with previous paragraphs.}
 
-18, in section V-A, please explain why evolutionary algorithm is used. In algorithm 4, please explain what $\alpha, \beta,\gamma,\zeta$ represent. 
+16, in section IV-D, please explain what "collision detection" means, the collision between robot and objects, or the collision between objects?
+
+\comment{Improved the description across the whole subsection.}
+
+17, is algorithm 2 designed by the authors?
+
+\comment{No, that is why we mentioned in the text that it is a common algorithm.  It can be found across the web in many sites.  Should we mention something about that in the caption?}
+
+18, in section V-A, please explain why evolutionary algorithm is used. In algorithm 4, please explain what $\alpha, \beta, \gamma, \zeta$ represent.
+
+\comment{Section V-B? Added a justification at the beginning of the section.}
 
 19, in line 60 of page 7, please explain how the object is segmented from the environment, which "simple colour segmentation is used", and how to define "edges that not likely to belong to the object of interest". 
 
@@ -143,7 +168,9 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 28, in Table III, what does "test 1, test 2" mean? Please explain how these numbers are computed. Besides, object classification is typically evaluated with precision-recall curve. 
 
-29, please include more related works, since there are tons of articles on deformable object tracking. 
+29, please include more related works, since there are tons of articles on deformable object tracking.
+
+\comment{We don't focus on tracking, we want to predict several frames ahead, not follow, that is why closely related works are few.}
 
 Associate Editor's Comments to Author: 
 
