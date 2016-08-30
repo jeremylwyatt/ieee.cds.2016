@@ -677,19 +677,19 @@ In summary, the framework we present gives us the ability to solve {\em simultan
 % floats. This can be corrected via the \fnbelowfloat command of the
 % stfloats package.
 
-\section{Model Overview}
-\label{sec:model_overview}
-
-As has been mentioned above there are several choices made in our modeling approach. The key choice is that the models are generative, which means that the models can be used to generate predicted sequences of behaviour. The specific approach taken here separates the predictive model out into components in two ways (see Figure~\ref{fig:system}). First we decompose models according to the modality of the information. In this case it is important to note that deformation has a particular causal structure related to the modes of sensing that are most easily employed. The forces and deformations can be measured separately, using force-torque and visual sensors respectively. The sensed forces are the cause of the observed deformation, and this can be exploited by sequencing the models by mode. Thus our approach can be seen as a sensorimotor contingency in which two contigencies are sequenced to produce an overall prediction. The input to the first predictor is the planned motion of the robot (or the joint torques), and this predictor predicts the resulting sequence of contact forces. The second predictor takes this sequence of forces as input and predicts a deformation sequence. Both models must be conditioned on the material and the object. This is where we decompose the model space in the second way, by specialising models to particular material and object combinations. This follows the principle of modular motor learning \cite{KopickiICRA11,haruno2001mosaic}, where prediction and control is specialised into many modules, each of which covers a relatively small portion of the input space, such as an object or material type. Thus we aim to acquire many specialist models of different deformable objects rather than a very few rather general models. The specific model forms we choose here could be replaced while retaining the overall scheme. In this paper we implement the scheme using a regression approach to force prediction, and we follow several other authors in employing a mass-spring system with learnable parameters for the deformation prediction.
-
-In each case the models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions. 
-
-The training of the model is performed offline using ground truthed data. %The overall algorithm is given in \alref{alg:overall}.
-For clarity the algorithm is given in three phases: training, simulation (i.e. the prediction phase), and classification (i.e. matching prediction to new data). In testing the model new data is used, where this is typically new deformation actions on an object of known material and approximate shape. Having given an overview of the model we now relate our approach to those in the literature, before proceeding to describe the details of the spring-mass model of deformation (Section~\ref{sec:model}), and then the regression model of contact forces (Section~\ref{sec:forces}).
+% \section{Model Overview}
+% \label{sec:model_overview}
+% 
+% As has been mentioned above there are several choices made in our modeling approach. The key choice is that the models are generative, which means that the models can be used to generate predicted sequences of behaviour. The specific approach taken here separates the predictive model out into components in two ways (see Figure~\ref{fig:system}). First we decompose models according to the modality of the information. In this case it is important to note that deformation has a particular causal structure related to the modes of sensing that are most easily employed. The forces and deformations can be measured separately, using force-torque and visual sensors respectively. The sensed forces are the cause of the observed deformation, and this can be exploited by sequencing the models by mode. Thus our approach can be seen as a sensorimotor contingency in which two contigencies are sequenced to produce an overall prediction. The input to the first predictor is the planned motion of the robot (or the joint torques), and this predictor predicts the resulting sequence of contact forces. The second predictor takes this sequence of forces as input and predicts a deformation sequence. Both models must be conditioned on the material and the object. This is where we decompose the model space in the second way, by specialising models to particular material and object combinations. This follows the principle of modular motor learning \cite{KopickiICRA11,haruno2001mosaic}, where prediction and control is specialised into many modules, each of which covers a relatively small portion of the input space, such as an object or material type. Thus we aim to acquire many specialist models of different deformable objects rather than a very few rather general models. The specific model forms we choose here could be replaced while retaining the overall scheme. In this paper we implement the scheme using a regression approach to force prediction, and we follow several other authors in employing a mass-spring system with learnable parameters for the deformation prediction.
+% 
+% In each case the models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions. 
+% 
+% The training of the model is performed offline using ground truthed data. %The overall algorithm is given in \alref{alg:overall}.
+% For clarity the algorithm is given in three phases: training, simulation (i.e. the prediction phase), and classification (i.e. matching prediction to new data). In testing the model new data is used, where this is typically new deformation actions on an object of known material and approximate shape. Having given an overview of the model we now relate our approach to those in the literature, before proceeding to describe the details of the spring-mass model of deformation (Section~\ref{sec:model}), and then the regression model of contact forces (Section~\ref{sec:forces}).
 
 \section{Background}
 \label{sec:background}
-This work focuses on prediction of response forces and of the deformation of the shape over several frames of elastic and plastic objects when they are pushed and released by a robotic finger.  Acquired models are used to classify materials through recognition of trained samples, even when the interactions are novel.  Even though there is abundant literature in the industrial robotics area for 1D and 2D materials (e.g. strings, hair, metallic sheets and textiles), there is little research about predicting the deformation of 3D deformable objects \cite{Khalil2010review}.
+This work focuses on prediction of response forces and of the deformation of the shape over several frames of elastic and plastic objects when they are pushed and released by a robotic finger.  Acquired models are used to classify materials through recognition of trained samples, even when the interactions are novel.  Even though there \comment{are lots of works on deformable object tracking, some of which make use of forces, models and predictions to improve tracking accuracy \cite{Chan1994, Greminger2008, Alkkiomaki2009}, those predictions are used only for the next frame and can not be used for robotic planning, where predictions must be done for several frames ahead\cite{Cretu2012}.  Others like \cite{Malassiotis1998, Cremers2006} make use of templates or make assumptions about the shape of the objects that would not work with fully deformable objects like plasticine.  There is also} abundant literature in the industrial robotics area for 1D and 2D materials (e.g. strings, hair, metallic sheets and textiles), but there is little research about predicting the deformation of 3D deformable objects \cite{Khalil2010review}.
 
 First, Howard and Bekey \cite{Howard2000} address robotic grasping and lifting of viscoelastic objects.  Their model of the material can predict a net amount of deformation given the applied forces, but does not evaluate details of the deformed shape.   This model is inspired in the crystalline structure of atoms in solids.  The space lattice of the crystal is approximated by a particle system where elements with mass are connected by springs and dampers, thus representing the attraction and repulsion between atoms \emph{in equilibrium} with a damped mass-spring system.  The masses are calculated by measuring the force required to lift the object without sliding.  The deformation and damping coefficients are estimated as functions of:
 \begin{itemize}
@@ -1047,7 +1047,7 @@ For the first frame, the snake is initialised as a rectangle around the target. 
 
 
 \subsection{Evolutionary Algorithm}
-\comment{Since a mass-spring model is not a constitutive model, its parameters are not directly derived from the physical properties of the material, they depend on the geometry of object, and there can be several sets of parameters in different regions of the space of parameters that produce adequate simulations \cite{Morris2008}, we chose to use an evolutionary algorithm to expore different regions and try improvements in the vecinity of successful individuals.}
+\comment{Since a mass-spring model is not a constitutive model, its parameters are not directly derived from the physical properties of the material, they depend on the geometry of the mesh used to model the object, and there can be several sets of parameters in different regions of the space of parameters that produce adequate simulations \cite{Morris2008}, we chose to use an evolutionary algorithm to expore different regions and try improvements in the vecinity of successful individuals.}
 
 The evolutionary algorithm listed in \alref{alg:genetic} was used to search the space of parameters of the mass-spring model presented in the previous section.
 From the parameters that must be chosen for the simulation to work, some were fixed while others had to be searched for.  They are:
@@ -1171,7 +1171,7 @@ Euler & 0.88 $\pm$ 0.04 & 0.44 $\pm$ 0.13 & 0.75 $\pm$ 0.08 \\
 Verlet & 0.76 $\pm$ 0.19 & 0.53 $\pm$ 0.18 & 0.68 $\pm$ 0.19 \\
 Customised & 0.921 $\pm$ 0.008 & 0.60 $\pm$ 0.13 & 0.86 $\pm$ 0.02 \\
 \hline
-\multicolumn{4}{l}{Where the mark is $\mu(F)$ as explained in \sref{sec:evaluation}.}
+\multicolumn{4}{p{88mm}}{Where the mark is $\mu(F)$ as explained in \sref{sec:evaluation}.  \comment{Mean $\mu(F)$ and standard deviation across 24 training sesions are reported for the best performing models of every training session, worst model and average model.}}
 \end{tabular}
 \end{table}
 
@@ -1202,7 +1202,7 @@ Using the readings of the force sensor, and associating the deformation of the m
 
 \subsection{Prediction}
 
-One hundred photographs and force readings where taken every $0.17\pm0.007 s$ in average.  The mass spring model runs with an integration step of $0.1s$, where forces that were not measured directly are interpolated.  The push down movement lasts approximately 50 frames and the retrieval, the other 50.  The continuous lines in \fref{fig:sstrain} show the predicted forces, given the amount of compression of the material (strain), while the point-lines show the actual readings.  \fref{fig:simulation_sponge} and \fref{fig:simulation_plasticine} show the shapes predicted by the mesh.
+One hundred photographs and force readings where taken every $0.17\pm0.007 s$ in average.  The mass spring model runs with an integration step \comment{$h=0.1s$}, where forces that were not measured directly are interpolated.  The push down movement lasts approximately 50 frames and the retrieval, the other 50.  The continuous lines in \fref{fig:sstrain} show the predicted forces, given the amount of compression of the material (strain), while the point-lines show the actual readings.  \fref{fig:simulation_sponge} and \fref{fig:simulation_plasticine} show the shapes predicted by the mesh.
 
 \begin{figure*}[!t]
 \centering
@@ -1228,10 +1228,10 @@ One hundred photographs and force readings where taken every $0.17\pm0.007 s$ in
 
 \subsection{Classification}
 
-The calibrated mass-spring models were used to classify objects through recognition of their behaviour, even for novel interactions.  The models make predictions as if the object was known.  The model that makes the best predictions indicates which object is being observed.  There are two criteria for selecting an object:
+The \comment{\sout{calibrated}} mass-spring models \comment{calibrated for the prediction task} were used to classify \comment{\sout{objects} materials} through recognition of their behaviour, even \comment{\sout{for novel interactions} when the objects where pushed and deformed at novel locations.}  The models make predictions as if the \comment{material of the} object was known.  The model that makes the best predictions indicates which \comment{type of} object is being observed.  There are two criteria for selecting an \comment{object/material for the video being shown to the system}:
 
 \begin{enumerate}
- \item Per frame: an object is selected for each frame of the interaction. See \tref{tab:classperframe}.
+ \item Per frame: \comment{\sout{an} a candidate} object is selected for each frame of the interaction \comment{according to which model made the best prediction for that frame in particular, as marked by the F-score.  This test was performed for every frame of the six videos, where the robotic finger pushes the block of material.  \tref{tab:classperframe} shows the results for the videos that were used as trainning and test sets for the prediction task.}
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
@@ -1253,7 +1253,7 @@ Data Set & & TP & FN & Precision & & TP & FN & Precision\\
 \end{tabular}
 \end{table}
 
- \item Global: The difference in the marks is added for all frames.  Frames where the distinction is more noticeable will receive a greater weight.
+ \item Global: \comment{The system makes a vote about which material the object was made of, for the whole duration of the video, by making use of a weighted mark.} The difference in the \comment{F-score} marks is added for all frames.  Frames where the distinction is more noticeable will receive a greater weight.
 \end{enumerate}
 
 

@@ -1017,4 +1017,197 @@
   abstract  = {We present B-snakes: a new implementation of snakes using parametric B-splines.  This active contour model exhibits advantages of B-splines: compact representations, local control and the posibility to include corners. This implementation is significantly faster whithout loss of generality.  Experiments on delineation of building roofs in stereo aerial images are also presented.},
 }
 
+@Article{Alkkiomaki2009,
+  author   = {Olli Alkkiomäki and Ville Kyrki and Heikki Kälviäinen and Yong Liu and Heikki Handroos},
+  title    = {Complementing visual tracking of moving targets by fusion of tactile sensing},
+  journal  = {Robotics and Autonomous Systems},
+  year     = {2009},
+  volume   = {57},
+  number   = {11},
+  pages    = {1129 - 1139},
+  abstract = {Robot control in uncertain and dynamic environments can be greatly improved using sensor-based control. Vision is a versatile low-cost sensory modality, but low sample rate, high sensor delay and uncertain measurements limit its usability, especially in strongly dynamic environments. Vision can be used to estimate a 6-DOF pose of an object by model-based pose-estimation methods, but the estimate is typically not accurate along all degrees of freedom. Force is a complementary sensory modality allowing accurate measurements of local object shape when a tooltip is in contact with the object. In multimodal sensor fusion, several sensors measuring different modalities are combined together to give a more accurate estimate of the environment. As force and vision are fundamentally different sensory modalities not sharing a common representation, combining the information from these sensors is not straightforward. We show that the fusion of tactile and visual measurements enables to estimate the pose of a moving target at high rate and accuracy. Making assumptions of the object shape and carefully modeling the uncertainties of the sensors, the measurements can be fused together in an extended Kalman filter. Experimental results show greatly improved pose estimates with the proposed sensor fusion. },
+  doi      = {http://dx.doi.org/10.1016/j.robot.2009.07.001},
+  issn     = {0921-8890},
+  keywords = {Sensor fusion, Pose tracking, Vision, Tactile sensing, Extended Kalman filtering },
+  url      = {http://www.sciencedirect.com/science/article/pii/S092188900900089X},
+}
+
+@InProceedings{Chan1994,
+  author    = {Michael Chan and Dimitri Metaxas and Sven Dickinson},
+  title     = {Physics-Based Tracking of 3D Objects in 2D Image Sequences},
+  booktitle = {Proc. of the 12th International Conference on Pattern Recognition},
+  year      = {1994},
+}
+
+@Article{Cremers2006,
+  author    = {Cremers, D.},
+  title     = {Dynamical statistical shape priors for level set-based tracking},
+  journal   = {Ieee Transactions On Pattern Analysis And Machine Intelligence},
+  year      = {2006},
+  volume    = {28},
+  number    = {8},
+  pages     = {1262--1273},
+  month     = aug,
+  abstract  = {In recent years, researchers have proposed introducing statistical
+	shape knowledge into level set- based segmentation methods in order
+	to cope with insufficient low- level information. While these priors
+	were shown to drastically improve the segmentation of familiar objects,
+	so far the focus has been on statistical shape priors which are static
+	in time. Yet, in the context of tracking deformable objects, it is
+	clear that certain silhouettes ( such as those of a walking person)
+	may become more or less likely over time. In this paper, we tackle
+	the challenge of learning dynamical statistical models for implicitly
+	represented shapes. We show how these can be integrated as dynamical
+	shape priors in a Bayesian framework for level set- based image sequence
+	segmentation. We assess the effect of such shape priors " with memory"
+	on the tracking of familiar deformable objects in the presence of
+	noise and occlusion. We show comparisons between dynamical and static
+	shape priors, between models of pure deformation and joint models
+	of deformation and transformation, and we quantitatively evaluate
+	the segmentation accuracy as a function of the noise level and of
+	the camera frame rate. Our experiments demonstrate that level set-
+	based segmentation and tracking can be strongly improved by exploiting
+	the temporal correlations among consecutive silhouettes which characterize
+	deforming shapes.},
+  c1        = {Univ Bonn, Dept Comp Sci, D-53117 Bonn, Germany.},
+  de        = {variational methods; statistical shape models; autoregressive models;EOLEOLlevel sets; tracking},
+  em        = {dcremers@cs.uni-bonn.de},
+  ga        = {051LK},
+  j9        = {IEEE TRANS PATT ANAL MACH INT},
+  ji        = {IEEE Trans. Pattern Anal. Mach. Intell.},
+  keywords  = {Tracking, IMAGE SEGMENTATION; ACTIVE CONTOURS; MODEL},
+  la        = {English},
+  labels    = {level set, tracking people},
+  nr        = {34},
+  owner     = {varriola},
+  pa        = {10662 LOS VAQUEROS CIRCLE, PO BOX 3014, LOS ALAMITOS, CA 90720-1314 USA},
+  pg        = {12},
+  pi        = {LOS ALAMITOS},
+  publisher = {Ieee Computer Soc},
+  rp        = {Cremers, D, Univ Bonn, Dept Comp Sci, Roemerstr 164, D-53117 Bonn,EOLEOLGermany.},
+  sc        = {Computer Science, Artificial Intelligence; Engineering, Electrical &EOLEOLElectronic},
+  sn        = {0162-8828},
+  tc        = {31},
+  timestamp = {2009.03.17},
+  ut        = {ISI:000238162400008},
+}
+
+@Article{Cretu2012,
+  author    = {Ana-Maria Cretu and Pierre Payeur and Emil M. Petriu},
+  title     = {Soft Object Deformation Monitoring and Learning for Model-Based Robotic Hand Manipulation},
+  journal   = {IEEE Transactions on Systems, Man, and Cybernetics},
+  year      = {2012},
+  volume    = {42},
+  number    = {3},
+  pages     = {740-753},
+  month     = {June},
+  abstract  = {This paper discusses the design and implementation of a framework
+	that automatically extracts and monitors the shape deformations of
+	soft objects from a video sequence and maps them with force measurements
+	with the goal of providing the necessary information to the controller
+	of a robotic hand to ensure safe model-based deformable object manipulation.
+	Measurements corresponding to the interaction force at the level
+	of the fingertips and to the position of the fingertips of a three-finger
+	robotic hand are associated with the contours of a deformed object
+	tracked in a series of images using neural-network approaches. The
+	resulting model captures the behavior of the object and is able to
+	predict its behavior for previously unseen interactions without any
+	assumption on the object's material. The availability of such models
+	can contribute to the improvement of a robotic hand controller, therefore
+	allowing more accurate and stable grasp while providing more elaborate
+	manipulation capabilities for deformable objects. Experiments performed
+	for different objects, made of various materials, reveal that the
+	method accurately captures and predicts the object's shape deformation
+	while the object is submitted to external forces applied by the robot
+	fingers. The proposed method is also fast and insensitive to severe
+	contour deformations, as well as to smooth changes in lighting, contrast,
+	and background.},
+  labels    = {neural gas network, segmentation, tracking, modelling, robotics},
+  owner     = {blackzafiro},
+  part      = {B},
+  timestamp = {2012.08.27},
+}
+
+@Article{Greminger2008,
+  author    = {Greminger, Michael A. and Nelson, Bradley J.},
+  title     = {A Deformable Object Tracking Algorithm Based on the Boundary Element Method that is Robust to Occlusions and Spurious Edges},
+  journal   = {Int. J. Comput. Vision},
+  year      = {2008},
+  volume    = {78},
+  pages     = {29--45},
+  month     = {June},
+  abstract  = {The manipulation of deformable objects is an important problem in
+	robotics and arises in many applications including biomanipulation,
+	microassembly, and robotic surgery. For some applications, the robotic
+	manipulator itself may be deformable. Vision-based deformable object
+	tracking can provide feedback for these applications. Computer vision
+	is a logical sensing choice for tracking deformable objects because
+	the large amount of data that is collected by a vision system allows
+	many points within the deformable object to be tracked simultaneously.
+	This article introduces a template based deformable object tracking
+	algorithm, based on the boundary element method, that is able to
+	track a wide range of deformable objects. The robustness of this
+	algorithm to occlusions and to spurious edges in the source image
+	is also demonstrated. A robust error measure is used to handle the
+	problem of occlusion and an improved edge detector based on the Canny
+	edge operator is used to suppress spurious edges. This article concludes
+	by quantifying the performance increase provided by the robust error
+	measure and the robust edge detector. The performance of the algorithm
+	is also demonstrated through the tracking of a sequence of cardiac
+	MRI images.},
+  acmid     = {1349671},
+  address   = {Hingham, MA, USA},
+  doi       = {10.1007/s11263-007-0076-6},
+  issn      = {0920-5691},
+  issue     = {1},
+  keywords  = {Artificial neural networks, Boundary element method, Deformable object tracking, Edge detection, Robust statistics, Robust tracking},
+  labels    = {BEM, tracking},
+  numpages  = {17},
+  owner     = {blackzafiro},
+  publisher = {Kluwer Academic Publishers},
+  timestamp = {2012.01.20},
+  url       = {http://dl.acm.org/citation.cfm?id=1349659.1349671},
+}
+
+@Article{Malassiotis1998,
+  author    = {Malassiotis, S. and Strintzis, M. G.},
+  title     = {Tracking textured deformable objects using a finite-element mesh},
+  journal   = {Ieee Transactions On Circuits And Systems For Video Technology},
+  year      = {1998},
+  volume    = {8},
+  number    = {6},
+  pages     = {756--774},
+  abstract  = {This paper presents an algorithm for the estimation of the motion
+	of textured objects undergoing nonrigid deformations over a sequence
+	of images. An active mesh model, which is a finite-element deformable
+	membrane, is introduced in order to achieve efficient representation
+	of global and local deformations, The mesh is constructed using an
+	adaptive triangulation procedure that places more triangles over
+	high detail areas. Through robust least squares techniques and modal
+	analysis, efficient estimation of global object deformations is achieved,
+	based on a set of sparse displacement measurements. A local warping
+	procedure is then applied to minimize the intensity matching error
+	between subsequent images, and thus estimate local deformations,
+	Among the major contributions of this paper are novel techniques
+	developed to acquire knowledge of the object dynamics and structure
+	directly from the image sequence, even in the absence of prior intelligence
+	regarding the scene, Specifically, a coarse-to-fine estimation scheme
+	is first developed, which adapts the model to locally deforming features.
+	Subsequently, principal components modal analysis is used to accumulate
+	knowledge of the object dynamics. This knowledge is finally exploited
+	to constrain the object deformation. The problem of tracking the
+	model over time is addressed, and a novel motion-compensated prediction
+	approach is proposed to facilitate this. A novel method for the determination
+	of the dynamical principal axes of deformation is developed, The
+	experimental results demonstrate the efficiency and robustness of
+	the proposed scheme, which has many potential applications in the
+	areas of image coding, image analysis, and computer graphics.},
+  labels    = {Traking, 2D FEM},
+  owner     = {vxa855},
+  sn        = {1051-8215},
+  tc        = {3},
+  timestamp = {2009.02.18},
+  ut        = {WOS:000076872100007},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

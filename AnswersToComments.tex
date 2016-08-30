@@ -164,21 +164,37 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 \comment{Added information.}
 
-23, in the experiments, please compare with other existing methods. 
+\marker
+23, in the experiments, please compare with other existing methods.
 
-24, in Table II, please explain the meaning of the values. Are they mean values and standard deviations? If so, what does "best, worst, average" mean? 
 
-25, in Figure 12, please clarify the legends. For example, why are there two lines with the same marker? 
+24, in Table II, please explain the meaning of the values. Are they mean values and standard deviations? If so, what does "best, worst, average" mean?
 
-26, in line 56 of page 10, please explain "integration step". Is it the "h" in equation 17? 
+\comment{Added explanations}
+
+25, in Figure 12, please clarify the legends. For example, why are there two lines with the same marker?
+
+\comment{Sorry, I don't understand this one.  There are three lines with markers: square, circle and triangle.  Those represent experimental data (ground data).  The other two do not have markers because those are regression lines (predictions), but they have different colours.  Are these ones you mention as ``lines with the same marker''?}
+
+26, in line 56 of page 10, please explain "integration step". Is it the "h" in equation 17?
+
+\comment{Yes, it is $h$, the name of the variable was added.}
 
 27, in section VII-E, please explain how the model is used in object classification. For example, what does "even for novel interactions" mean? Object classification typically tries to identify an object in a new environment. Besides, how is "Global" criteria evaluated in object classification? 
 
-28, in Table III, what does "test 1, test 2" mean? Please explain how these numbers are computed. Besides, object classification is typically evaluated with precision-recall curve. 
+\comment{Changed ``for novel interactions'' for a more concrete description.}
+
+\comment{Here we are not focusing on classifiying static objects in new environments, but rather in classifying the material an object is made of when the entry is its behaviour in time.  Visually, the blocks are actually very similar prior to deformation, therefore the most relevant difference lies in their dynamic behaviour.  That is why the classification task looks different from traditional static datasets.  Instead of a large collection of labeled images in different backgrounds, we used six videos of two different materials and asked the system to identify which material it looks at through the videos.  The explanation in the article was modified to be more specific about this.}
+
+28, in Table III, what does "test 1, test 2" mean? Please explain how these numbers are computed. Besides, object classification is typically evaluated with precision-recall curve.
+
+\comment{An explanation about "training", "test 1, test 2" was added.}
+
+\comment{Since there are only two materials the number of false positives for one material is exactly the false negatives for the other material, that is why we considered that recall would be redundant.}
 
 29, please include more related works, since there are tons of articles on deformable object tracking.
 
-\comment{We don't focus on tracking, we want to predict several frames ahead, not follow, that is why closely related works are few.}
+\comment{Added to the background section.}
 
 Associate Editor's Comments to Author: 
 
