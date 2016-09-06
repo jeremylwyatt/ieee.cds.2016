@@ -777,7 +777,7 @@ Additionally, there is a vast amount of literature on modeling of deformable sha
 
 \comment{The framework consists of three separate systems: a learning system, a prediction system, and a classification system. The learning system is depicted in Figure~\ref{fig:learning}. This enables learning of sensorimotor contingencies from real robot data. Learning of the force prediction (FP) model relies on comparing the predicted $\hat{f}$ and the experienced $f$ forces at the finger tip, as measured by a force-torque sensor (FM). Learning of the shape prediction (SP) model relies on comparing the predicted deformation $\hat{sh}$ with the actual deformation $sh$ measured by visual tracking (V). }
 
-\comment{The two learned models, FP and SP, can be sequenced to create a single, multi-modal predictor (Figure~\ref{ig:prediction}). This combined model takes a planned motion of the finger, and predicts the resulting forces experienced. It then uses both the position and forces to predict the resulting object deformation. Typically a sequence of planned finger positions will be known. In prediction mode the models make predictions based on this sequence. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging.}
+\comment{The two learned models, FP and SP, can be sequenced to create a single, multi-modal predictor (Figure~\ref{fig:prediction}). This combined model takes a planned motion of the finger, and predicts the resulting forces experienced. It then uses both the position and forces to predict the resulting object deformation. Typically a sequence of planned finger positions will be known. In prediction mode the models make predictions based on this sequence. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging.}
 
 \begin{figure}[t]
 \centering
@@ -806,11 +806,8 @@ Additionally, there is a vast amount of literature on modeling of deformable sha
 \end{figure*}
 %In each case the resulting learned models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions.
 
-The training of the model is performed offline using ground truthed data. %The overall algorithm is given in \alref{alg:overall}.
-For clarity the algorithm is given in three phases: training, simulation (i.e. the prediction phase), and classification (i.e. matching prediction to new data). In testing the model new data is used, where this is typically new deformation actions on an object of known material and approximate shape. Having given an overview of the model we now relate our approach to those in the literature, before proceeding to describe the details of the spring-mass model of deformation (Section~\ref{sec:model}), and then the regression model of contact forces (Section~\ref{sec:forces}).
-
-
-
+%The training of the model is performed offline using ground truthed data. %The overall algorithm is given in \alref{alg:overall}.
+For clarity the algorithm is described in exactly these three phases: training, simulation (i.e. the prediction phase), and classification. In empirically evaluating the model new data was used, acquired from new finger pushes. We now proceed to describe the shape predictor SP (Section~\ref{sec:model}) which is based on a mass-spring system, and then the force predictor (FP), which is a regression model (Section~\ref{sec:forces}).
 
 \section{A Mass-Spring Model of Deformation}
 
