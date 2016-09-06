@@ -417,7 +417,7 @@
 % can use linebreaks \\ within to get better formatting as desired
 % Do not put math or special symbols in the title.
 % could we change the title to this? What do you think? I wanted to get the modular idea in there.
-\title{Multi-Modal Modular Sensorimotor Contingencies for Deformable Objects
+\title{A Multi-Modal Model of Object Deformation for Robotics
 %A Multi-Modal Model for Prediction and Classification of Object Deformation during Robotic Manipulation
 }
 %
@@ -460,7 +460,7 @@
 
 % The paper headers
 \markboth{IEEE CDS}%
-{Arriola-Rios and Wyatt: Multi-Modal Modular Sensorimotor Contingencies for Deformable Objects}
+{Arriola-Rios and Wyatt: A Multi-Modal Model of Object Deformation for Robotics}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
 % 
@@ -492,7 +492,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-\comment{In this paper we present a modular, multi-modal framework for learning generative models of object deformation under robotic pushing. The model is multi-modal in that it is based on integrating force and visual information. The framework is also modular, being composed of a learned module for each type of material. Each such module is learned by parameter estimation for a general model form. When presented with a test example--a robot finger pushing a deformable object made of an unidentified, but previously learned, material--the predictions of the modules are compared so as to classify the material.} Our framework goes beyond previous techniques by simultaneously enabling i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from both force and visual data, v) prediction of object behaviour after contact by the robot terminates.  While previous work on deformable object behaviour in robotics has offered one or two of these features none has offered them all in a single learning framework, and none has offered classification from a generative model.
+\comment{In this paper we present a multi-modal framework for learning generative models of object deformation under robotic pushing. The model is multi-modal in that it is based on integrating force and visual information. The framework consists of several sub-models that are independently learned from the same data. These component models can be sequenced to provide many-step prediction and classification. When presented with a test example--a robot finger pushing a deformable object made of an unidentified, but previously learned, material--the predictions of modules for different materials are compared so as to classify the unknown material.} Our framework goes beyond previous techniques by simultaneously enabling i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from both force and visual data, v) prediction of object behaviour after contact by the robot terminates.  While previous work on deformable object behaviour in robotics has offered one or two of these features none has offered them all in a single learning framework, and none has offered classification from a generative model.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -528,7 +528,7 @@ deformable objects, prediction, classification, learning.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{A} major challenge in robot manipulation is to plan actions with objects so as to deform them into new shapes. Most objects that are manipulated by animals in natural environments are deformable, including objects that are elastic, plastic, breakable, tearable, and spreadable. \comment{The work reported here is based on the premise that in order to plan manipulations of deformable objects, the sensorimotor contingencies governing object deformation are required. A sensorimotor contingency is simply defined as the relationship between the robot's actions and the resultant changes in its observations. Different materials (elastic, plastic) have different sensorimotor contingencies. The main hypothesis is that predictive models of these sensorimotor contingencies can be learned from data. The predictions of a learned model can be fed back into the model, to predict an object's deformation behaviour over a variety of time scales. These learned models can then be used to make the predictions required for planning manipulation.}
+\IEEEPARstart{A} major challenge in robot manipulation is to plan actions with objects so as to deform them into new shapes. Most objects that are manipulated by animals in natural environments are deformable, including objects that are elastic, plastic, breakable, tearable, and spreadable. \comment{The work reported here is based on the premise that in order to plan manipulations of deformable objects, the sensorimotor contingencies governing object deformation are required. A sensorimotor contingency is simply defined as the relationship between the robot's actions and the resultant changes in its observations. Different materials (here, elastic and plastic materials) have different sensorimotor contingencies. The main hypothesis is that predictive models of these sensorimotor contingencies can be learned from data. The predictions of a learned model can be fed back into itself, so as to predict an object's deformation behaviour over many time steps. These learned models can then be used to make the predictions required for planning manipulation.}
 
 \comment{There are various models of deformation used in engineering, such as finite element models, but these typically require careful optimisation by hand, and cannot run in real time. In graphics there are many methods used for generating qualitatively plausible simulations of deformable objects, but these are not easy to fit to real data. In contrast, robots must learn model parameters from data, on-line, in reasonable amounts of training time. This includes learning from the limited sensing typically available, such as partial visual views of an object, and force-torque monitoring only at contact points. Thus, tackling the prediction problem in robotics adds additional difficulties to an already challenging problem.}
 
@@ -538,9 +538,9 @@ deformable objects, prediction, classification, learning.
 \label{fig:forceElasticPlastic}
 \end{figure}
 
-\comment{Previous work on learning sensorimotor contingencies for deformable objects in robotics has been limited. Table~\ref{t:advances} summarises the features of the major efforts to date. In each case some abilities are missing: either models cannot be learned from data; or only address one type of deformation (e.g. elastic); or cannot perform classification; or cannot predict the forces felt; or cannot predict what will happen when the robot loses contact with the object (will it retain or recover from the deformation?). In this paper we present a framework for solving all these problems simultaneously. 
+\comment{Previous work on learning sensorimotor contingencies for deformable objects in robotics has been limited. Table~\ref{t:advances} summarises the features of the major efforts to date. In each case some abilities are missing: either models cannot be learned from data; or only address one type of deformation (e.g. elastic); or cannot perform classification; or cannot predict the forces felt; or cannot predict what will happen when the robot loses contact with the object (will it retain or recover from the deformation?). In this paper we present a framework for solving all these problems simultaneously. Although our framework requires two separate learned models, they are combined into a single machine for prediction of the behaviour of deformable material. In a second machine, multiple copies of this predictor can be compared to an actual outcome deformation, so as to classify the material.
 
-There are several novel contributions. First, we show how the modular learning framework of \cite{kopickiwyatt16, haruno2001mosaic} can be applied to deformable objects. Second, we show how each module can be decomposed into two separate learning problems, one for predicting forces from finger motions, and one for predicting object deformations from forces. Both models are generative, and we show how to learn each from data. Third, we show how to use these learned generative models not only to predict deformation, but also to classify an unidentified material.}
+There are several novel contributions. First, we show how the learning problem can be decomposed into two separate learning problems, one for predicting forces from finger motions, and one for predicting object deformations from forces. Both models are generative, and we show how to learn each from data. Third, we show how to use these learned generative models not only to predict deformation, but also to classify an unidentified material.}
 
  %This behaviour is described in \alref{alg:overall}.
 
@@ -699,14 +699,14 @@ First, Howard and Bekey \cite{Howard2000} address robotic grasping and lifting o
 The estimated values of the mass, deformability and damping coefficients are used as the entry of a neural network that outputs the minimum necessary force to lift the object without sliding.  This function is used to compliantly adjust the force during an interaction.  However, they do not evaluate the quality of the overall shape prediction, and use only the final values of the prediction after the system has stabilised; that is, they do not evaluate the predictions during the dynamic phase.
 
 
-\begin{figure}[!t]
-\centering
-\setlength\fboxsep{0pt}    % padding
-\setlength\fboxrule{0.5pt} % line width
-\fbox{\includegraphics[width=3.5in]{arrio3.pdf}}
-\caption{During training time, the system learns to predict the object's shape and reaction forces from real world data.}
-\label{fig:system}
-\end{figure}
+%\begin{figure}[!t]
+%\centering
+%\setlength\fboxsep{0pt}    % padding
+%\setlength\fboxrule{0.5pt} % line width
+%\fbox{\includegraphics[width=3.5in]{arrio3.pdf}}
+%\caption{During training time, the system learns to predict the object's shape and reaction forces from real world data.}
+%\label{fig:system}
+%\end{figure}
 
 %%%
 %%% TODO: Text
@@ -767,28 +767,48 @@ Additionally, there is a vast amount of literature on modeling of deformable sha
 
 \begin{figure}[!t]
 \centering
-\setlength\fboxsep{0pt}    % padding
-\setlength\fboxrule{0.5pt} % line width
-\fbox{\includegraphics[width=3.5in]{modular.png}}
-\caption{The modular architecture, in which each context /material specific module comprises two learned models of sensorimotor contingencies. The first predicts the force experienced for some motion and material. The second predicts the deformation of the object given the applied force. The output of the first predictor gives the input to the second predictor.}
-\label{fig:system}
+%\setlength\fboxsep{0.5pt}    % padding
+%\setlength\fboxrule{0.5pt} % line width
+%\fbox{
+\includegraphics[width=3.5in]{figures/learning.png}%}
+\caption{The learning for a specific material comprises two learned models of sensorimotor contingencies. Both are learned from the same data. The first (FP) learns to predicts the force experienced for some motion and material. The second (SP) predicts the deformation of the object given the applied force. The strain $st$ is calculated directly from the interpenetration of the finger into the object. This can be calculated by vision (V) or from the planned motion of the finger.}
+\label{fig:learning}
 \end{figure}
 
-As has been mentioned above there are several choices made in our modeling approach. The key choice is that the models are generative, which means that the models can be used to generate predicted sequences of behaviour. The specific approach taken here separates the predictive model out into components in two ways (see Figure~\ref{fig:system}). First we decompose models according to the modality of the information. In this case it is important to note that deformation has a particular causal structure related to the modes of sensing that are most easily employed. The forces and deformations can be measured separately, using force-torque and visual sensors respectively. The sensed forces are the cause of the observed deformation, and this can be exploited by sequencing the models by mode. Thus our approach can be seen as a sensorimotor contingency in which two contigencies are sequenced to produce an overall prediction. The input to the first predictor is the planned motion of the robot (or the joint torques), and this predictor predicts the resulting sequence of contact forces. The second predictor takes this sequence of forces as input and predicts a deformation sequence. Both models must be conditioned on the material and the object. This is where we decompose the model space in the second way, by specialising models to particular material and object combinations. This follows the principle of modular motor learning \cite{kopickiwyatt16,haruno2001mosaic}, where prediction and control is specialised into many modules, each of which covers a relatively small portion of the input space, such as an object or material type. Thus we aim to acquire many specialist models of different deformable objects rather than a very few rather general models. The specific model forms we choose here could be replaced while retaining the overall scheme. In this paper we implement the scheme using a regression approach to force prediction, and we follow several other authors in employing a mass-spring system with learnable parameters for the deformation prediction.
+\comment{The framework consists of three separate systems: a learning system, a prediction system, and a classification system. The learning system is depicted in Figure~\ref{fig:learning}. This enables learning of sensorimotor contingencies from real robot data. Learning of the force prediction (FP) model relies on comparing the predicted $\hat{f}$ and the experienced $f$ forces at the finger tip, as measured by a force-torque sensor (FM). Learning of the shape prediction (SP) model relies on comparing the predicted deformation $\hat{sh}$ with the actual deformation $sh$ measured by visual tracking (V). }
 
-In each case the models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions. 
+\comment{The two learned models, FP and SP, can be sequenced to create a single, multi-modal predictor (Figure~\ref{ig:prediction}). This combined model takes a planned motion of the finger, and predicts the resulting forces experienced. It then uses both the position and forces to predict the resulting object deformation. Typically a sequence of planned finger positions will be known. In prediction mode the models make predictions based on this sequence. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging.}
 
 \begin{figure}[t]
 \centering
-\setlength\fboxsep{0pt}    % padding
-\setlength\fboxrule{0.5pt} % line width
-\fbox{\includegraphics[width=3.5in]{arrio3.pdf}}
-\caption{During training time, the system learns to predict the object's shape and reaction forces from real world data.}
-\label{fig:system}
+%\setlength\fboxsep{0pt}    % padding
+%\setlength\fboxrule{0.5pt} % line width
+%\fbox{
+\includegraphics[width=3.5in]{figures/prediction}%}
+\caption{The two learned models can be sequenced, so as to predict an object's shape and reaction forces when the robot finger will push in a particular way. The predicted shape is fed back on itself so as to predict over many steps for a planned sequence of finger motion. PC is the position controller for the robot which outputs each planned finger position $p$ at each time. This is used to calculate the strain $st$ from the predicted interpenetration using a fixed function, as well as providing an input to the shape predictor (SP).}
+\label{fig:prediction}
 \end{figure}
+
+\comment{The third system is for material classification (Figure~\ref{fig:classification}). This simply comprises multiple copies of the prediction systems, one for each type of material that an unknown object might be made of. The predictors each make many-step predictions. At each step a classification is made, based on which predictor has made the better prediction of the shape at that step.}
+
+\comment{In summary this way of learning and using models has involved several choices. First, the learned models are generative. Second, our approach can be seen as a sensorimotor contingency in which two contingencies are sequenced to produce an overall prediction. Third, although here we only compare two material models for prediction, the scheme follows the principle of modular motor learning \cite{kopickiwyatt16,haruno2001mosaic}, where prediction and control is specialised into many modules, each of which covers a relatively small portion of the input space, such as an object or material type. Thus the aim of a generalised version of our scheme is to acquire many specialist models of different deformable objects rather than a very few rather general models. The specific model forms we choose here could be replaced while retaining the overall scheme. In this paper we implement the scheme using a regression approach to force prediction, and we follow several other authors in employing a mass-spring system with learnable parameters for the deformation prediction.}
+
+%As has been mentioned above, there are several choices made in our modeling approach. The key choice is that the models are generative, which means that the models can be used to generate predicted sequences of behaviour. The specific approach taken here separates the predictive model out into components in two ways (see Figure~\ref{fig:system}). First we decompose models according to the modality of the information. In this case it is important to note that deformation has a particular causal structure related to the modes of sensing that are most easily employed. The forces and deformations can be measured separately, using force-torque and visual sensors respectively. The sensed forces are the cause of the observed deformation, and this can be exploited by sequencing the models by mode. Thus our approach can be seen as a sensorimotor contingency in which two contingencies are sequenced to produce an overall prediction. The input to the first predictor is the planned motion of the robot (or the joint torques), and this predictor predicts the resulting sequence of contact forces. The second predictor takes this sequence of forces as input and predicts a deformation sequence. Both models must be conditioned on the material and the object. This is where we decompose the model space in the second way, by specialising models to particular material and object combinations. This follows the principle of modular motor learning \cite{kopickiwyatt16,haruno2001mosaic}, where prediction and control is specialised into many modules, each of which covers a relatively small portion of the input space, such as an object or material type. Thus the aim of a generalised version of our scheme is to acquire many specialist models of different deformable objects rather than a very few rather general models. The specific model forms we choose here could be replaced while retaining the overall scheme. In this paper we implement the scheme using a regression approach to force prediction, and we follow several other authors in employing a mass-spring system with learnable parameters for the deformation prediction.
+
+\begin{figure*}[t]
+\centering
+%\setlength\fboxsep{0pt}    % padding
+%\setlength\fboxrule{0.5pt} % line width
+%\fbox{
+\includegraphics[width=0.8\textwidth]{figures/classification}%}
+\caption{Prediction sequences for several predictors--each of which has been learned for a different material--can be compared against real data. The most accurate predictor at any one moment gives the classification for the material type. The notation is explained in the text.}
+\label{fig:classification}
+\end{figure*}
+%In each case the resulting learned models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions.
 
 The training of the model is performed offline using ground truthed data. %The overall algorithm is given in \alref{alg:overall}.
 For clarity the algorithm is given in three phases: training, simulation (i.e. the prediction phase), and classification (i.e. matching prediction to new data). In testing the model new data is used, where this is typically new deformation actions on an object of known material and approximate shape. Having given an overview of the model we now relate our approach to those in the literature, before proceeding to describe the details of the spring-mass model of deformation (Section~\ref{sec:model}), and then the regression model of contact forces (Section~\ref{sec:forces}).
+
 
 
 
@@ -819,7 +839,7 @@ Another option could be to induce response forces by displacing vertices from th
 \label{sec:model}
 \subsection{Elastic Deformation}
 
-\begin{figure}[!t]
+\begin{figure}[t]
 \centering
 %\includegraphics[width=2.5in]{arrio1}
 \includegraphics[width=88mm]{arrio1}
@@ -1383,7 +1403,7 @@ We gratefully acknowledge funding from the PhD Scholarship program of CONACYT, M
   obtained a BA in Theology from the University of Bristol, an MSc in
   Knowledge Based Systems from the University of Sussex, and his
   Ph.D. in Artificial Intelligence from the University of Edinburgh in
-  1997. He has published more than 80 refereed articles. His interests
+  1997. He was a Leverhulme Fellow from 2006-8. He has won two best paper prizes, published more than 100 refereed articles, led two international research projects on robot planning and learning (CogX) and robot manipulation (PaCMan), and edited three books. His interests
   include machine learning, planning, architectures, vision, mobile robotics and robot manipulation.
 \end{IEEEbiography}
 
