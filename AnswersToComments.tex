@@ -28,11 +28,21 @@ Special Issue on Sensorimotor Contingencies for Cognitive Robotics}
 
 \opening{Dear Dr. Ricardo Téllez,}
 
-Please find attached our submission:
+Please find attached our revised submission:
 \begin{center}
  ``A Multi-Modal Model for Prediction and Classification of Object Deformation during Robotic Manipulation'' \\
  Veronica E.~Arriola-Rios (UNAM, Mexico), Jeremy~L.~Wyatt (University of Birmingham, UK)
 \end{center}
+
+We thank the reviewer for the comments and we have made our best effort to address them.  In the following text we explain in some detail the changes we did.
+
+Before that, we also wish to apologise because, in spite of our efforts, we still have not been able to implement the comparison with other existing methods, as any fair comparison requires an extension/implementation to closely related methods which do not work under the same conditions that ours.  We are working on that, but the deadline has come and we will submit our work leaving only this point pending.  If you could allow us to submit another version in four weeks, we should be able to include this comparison.
+
+Thank you very much for everything,
+
+Veronica E. Arriola
+
+\vspace{2cm}
 
 Reviewer(s)' Comments to Author: 
 
@@ -41,14 +51,16 @@ Reviewer: 1
 Comments to the Author 
 
 This article aims at tracking three-dimensional deformable objects under robot motion and predicting the force causing the deformation.
-%
+
+%\marker
 %\comment{While this is entirely correct we would like to say that this was not the intended emphasis of the article. The article primarily aims at predicting both the force and the deformation.  The tracking of the shape is used only during training as part of the evaluation function, it is not the goal. We apologise in case this wasn't clear, probably it was. Nevertheless we have revised the paper throughout to try to make this clearer.}
 %
+
 For these purposes, the authors propose two models, including an extension of the mass-spring model and a regression model, where the parameters of the mass-spring model are learned with an evolutionary searching algorithm on visual data and force data, and the parameters of the regression model are learned with least-square methods on stress-strain graph. These models are tested on a sponge and a plasticine, and evaluated based on the balanced F-score. The results are presented both quantitatively and qualitatively. 
 
 However, there are several structural problems, as listed below. 
 
-\marker
+%\marker
 1: in the abstract, the authors claim that five features are simultaneously enabled by the proposed single learning model framework, but the article actually presents a collection of different models and methods to solve different problems, thus it is inappropriate to claim them as a single unified model framework. Besides, it seems that only robot pushing is modeled, not general "robot actions". 
 
 \comment{Thank you for pointing this out. We have rewritten the model overview section, parts of the abstract, and the introduction to make this clearer. We emphasise that on the one hand we do learn the two models separately, but on the other we also emphasise that they are combined in prediction, and further that exactly the same core prediction model is used to perform classification. Thus although we do not claim them as a single model, we do want to claim them as several models linked in a over-arching framework. We have made clear the exact structures in three new figures.}
@@ -63,7 +75,8 @@ In addition, this section is really difficult to follow. For example, in line 27
 
 3: section IV-C, "Integration Scheme", seems to be part of algorithm 1 or section IV-B, thus it should be introduced.
 
-\comment{We are sorry this was not clear. In fact it is neither part of algorithm 1, nor of section IV-B.  It is simply part of a numerical algorithm for solving differential equations. \newline TODO: Add general algorithm which makes use of all the pieces explained in section IV at the beginning of the section.}
+\comment{We are sorry this was not clear. In fact it is neither part of algorithm 1, nor of section IV-B.  It is simply part of a numerical algorithm for solving differential equations.  We hope the new introduction to section IV will help to make it clearer.}
+% \newline TODO: Add general algorithm which makes use of all the pieces explained in section IV at the beginning of the section.  Canceled: we had one but it was too complex to follow.
 
 4, section IV-D is not explained: what is the relation between "collision detection" and the proposed model? 
 
@@ -71,11 +84,15 @@ In addition, this section is really difficult to follow. For example, in line 27
 
 5, section IV-E, "Geometric Constraints", should be integrated into section IV-A, where the energy function is built on different geometric constraints.
 
-\comment{TODO: Move section IV-E after IV-A but must emphasize that the geometric constraints in IV-A are enforced through energy preservation, while those in IV-E have immediate effects on the triangulations without directly affecting the equations.}
+\marker
+%\comment{TODO: Move section IV-E after IV-A but must emphasize that the geometric constraints in IV-A are enforced through energy preservation, while those in IV-E have immediate effects on the triangulations without directly affecting the equations.}
+\comment{TODO: Chage title of section E to ``Geometric constraints outside from the mass-spring model''.  ``Even with the addition of the term for preservation of angles to the mass-spring simulation...''}
+
+\comment{Thank you for the observation, it shows the paper was not fully explaining the difference between the constraints presented in section IV-A and those in section IV-E.  The first belong to the mass-spring model (as everything being explained in subsections A to C).  The routines in section IV-E are independent and more closely related to mesh-related fixes like the one explained in section IV-D.  We changed the title of section IV-E to reflect this and further explained this difference in its text.}
 
 6, section IV-F, "Many Step Prediction", explains how to recursively train and test the model. It should be included in section V, where the model training is given.
 
-\comment{There is a missunderstanding here.  Section IV-F is independent of any training.  As a physics based model, it depends only on proper entries and parameters, which could be provided by a human expert after manual calibration or by a computer algorithm.  The last paragraph of this section was modified accordingly and the algorithm introduced for comment 3 should help here.}
+\comment{Sorry the text was confusing.  Section IV-F does not depend on training.  As a physics based model, the dynamics of the simulation depend only on proper entries and parameters, which could have been provided by a human expert after manual calibration or by a computer algorithm.  The introduction to section IV and the last paragraph of this section was modified to emphasise this.}
 
 7, section V-A explains how to search for the optimal parameter with evolutionary algorithm based on the ground truth; section V-B explains how to get the ground truth; section V-C explains how to test the learned parameter. It seems that the correct order is B-A-C.
 
@@ -83,11 +100,11 @@ In addition, this section is really difficult to follow. For example, in line 27
 
 Besides, there are several technical ambiguities in the manuscript, as listed below. 
 
-\marker
 1, in line 37 of page 1, "sensorimotor contingencies" needs to be defined or referenced. 
+\comment{Now the first paragraph of the Introduction contains a definition.}
 
-\marker
 2, in line 35 of page 1, what does "sequencing the models by mode" mean? 
+\comment{This has been addressed as part of the rewrite of the Model Overview section.}
 
 \marker
 3, in line 58 of page 1, the authors claim "In each case the models can be run in two modes, prediction and classification". But the classification mode is not explained later, but a filtering mode is included instead. Besides, please clearly illustrate the mentioned modes and processes in Figure 2.
@@ -96,7 +113,7 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 4, in section IV-A, the author needs to explain how they extend the model proposed in [16].
 
-\comment{The general idea had been explained in the first paragraph of section IV-A, the details came later.  Since it was not clear enough the wording was modified.}
+\comment{Since it was not clear the wording of the first paragraph of section IV-A was modified, where the general idea is explained, the details come in later paragraphs.}
 
 5, in section IV-A, the author needs to briefly introduce the mass-spring model.
 
@@ -104,7 +121,7 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 6, in equation (1), please explain what "particle i" is. Is it vertex i? 
 
-\comment{Since for comment 5 the introduction explained that a mass particle is located on vertex i, this has been covered already.}
+\comment{The introduction added to address comment 5 covers this issue as well.}
 
 7, in line 27 of page 4, please explain what "mass particle" is.
 
@@ -116,7 +133,7 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 9, please explain how equation (3) is derived.
 
-\comment{It is not within the scope of the article to explain that derivation, since it belongs to Teschner's model, however the cite to the article we got it from was repeated here.}
+\comment{It is not within the scope of the article to explain that derivation, since it belongs to Teschner's model, however the reference to the article we got it from was repeated here.}
 
 10, in line 54 of page 4, please add reference to "Teschner normalised the value dividing by D0 to make the elasticity constants scale independent." 
 
@@ -136,7 +153,7 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 14, in line 25 of page 4, please explain what "Euler of Verlet" means. Euler or Verlet? 
 
-\comment{It was ``or''.  Corrected.}
+\comment{It was ``or'', thanks.  Corrected.}
 
 15, in equation (17), please explain if $x(t+h)$ is a position, how does $h*\frac{F(t)}{m}$ generate a position vector, since $h*\frac{F(t)}{m}$ seems to be the production of $h$ and acceleration? And please explain "we made the velocities proportional to the forces". Which variable is the velocity? What does "m" mean? The mass?
 
@@ -148,7 +165,7 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 17, is algorithm 2 designed by the authors?
 
-\comment{No, that is why we mentioned in the text that it is a common algorithm.  It can be found across the web in many sites.  Should we mention something about that in the caption?}
+\comment{No, it can be found across the web in many sites.  We changed the word ``common'' in the text, for ``standard'', which should emphasise more this fact.}
 
 18, in section V-A, please explain why evolutionary algorithm is used. In algorithm 4, please explain what $\alpha, \beta, \gamma, \zeta$ represent.
 
@@ -190,7 +207,7 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 \comment{Changed ``for novel interactions'' for a more concrete description.}
 
-\comment{Here we are not focusing on classifiying static objects in new environments, but rather in classifying the material an object is made of when the entry is its behaviour in time.  Visually, the blocks are actually very similar prior to deformation, therefore the most relevant difference lies in their dynamic behaviour.  That is why the classification task looks different from traditional static datasets.  Instead of a large collection of labeled images in different backgrounds, we used six videos of two different materials and asked the system to identify which material it looks at through the videos.  The explanation in the article was modified to be more specific about this.}
+\comment{Here we are not focusing on classifying static objects in new environments, but rather in classifying the material an object is made of when the entry is its behaviour in time.  Visually, the blocks are actually very similar prior to deformation, therefore the most relevant difference lies in their dynamic behaviour.  That is why the classification task looks different from traditional static datasets.  Instead of a large collection of labeled images in different backgrounds, we used six videos of two different materials and asked the system to identify which material it looks at through the videos.  The explanation in the article was modified to be more specific about this.}
 
 28, in Table III, what does "test 1, test 2" mean? Please explain how these numbers are computed. Besides, object classification is typically evaluated with precision-recall curve.
 
@@ -200,7 +217,7 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 
 29, please include more related works, since there are tons of articles on deformable object tracking.
 
-\comment{Added to the background section.}
+\comment{Added to the background section, alongside the statement ``those predictions are used only for the next frame and can not be used for robotic planning, where predictions must be done for several frames ahead''}
 
 
 I look forward to hearing from you.
