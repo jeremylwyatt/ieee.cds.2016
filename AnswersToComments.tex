@@ -41,9 +41,9 @@ Reviewer: 1
 Comments to the Author 
 
 This article aims at tracking three-dimensional deformable objects under robot motion and predicting the force causing the deformation.
-
-\comment{It is important to make a precision here: the article aims at predicting the force and deformation on the visual plane of the three-dimensional object.  The tracking of the shape is used only during training as part of the evaluation function.}
-
+%
+%\comment{While this is entirely correct we would like to say that this was not the intended emphasis of the article. The article primarily aims at predicting both the force and the deformation.  The tracking of the shape is used only during training as part of the evaluation function, it is not the goal. We apologise in case this wasn't clear, probably it was. Nevertheless we have revised the paper throughout to try to make this clearer.}
+%
 For these purposes, the authors propose two models, including an extension of the mass-spring model and a regression model, where the parameters of the mass-spring model are learned with an evolutionary searching algorithm on visual data and force data, and the parameters of the regression model are learned with least-square methods on stress-strain graph. These models are tested on a sponge and a plasticine, and evaluated based on the balanced F-score. The results are presented both quantitatively and qualitatively. 
 
 However, there are several structural problems, as listed below. 
@@ -51,17 +51,23 @@ However, there are several structural problems, as listed below.
 \marker
 1: in the abstract, the authors claim that five features are simultaneously enabled by the proposed single learning model framework, but the article actually presents a collection of different models and methods to solve different problems, thus it is inappropriate to claim them as a single unified model framework. Besides, it seems that only robot pushing is modeled, not general "robot actions". 
 
+\comment{Thank you for pointing this out. We have rewritten the model overview section, parts of the abstract, and the introduction to make this clearer. We emphasise that on the one hand we do learn the two models separately, but on the other we also emphasise that they are combined in prediction, and further that exactly the same core prediction model is used to perform classification. Thus although we do not claim them as a single model, we do want to claim them as several models linked in a over-arching framework. We have made clear the exact structures in three new figures.}
+
 2: section II is not included in the final paragraph of section I, and this section should be included in section I or section IV.
 
-\comment{It was included in the final paragraph of section I.  It was not included in section I to keep the general idea of the model isolated from other aspects in the introduction.}
+\comment{We have now mentioned this.}
 
 In addition, this section is really difficult to follow. For example, in line 27 of page 1, “the specific approach taken here separates the predictive model out into components in two ways". It will be easier to read if the authors clearly indicate the second way in line 44. And the third paragraph, on model training, should come before the second graph, which is on model testing. 
 
+\comment{Thanks for pointing this out. We agree, and have completely rewritten section II. In part this addresses this point, and in part it makes clearer the multiple machines that we have in our framework. We hope that we have made it much clearer.}
+
 3: section IV-C, "Integration Scheme", seems to be part of algorithm 1 or section IV-B, thus it should be introduced.
 
-\comment{It is neither part of algorithm 1, nor of section IV-B.  It is part of a numerical algorithm for solving differential equations. \newline TODO: Add general algorithm which makes use of all the pieces explained in section IV at the beginning of the section.}
+\comment{We are sorry this was not clear. In fact it is neither part of algorithm 1, nor of section IV-B.  It is simply part of a numerical algorithm for solving differential equations. \newline TODO: Add general algorithm which makes use of all the pieces explained in section IV at the beginning of the section.}
 
 4, section IV-D is not explained: what is the relation between "collision detection" and the proposed model? 
+
+\comment{We have now rewritten the start of section IV-D to make this clear. Essentially, the simulation must not allow interpenetration between objects. Thus, corrections are made to the mass-spring predictions at run time, to respect these constraints. Detection of violations requires some collision checking.}
 
 5, section IV-E, "Geometric Constraints", should be integrated into section IV-A, where the energy function is built on different geometric constraints.
 
@@ -73,7 +79,7 @@ In addition, this section is really difficult to follow. For example, in line 27
 
 7, section V-A explains how to search for the optimal parameter with evolutionary algorithm based on the ground truth; section V-B explains how to get the ground truth; section V-C explains how to test the learned parameter. It seems that the correct order is B-A-C.
 
-\comment{Changed order as suggested.}
+\comment{We have changed the order as suggested.}
 
 Besides, there are several technical ambiguities in the manuscript, as listed below. 
 
@@ -195,12 +201,6 @@ Besides, there are several technical ambiguities in the manuscript, as listed be
 29, please include more related works, since there are tons of articles on deformable object tracking.
 
 \comment{Added to the background section.}
-
-Associate Editor's Comments to Author: 
-
-Associate Editor 
-Comments to the Author: 
-(There are no comments. Please check to see if comments were included as a file attachment with this e-mail or as an attachment in your Author Center.)
 
 
 I look forward to hearing from you.
