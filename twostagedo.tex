@@ -689,7 +689,10 @@ In summary, our approach enables us to learn models of sensorimotor contingencie
 
 \section{Background}
 \label{sec:background}
-This work focuses on learning to predict what happens when an elastic or plastic object is pushed by a robot finger. These predictions include the response forces and the deformations of the object's shape over many future steps. The predictive models can be used to classify materials, even when the interactions (e.g. the contact point) are novel. Although there \comment{is a large body of work on deformable object tracking, some of which makes use of forces, models and predictions to improve tracking accuracy \cite{Chan1994, Greminger2008, Alkkiomaki2009}, those predictions are typically used only for the next frame and can not be used for robotic planning, where predictions must be made many steps into the future \cite{Cretu2012}.  Others like \cite{Malassiotis1998, Cremers2006} make use of templates or make assumptions about the shape of the objects that would not work with highly deformable objects like plasticine.  There is also} an abundant literature in industrial robotics for modelling 1D and 2D materials (e.g. string, hair, metallic sheet and textile), but there is little research about predicting the deformation of 3D deformable objects \cite{Khalil2010review}.
+
+\comment{It is known that the human motor system uses predictive (or forward) models of the effects that motor actions have on sensory state \cite{flanagan03,flanagan06,johansson92}. These are believed to be particularly important for dexterous manipulation. In robotics, prediction of physical interaction is a well studied but incompletely solved problem. There is a large body of work on the effects of pushing on rigid objects. This includes physics based models \cite{mason_manipulator_1982,lynch_mechanics_1992,peshkin_motion_1988,mason_mechanics_2001} and learning approaches \cite{montesano08,moldovan12,hermans11,fitzpatrick_learning_2003,ridge2010self,kroemer2014,Stoytchev_affordances_2008,mericli2014, scholz2010combining,kopicki-etal-icra11,kopicki2016learning,belter2014iros}. These predictive models have many applications, including visual tracking \cite{morwald2011icra, duff2011icra, pham2015capturing} and push planning \cite{stillman08ijrr,Dogar_2010,lynchmason96,zitoetal-iros12,Cosgun2011}.}
+
+\comment{There is much less work in robotics on predicting the behaviour of deformable objects under manipulation. This paper focuses on learning to predict what happens when an elastic or plastic object is pushed by a robot finger.} These predictions include the response forces and the deformations of the object's shape over many future steps. The predictive models can be used to classify materials, even when the interactions (e.g. the contact point) are novel. Although there \comment{is a large body of work on deformable object tracking, some of which makes use of forces, models and predictions to improve tracking accuracy \cite{Chan1994, Greminger2008, Alkkiomaki2009}, those predictions are typically used only for the next frame and can not be used for robotic planning, where predictions must be made many steps into the future \cite{Cretu2012}.  Others like \cite{Malassiotis1998, Cremers2006} make use of templates or make assumptions about the shape of the objects that would not work with highly deformable objects like plasticine.  There is also} an abundant literature in industrial robotics for modelling 1D and 2D materials (e.g. string, hair, metallic sheet and textile), but there is little research about predicting the deformation of 3D deformable objects \cite{Khalil2010review}. We now review the most closely related work to that presented here.
 
 First, Howard and Bekey \cite{Howard2000} address robotic grasping and lifting of viscoelastic objects.  Their model of the material can predict a net amount of deformation given the applied forces, but does not evaluate details of the deformed shape.   This model is inspired by the crystalline structure of atoms in solids.  The space lattice of the crystal is approximated by a particle system where elements with mass are connected by springs and dampers, thus representing the attraction and repulsion between atoms \emph{in equilibrium} with a damped mass-spring system.  The masses are calculated by measuring the force required to lift the object without sliding.  The deformation and damping coefficients are estimated as functions of:
 \begin{itemize}
@@ -748,6 +751,16 @@ by a series of states of equilibrium.}  The resulting model is applied to estima
 
 The advances of our work with respect to these related approaches is summarised in \tref{t:advances}.
 
+\begin{figure}[!t]
+\centering
+%\setlength\fboxsep{0.5pt}    % padding
+%\setlength\fboxrule{0.5pt} % line width
+%\fbox{
+\includegraphics[width=3.5in]{figures/learning.png}%}
+\caption{\comment{The learning method comprises two learned models of sensorimotor contingencies. Both are learned from the same data. The first (FP) learns to predicts the force experienced for some motion and material. The second (SP) predicts the deformation of the object given the applied force. The strain $st$ is calculated directly from the interpenetration of the finger into the object. This can be calculated by vision (V) or from the planned motion of the finger.}}
+\label{fig:learning}
+\end{figure}
+
 Other interesting work includes that of Conti et al.\ \cite{Conti2003} which introduced six-degree of freedom macroscopic elastic spheres described by mass, inertial and volumetric properties that are used to approximate the volume of deformable objects. The open source project Chai3D includes an implementation of this model. The spheres are placed along the skeleton of the object and are connected together with elastic links which model elongation, flexion and torsion properties. Each vertex of the surface mesh is attached to the nearest sphere or link with a damped spring.  In \cite{Burion2008}, Burion and Baur, collaborated with Conti's group to automatically calibrate this model using particle filters.  Again, there is no analysis of the dynamics and no real objects are used.  Furthermore, this model is more adequate for objects that deform around fixed joints.
 
 Finally, Cretu et al., used growing neural gas networks to learn to predictively track the deformation of objects.  Even though they managed to make predictions about the deformation of the overall shape of the object, under previously unseen sets of forces, their predictions were evaluated only for the next frame.
@@ -762,17 +775,6 @@ Additionally, there is a vast literature on modeling of deformable shapes and de
 
 \section{Model Overview}
 \label{sec:model_overview}
-
-
-\begin{figure}[!t]
-\centering
-%\setlength\fboxsep{0.5pt}    % padding
-%\setlength\fboxrule{0.5pt} % line width
-%\fbox{
-\includegraphics[width=3.5in]{figures/learning.png}%}
-\caption{\comment{The learning method comprises two learned models of sensorimotor contingencies. Both are learned from the same data. The first (FP) learns to predicts the force experienced for some motion and material. The second (SP) predicts the deformation of the object given the applied force. The strain $st$ is calculated directly from the interpenetration of the finger into the object. This can be calculated by vision (V) or from the planned motion of the finger.}}
-\label{fig:learning}
-\end{figure}
 
 \comment{The framework consists of three separate systems: a learning system, a prediction system, and a classification system. The learning system is depicted in Figure~\ref{fig:learning}. This enables learning of sensorimotor contingencies from real robot data. Learning of the force prediction (FP) model relies on comparing the predicted $\hat{f}$ and the experienced $f$ forces at the finger tip, as measured by a force-torque sensor (FM). Learning of the shape prediction (SP) model relies on comparing the predicted deformation $\hat{sh}$ with the actual deformation $sh$ measured by visual tracking (V). }
 
@@ -1352,7 +1354,7 @@ We gratefully acknowledge funding from the PhD Scholarship program of CONACYT, M
 %\bibliographystyle{IEEEtran}
 \bibliographystyle{IEEEtranS}
 % argument is your BibTeX string definitions and bibliography database(s)
-\bibliography{twostagedo}
+\bibliography{twostagedo,jlw}
 %
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
