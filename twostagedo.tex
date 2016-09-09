@@ -770,7 +770,7 @@ Additionally, there is a vast literature on modeling of deformable shapes and de
 %\setlength\fboxrule{0.5pt} % line width
 %\fbox{
 \includegraphics[width=3.5in]{figures/learning.png}%}
-\caption{The learning method comprises two learned models of sensorimotor contingencies. Both are learned from the same data. The first (FP) learns to predicts the force experienced for some motion and material. The second (SP) predicts the deformation of the object given the applied force. The strain $st$ is calculated directly from the interpenetration of the finger into the object. This can be calculated by vision (V) or from the planned motion of the finger.}
+\caption{\comment{The learning method comprises two learned models of sensorimotor contingencies. Both are learned from the same data. The first (FP) learns to predicts the force experienced for some motion and material. The second (SP) predicts the deformation of the object given the applied force. The strain $st$ is calculated directly from the interpenetration of the finger into the object. This can be calculated by vision (V) or from the planned motion of the finger.}}
 \label{fig:learning}
 \end{figure}
 
@@ -784,7 +784,7 @@ Additionally, there is a vast literature on modeling of deformable shapes and de
 %\setlength\fboxrule{0.5pt} % line width
 %\fbox{
 \includegraphics[width=3.5in]{figures/prediction}%}
-\caption{The two learned models can be sequenced, so as to predict an object's shape and reaction forces when the robot finger will push in a particular way. The predicted shape is fed back on itself so as to predict over many steps for a planned sequence of finger motion. PC is the position controller for the robot, which outputs each planned finger position $p$ at each time. This is used to calculate the strain $st$ from the interpenetration using a fixed function, as well as providing an input to the shape predictor (SP).}
+\caption{\comment{The two learned models can be sequenced, so as to predict an object's shape and reaction forces when the robot finger will push in a particular way. The predicted shape is fed back on itself so as to predict over many steps for a planned sequence of finger motion. PC is the position controller for the robot, which outputs each planned finger position $p$ at each time. This is used to calculate the strain $st$ from the interpenetration using a fixed function, as well as providing an input to the shape predictor (SP).}}
 \label{fig:prediction}
 \end{figure}
 
@@ -800,7 +800,7 @@ Additionally, there is a vast literature on modeling of deformable shapes and de
 %\setlength\fboxrule{0.5pt} % line width
 %\fbox{
 \includegraphics[width=0.8\textwidth]{figures/classification}%}
-\caption{Prediction sequences for several predictors--each of which has been learned for a different material--can be compared against real data. The most accurate predictor at any one moment gives the classification for the material type. The notation is explained in the text.}
+\caption{\comment{Prediction sequences for several predictors--each of which has been learned for a different material--can be compared against real data. The most accurate predictor at any one moment gives the classification for the material type. The notation is explained in the text.}}
 \label{fig:classification}
 \end{figure*}
 %In each case the resulting learned models can be run in two modes, prediction and classification. In prediction mode the models make predictions based on a sequence of robot finger positions. To create the prediction for time $t+1$ the previous predicted state at time $t$ is required: thus the predictions are recursive. This enables predictions over arbitrarily long time periods, but makes learning a good predictor challenging. In filtering mode the predictions of different models are compared to the actual outcomes, and this is used to classify the object as being one of the modular models in the set of models. Since the model is multi-modal we can compare both force and deformation data to the corresponding model predictions.
