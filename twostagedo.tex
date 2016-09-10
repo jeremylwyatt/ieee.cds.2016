@@ -74,7 +74,7 @@
 \newcommand{\alref}[1]{Algorithm~\ref{#1}}
 \newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
 \usepackage{tikz}
-
+\usepackage{balance}
 \usepackage{textcomp}
 \usepackage{amssymb}
 \usepackage{xcolor}
@@ -478,8 +478,6 @@
 % Remember, if you use this you must call \IEEEpubidadjcol in the second
 % column for its text to clear the IEEEpubid mark.
 
-
-
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
 
@@ -690,7 +688,7 @@ In summary, our approach enables us to learn models of sensorimotor contingencie
 \section{Background}
 \label{sec:background}
 
-\comment{It is known that the human motor system uses predictive (or forward) models of the effects that motor actions have on sensory state \cite{flanagan03,flanagan06,johansson92}. These are believed to be particularly important for dexterous manipulation. In robotics, prediction of physical interaction is a well studied but incompletely solved problem. There is a large body of work on the effects of pushing on rigid objects. This includes physics based models \cite{mason_manipulator_1982,lynch_mechanics_1992,peshkin_motion_1988,mason_mechanics_2001} and learning approaches \cite{montesano08,moldovan12,hermans11,fitzpatrick_learning_2003,ridge2010self,kroemer2014,Stoytchev_affordances_2008,mericli2014, scholz2010combining,kopicki-etal-icra11,kopicki2016learning,belter2014iros}. These predictive models have many applications, including visual tracking \cite{morwald2011icra, duff2011icra, pham2015capturing} and push planning \cite{stillman08ijrr,Dogar_2010,lynchmason96,zitoetal-iros12,Cosgun2011}.}
+\comment{It is known that the human motor system uses predictive (or forward) models of the effects that motor actions have on sensory state \cite{flanagan03,flanagan06,johansson92}. These are believed to be particularly important for dexterous manipulation. In robotics, prediction of physical interaction is a well studied but incompletely solved problem. There is a large body of work on the effects of pushing on rigid objects. This includes physics based models \cite{lynch_mechanics_1992,peshkin_motion_1988,mason_mechanics_2001} and learning approaches \cite{montesano08,moldovan12,fitzpatrick_learning_2003,kroemer2014,Stoytchev_affordances_2008,mericli2014, scholz2010combining,kopicki-etal-icra11,kopickiwyatt16,belter2014iros}. These predictive models have many applications, including visual tracking \cite{morwald2011icra, duff2011icra, pham2015capturing} and push planning \cite{stillman08ijrr,Dogar_2010,lynchmason96,zitoetal-iros12,Cosgun2011}.}
 
 \comment{There is much less work in robotics on predicting the behaviour of deformable objects under manipulation. This paper focuses on learning to predict what happens when an elastic or plastic object is pushed by a robot finger.} These predictions include the response forces and the deformations of the object's shape over many future steps. The predictive models can be used to classify materials, even when the interactions (e.g. the contact point) are novel. Although there \comment{is a large body of work on deformable object tracking, some of which makes use of forces, models and predictions to improve tracking accuracy \cite{Chan1994, Greminger2008, Alkkiomaki2009}, those predictions are typically used only for the next frame and can not be used for robotic planning, where predictions must be made many steps into the future \cite{Cretu2012}.  Others like \cite{Malassiotis1998, Cremers2006} make use of templates or make assumptions about the shape of the objects that would not work with highly deformable objects like plasticine.  There is also} an abundant literature in industrial robotics for modelling 1D and 2D materials (e.g. string, hair, metallic sheet and textile), but there is little research about predicting the deformation of 3D deformable objects \cite{Khalil2010review}. We now review the most closely related work to that presented here.
 
@@ -1355,6 +1353,8 @@ We gratefully acknowledge funding from the PhD Scholarship program of CONACYT, M
 \bibliographystyle{IEEEtranS}
 % argument is your BibTeX string definitions and bibliography database(s)
 \bibliography{twostagedo,jlw}
+
+\balance
 %
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
@@ -1377,27 +1377,15 @@ We gratefully acknowledge funding from the PhD Scholarship program of CONACYT, M
 % simpler here.)
 %\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
-\newpage 
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{arrio}}]{Veronica E. Arriola-Rios}
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.2in,clip,keepaspectratio]{arrio}}]{Veronica E. Arriola-Rios}
   has recently obtained her PhD in Computer Science from the University of Birmingham.
   She works as full time lecturer at the National Autonomous University of Mexico (UNAM).
   Veronica holds undergraduate degrees in Physics and Computer Science, and a masters degree in Computer Sciences, in the area of Computer Graphics and Virtual Environments.
   Her research interests include artificial inteligence, cognitive robotics and natural cognition.
 \end{IEEEbiography}
 
-% if you will not have a photo at all:
-%\begin{IEEEbiographynophoto}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{wyatt}}]{Jeremy L. Wyatt} is Professor of Robotics
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{wyatt}}]{Jeremy L. Wyatt}
-%   is Professor of Robotics and Artificial Intelligence at the University of Birmingham. He
-%   obtained a BA in Theology from the University of Bristol, an MSc in
-%   Knowledge Based Systems from the University of Sussex, and his
-%   Ph.D. in Artificial Intelligence from the University of Edinburgh in
-%   1997. He has published more than 80 refereed articles and edited three books. His interests
-%   include machine learning, robot manipulation, robot learning, robot vision, 
-%   robotic architectures, and planning and learning for robots in uncertain 
-%   and incomplete worlds.
-  is Professor of Robotics
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.2in,clip,keepaspectratio]{wyatt}}]{Jeremy L. Wyatt} is Professor of Robotics
   and Artificial Intelligence at the University of Birmingham. He
   obtained a BA in Theology from the University of Bristol, an MSc in
   Knowledge Based Systems from the University of Sussex, and his
@@ -1406,9 +1394,9 @@ We gratefully acknowledge funding from the PhD Scholarship program of CONACYT, M
   include machine learning, planning, architectures, vision, mobile robotics and robot manipulation.
 \end{IEEEbiography}
 
+\vfill
 % insert where needed to balance the two columns on the last page with
 % biographies
-%\newpage
 
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate
@@ -1416,12 +1404,9 @@ We gratefully acknowledge funding from the PhD Scholarship program of CONACYT, M
 % on the last page and whether or not the columns
 % are being equalized.
 
-\vfill 
 % Can be used to pull up biographies so that the bottom of the last one
 % is flush with the other column.
 %\enlargethispage{-5in}
-
-
 
 % that's all folks
 \end{document}
