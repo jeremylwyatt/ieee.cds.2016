@@ -56,7 +56,7 @@ From your comments, we believe that mentioning on-line learning, while important
 
 Also they refer the problem of getting access to partial views of the objects but it seems that in this paper the object is viewed from a convenient point of view. 
 
-We have added text to make clear the restrictions in our study.
+We have added text to make clear the restriction in our study of using a single view chosen by the user.
 
 Finally, the word “learning from data” suggests to me that the model acquires a representation of the environment based on some kind on non-parametric model, such as neural network. However, the models seem carefully designed to represent the object deformation and the stress-gain diagram. Even if the difference between learning and calibration is subtle, in my opinion, the use of the word “learning” creates an expectation that is not fulfilled in the rest of the paper.
 
@@ -68,79 +68,70 @@ If the object is plastic or elastic then we don’t need to add a new feature sp
 
 I would add a figure like Fig. 9a at this point. In this way the reader can have an idea of the setup, how vision acquire information and how the mass-spring model depends on the visual information itself. For example, it might be interesting to combine Fig 9a and Fig 2 in single sketch of the model.
 
-Thank you for this suggestion. We have prepared a new version of Figure 2, as you suggest This incorporates elements from the old Figure 2 and Figure 9.
+Thank you for this suggestion. We have prepared a new version of Figure 2, as you suggest. This incorporates elements from the old Figure 2 and Figure 9.
 
+A consideration about the organisation of the following sections. Given that the framework consists of two models, force prediction and shape prediction, I would expect section III.1 to be Force prediction and III.2 to the shape prediction (or vice-versa). However, the organization of Sections IV, V, VI, in my opinion is misleading.
 
+We have reorganised the paper as you request.
 
-A consideration about the organisation of the following sections. Given that the framework consists of two models, Force prediction and Shape
-prediction, I would expect section III.1 to be Force prediction and III.2
-to the shape prediction (or vice-versa). However, the organization of
-Sections IV, V, VI, in my opinion is misleading.
+Finally, I would start describing the algorithm from the visual system. It seems that the visual system has a very important role in this paper but it is not highlighted. Indeed, the mass-spring model described is section IV should be created within the perimeter of the segmented object. Thus, it requires a visual system capable of localizing and segmenting the object. In my understanding, this information is necessary to initialize the position of the particles (described in section IV) inside the object. Regarding this point, I would like to know how the particles are placed inside the object. What happens if we change the size of the object? Do we need to change the number of particles? What happen if the object is not rectangular?
 
-Finally, I would start describing the algorithm from the visual system. It seems that the visual system has a very important role in this paper but it is not highlighted. Indeed, the mass-spring model described is section IV should be created within the perimeter of the segmented object. Thus, it requires a visual system capable of localizing and segmenting the object.
-In my understanding, this information is necessary to initialize the position of the particles (described in section IV) inside the object. Regarding this point, I would like to know how the particles are placed inside the object. What happen if we change the size of the object? Do we
-need to change the number of particles? What happen if the object is not rectangular?
+Vero?
 
-IV. A MASS-SPRING MODEL OF DEFORMATION
+Eq. 19. I really do not understand how the force could be proportional to the velocity. This point should be clarified. My understanding is that the authors assumed the acceleration (a) to be constant during the interval h, so that h*F = h*a*m => F = v*m/h. Given that h is a constant, the force (F), the velocity (v) or the mass (m) are recovered with a scale factor. Is that correct? If so, what is the difference between this approach and the quasi-static approach proposed by Frank. Please, explain.
 
-My main concern about this section is Eq. 19. I really do not understand
-how the force could be proportional to the velocity. This point should be
-clarified. My understanding is that the authors assumed the acceleration
-(a) to be constant during the interval h, so that h*F = h*a*m => F =
-v*m/h.
-Given that h is a constant, the force (F), the velocity (v) or the mass
-(m)
-are recovered with a scale factor. Is that correct? If so, what is the
-difference between this approach and the quasi-static approach proposed by
-Frank. Please, explain.
+Vero?
 
-Other considerations about this section. This section is quite long and I
-think it could be simplified notably. The authors could simply state the
-energy E = Sum(i=1:N) [ 0.5 k_i * C_i(p1, pn)^2], where N is the number of
-constraints. There are several constraints to preserve the length, the
-area, etc. and the force is given as negative gradient of the potential
-energy with respect to the position of the particle. Details about all the
-equation could be reported in an appendix to make the paper more readable.
-About the equation, personally I don’t like the symbol composed of
-multiple letters such as Area, forcemag, forcedir, etc.
+This section is quite long and I think it could be simplified notably. The authors could simply state the
+energy E = Sum(i=1:N) [ 0.5 k_i * C_i(p1, pn)^2], where N is the number of constraints. There are several constraints to preserve the length, the area, etc. and the force is given as negative gradient of the potential
+energy with respect to the position of the particle. Details about all the equation could be reported in an appendix to make the paper more readable. About the equation, personally I don’t like the symbol composed of multiple letters such as Area, forcemag, forcedir, etc.
 
-VII. EXPERIMENTAL RESULTS
+We have shortened the section as requested.
 
-Do the authors use just one video for the training and two video for the
-testing? It seems that the dataset is quite small to have a systematic
-test of the algorithm. Even if there are only two objects, the authors should
-test different motions of the finger (i.e. pushing velocity, penetration,
-…)
+Do the authors use just one video for the training and two video for the testing? It seems that the dataset is quite small to have a systematic test of the algorithm. Even if there are only two objects, the authors should test different motions of the finger (i.e. pushing velocity, penetration, …)
 
-I don’t see the results of the classification. I would expect a confusion
-matrix to show how many times the sponge was classified as sponge and as
-plasticine and vice-versa. Table III seems to show the results about the
-classification of the pixels.
+This is rather difficult to modify as we gathered the data set three years ago, and it would not be possible to extend it quickly enough using the same set up. However, to try to satisfy your request we are currently working on an extension of the data set using simulated data from a physics engine. While this will not be physically accurate it will allow further testing of the model. We are afraid we have not yet completed this work for this revision, as we focussed on completing the study of the comparable method, but we will submit our additional data and the results with a new revision when they are available. 
 
-Moreover, I would like to see a comparison against a baseline approach.
-They could some of the models proposed in the literature or some simple
-models. For example, the authors could assume that the material
-“disappears” when the finger penetrates the object and report the F-Score
-of this method. Alternatively, they could use a simple model with only one
-spring between the finger and the base of the object.
+I don’t see the results of the classification. I would expect a confusion matrix to show how many times the sponge was classified as sponge and as plasticine and vice-versa. Table III seems to show the results about the classification of the pixels.
 
-VIII.DISCUSSION
+Vero?
 
-Page 12. Col 2. Line 3. Please, can you clarify the hand tuning? It seems
-that the genetic algorithm is not the best way to find the parameters?
-Have you tried to use other method like gradient descent? Is it possible to use
-the model to mass-spring model to predict the force exerted on the finger?
-In that case, the authors could use this prediction error as fitness
-function and use the gradient descent to find the parameters.
+Moreover, I would like to see a comparison against a baseline approach. They could some of the models proposed in the literature or some simple models. For example, the authors could assume that the material “disappears” when the finger penetrates the object and report the F-Score of this method. Alternatively, they could use a simple model with only one spring between the finger and the base of the object.
+
+We have implemented a growing neural gas network previously published by Cretu et al. We have added additional results in a comparison of this method with our own.
+
+Vero?
+
+Page 12. Col 2. Line 3. Please, can you clarify the hand tuning? It seems that the genetic algorithm is not the best way to find the parameters? Have you tried to use other method like gradient descent? Is it possible to use the model to mass-spring model to predict the force exerted on the finger? In that case, the authors could use this prediction error as fitness function and use the gradient descent to find the parameters.
+
+Vero?
 
 Other comments:
 
 Fig. 1 is not referenced in the paper.
+
+We have decided that this figure added little, hence it was not referenced naturally anywhere in the text. We have thus decided to remove it to save space, since other requested changes have added considerable length. 
+
 Page 2, Col 1, Line 17. Section VI is not mentioned.
+
+We have fixed this.
+
 Page 2. Col 2, Line 5: FEM is not defined. Finite-element models?
+
+We have defined this.
+
 Fig 2. Instead of use symbols, I would write Vision, strain, force, etc.
+
+Thank you, this chimes with the comments of Reviewer 2, we have fixed this in Figures 1, 2 and 3.
+
 Page 3, Col 1, line 57. Cretu et al. -> cite [10]?
+
+We have added this reference.
+
 Page 8. Col 2, Line 27. Linear snake = linear spline?
+
+Vero?
+
 Algorithm 5. I would specify that the F-Score is the fitness function of
 the algorithm. Moreover, it would be nice to know the values used for the
 parameters of the algorithm (perhaps using a table).
