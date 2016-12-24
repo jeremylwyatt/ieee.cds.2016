@@ -530,11 +530,11 @@ deformable objects, prediction, classification, learning.
 
 There are various models of deformation used in engineering, such as finite element models, but these typically require careful optimisation by hand, and cannot run in real time. In graphics there are many methods used for generating qualitatively plausible simulations of deformable objects, but these are not easy to fit to real data. \comment{In contrast, robots must learn model parameters from data, in reasonable amounts of training time. This includes learning from the limited sensing typically available, such as training data gathered from a specific view(s) of an object, and force-torque monitoring only at contact points.} Thus, tackling the prediction problem in robotics adds additional difficulties to an already challenging problem. \comment{In this paper we address some of these---we learn from real visual and force-torque data---while simplifying others---we set a convenient fixed viewing location and perform off-line rather than on-line learning.}
 
-\begin{figure}[!t]
-\centering\includegraphics[width=3.5in]{arrio17.png}
-\caption{Force information acquired while working with a block of sponge (elastic) and a piece of plasticine (plastic).  Notice the difference in magnitude between the force used with the sponge and the plasticine.}
-\label{fig:forceElasticPlastic}
-\end{figure}
+%\begin{figure}[!t]
+%\centering\includegraphics[width=3.5in]{arrio17.png}
+%\caption{Force information acquired while working with a block of sponge (elastic) and a piece of plasticine (plastic).  Notice the difference in magnitude between the force used with the sponge and the plasticine.}
+%\label{fig:forceElasticPlastic}
+%\end{figure}
 
 Previous work on learning sensorimotor contingencies for deformable objects in robotics has been limited. Table~\ref{t:advances} summarises the features of the major efforts to date. In each case some abilities are missing: either models cannot be learned from data; or only address one type of deformation (e.g. elastic); or cannot perform classification; or cannot predict the forces felt; or cannot predict what will happen when the robot loses contact with the object (will it retain or recover from the deformation?). In this paper we present an approach for solving all these problems. Although our framework requires two separate learned models, they are combined into a single machine for prediction of the behaviour of deformable material. In a second machine, multiple copies of this predictor can be compared to an actual outcome deformation, so as to classify the material.
 
@@ -584,7 +584,7 @@ Previous work on learning sensorimotor contingencies for deformable objects in r
 %\caption{Overall algorithmic structure of the system.}
 %\end{figure}
 
-\comment{These technical contributions} enable us to learn models of sensorimotor contingencies, and then to use these as components to build different machines. This approach enables i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from either or both force and visual data, v) prediction of object behaviour after contact by the robot is removed. In the rest of the paper we present related work (Section~\ref{sec:background}); give an overview of the framework (Section~\ref{sec:model_overview}); describe the two component models in detail (Section~\ref{sec:model}); describe how the model parameters are learned from real data (Section~\ref{sec:learning}); report experiments on prediction and classification with elastic and plastic objects (Section~\ref{sec:experiments}); and finish with a short discussion (Section~\ref{sec:discussion}).
+\comment{These technical contributions} enable us to learn models of sensorimotor contingencies, and then to use these as components to build different machines. This approach enables i) predictions over many steps, ii) learning of plastic and elastic deformation from real data, iii) prediction of forces experienced by the robot, iv) classification of materials from either or both force and visual data, v) prediction of object behaviour after contact by the robot is removed. In the rest of the paper we present related work (Section~\ref{sec:background}); give an overview of the framework (Section~\ref{sec:model_overview}); describe the two component models in detail (Section~\ref{sec:model}); describe how the model parameters are learned from real data for the shape prediction model (Section~\ref{sec:learning}) and for the force prediction model (Section~\ref{sec:forces}); report experiments on prediction and classification with elastic and plastic objects (Section~\ref{sec:experiments}); and finish with a short discussion (Section~\ref{sec:discussion}).
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
@@ -761,7 +761,7 @@ The advances of our work with respect to these related approaches is summarised 
 
 Other interesting work includes that of Conti et al.\ \cite{Conti2003} which introduced six-degree of freedom macroscopic elastic spheres described by mass, inertial and volumetric properties that are used to approximate the volume of deformable objects. The open source project Chai3D includes an implementation of this model. The spheres are placed along the skeleton of the object and are connected together with elastic links which model elongation, flexion and torsion properties. Each vertex of the surface mesh is attached to the nearest sphere or link with a damped spring.  In \cite{Burion2008}, Burion and Baur, collaborated with Conti's group to automatically calibrate this model using particle filters.  Again, there is no analysis of the dynamics and no real objects are used.  Furthermore, this model is more adequate for objects that deform around fixed joints.
 
-Finally, Cretu et al., used growing neural gas networks to learn to predictively track the deformation of objects.  Even though they managed to make predictions about the deformation of the overall shape of the object, under previously unseen sets of forces, their predictions were evaluated only for the next frame.
+Finally, Cretu et al. \cite{Cretu2012}, used growing neural gas networks to learn to predictively track the deformation of objects.  Even though they managed to make predictions about the deformation of the overall shape of the object, under previously unseen sets of forces, their predictions were evaluated only for the next frame.
 
 Additionally, there is a vast literature on modeling of deformable shapes and deformation processes \cite{Gibson1997, McInerney1996, Montagnat2001, Moore2007review, Nealen2006review}, particularly within the area of computer graphics.  However, these types of models have not been successfully applied to robotics tasks beyond what is presented above.
 
