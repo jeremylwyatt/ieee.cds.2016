@@ -810,7 +810,6 @@ For clarity, the algorithm is described in exactly these three phases: training,
 
 \section{A Mass-Spring Model of Deformation}
 
-\comment{
 A mass-spring model is a very well established abstraction, commonly used to simulate the behaviour of certain types of deformable objects.  As a physics based model, once its parameters are acquired, its behaviour is determined by the evolution of a set of differential equations.  Therefore, by offering a method to automatically calibrate those parameters, this model can make long term predictions about the behaviour of deformable objects, under previously unseen interactions, if only the externally applied forces are known.  The range of validity of these predictions greatly depends on the quality of the calibration, but also on the suitability of the mass-spring model as a model of the particular object.  For this reason, there are variations that address specific issues, like \cite{Bourguignon2000} and \cite{Teschner2004}.  In this work, we focus on the machinery required to achieve this automatic calibration of a physics based model and its integration into a system that exploits it to solve prediction and classification tasks.  We emphasize that the physics based model could be easily substituted by another equivalent model.  For example, the same machine will work if another type of mass-spring model is used, or a FEM model, even though numerical results will differ to some extent.  For these experiments we chose to use a slightly modified version of the mass-spring model proposed by Teschner in \cite{Teschner2004}.
 
 %This work makes use of the ability of a mass-spring model to predict the shape of a deformable object given its shape at time $t$ and the forces acting on it.  The parameters, that attune this generic model to a particular object, will be obtained through machine learning, and that procedure will be explained in \sref{sec:learning}, since it is independent of the model itself.  Also the forces required as inputs by this mass-spring model will be learned by another module, so that the entire system will require only the initial shape of the object, and the command to be executed, to be able to predict the future behaviour of the object and sensed feedback force.  This section explains the details of the mass-spring model we used.
@@ -819,7 +818,7 @@ In a simple mass-spring model, the shape of an object is approximated by a unifo
 
 When one or more particles are displaced from their equilibirum positions, the forces that tend to restore an elastic body to its original shape are modeled by the forces of springs (along the edges of the mesh) that try to recover their original length).  These forces act upon the particles modifying their positions in time.  Traditionally, the relationship between the position of the particle $p_i$ and those forces $F$ obeys the second law of Newton:
 \begin{align}
- F = m \dfrac{\partial^2 p}{{\partial t}^2} \label{eq:newton}
+ F = m \dfrac{\partial \vec{p}}{\partial t} \label{eq:newton}
 \end{align}
 where $t$ is time.  However, it is possible to deviate from this equation if we need to model a different behaviour. %are interested in is numerical accuracy, as it will be done here.
 
@@ -827,10 +826,10 @@ The above equation is a second order differential equation, which is continuous 
 
 To simulate the effect of an external actuator (like the finger of the robot) interacting with the deformable object, external forces $F_{ext}$ acting on vertices of the mesh must be added to \eref{eq:newton}:
 \begin{align}
- F + F_{ext} = m \dfrac{\partial^2 p}{{\partial t}^2}
+ F + F_{ext} = m \dfrac{\partial \vec{p}}{\partial t}
 \end{align}
 Another option could be to induce response forces by displacing vertices from their position of equilibrium.
-}
+
 
 \label{sec:model}
 \subsection{Elastic Deformation}
@@ -843,19 +842,21 @@ Another option could be to induce response forces by displacing vertices from th
 \label{fig:forces}
 \end{figure}
 
-The mass-spring model proposed by Teschner et al.\ in \cite{Teschner2004}, which is explained below, was reduced to a 2D model, so that the predictions could be compared with 2D images of the deformable object.  The main idea being that an agent can make rough real time predictions of what it can see and touch and use those predictions to solve various tasks, like classification or grasping.  Here, the surface of the deformable object is approximated by a regular triangular mesh of unitary masses and springs.  The potential energy terms for the preservation of length with damping and preservation of area were included in our system \comment{exactly as they were defined by Teschner}.  To compensate for the lack of a term for preservation of volume, which tends to prevent distortions of the graph \comment{in the original model}, \comment{we derived } a new term for the preservation of the angles \comment{in every triangle} \sout{was included}.  The relevant equations are presented in the following paragraphs, while detailed derivations can be found in \cite{Arriola2013thesis}.
+The mass-spring model proposed by Teschner et al.\ in \cite{Teschner2004}, which is explained below, was reduced to a 2D model, so that the predictions could be compared with 2D images of the deformable object.  The main idea being that an agent can make rough real time predictions of what it can see and touch and use those predictions to solve various tasks, like classification or grasping.  Here, the surface of the deformable object is approximated by a regular triangular mesh of unitary masses and springs.  \comment{Since the location of the masses and direction of the springs will bias the deformation response of the object, it is important to distribute the masses uniformly and place the springs with a symetric arrangement for an isotropic material.  This placement can be done with an algorithm that takes into account the symmetries of the object at the begining of the experiment.  If the material gets permanently deformed a properly callibrated physics based model, like the one we propose here, will produce an adequate new arrangement from which new interactions can be studied.}
 
-\comment{Teschner defined a generalized version of the simple mass-spring model by using the concept of \emph{constraint}.  He makes use of different constraints to model the tendency of an object to recover several of its attributes.} For every desired constraint $C(\vec{p}_1,...,\vec{p}_{n})$ acting over $n$ vertices, a potential energy $E$ is defined.  When the value of the constraint is zero, the potential energy is zero as well.  When the constraint is not satisfied, the potential energy increases.  This behaviour is obtained through the following definition for the energy:
+The potential energy terms for the preservation of length with damping and preservation of area were included in our system exactly as they were defined by Teschner.  To compensate for the lack of a term for preservation of volume, which tends to prevent distortions of the graph in the original model, we derived a new term for the preservation of the angles in every triangle.  The relevant equations are presented in the following paragraphs, while detailed derivations can be found in \cite{Arriola2013thesis}.
+
+Teschner defined a generalized version of the simple mass-spring model by using the concept of \emph{constraint}.  He makes use of different constraints to model the tendency of an object to recover several of its attributes. For every desired constraint $C(\vec{p}_1,...,\vec{p}_{n})$ acting over $n$ vertices, a potential energy $E$ is defined.  When the value of the constraint is zero, the potential energy is zero as well.  When the constraint is not satisfied, the potential energy increases.  This behaviour is obtained through the following definition for the energy:
 \begin{align}
  E(\vec{p}_1,...,\vec{p}_{n}) & = \frac{1}{2}kC(\vec{p}_1,...,\vec{p}_{n})^2, \label{eq:EConstraint}
 \end{align}
-where $k$ is a proportionality constant \comment{\sout{\eref{eq:EConstraint}}} and $p_i$ is the position of particle $i$.
+where $k$ is a proportionality constant and $p_i$ is the position of particle $i$.
 
 In order to reduce the energy of the system when a constraint is not satisfied, the force $\vec{F}^i$ acting on the $i^{th}$ mass particle is defined as the negative gradient of this potential energy with respect to the position of the particle $\vec{p}_i$ \eref{eq:EForce}.
 \begin{align}
  \vec{F}^i(\vec{p}_1,...,\vec{p}_{n}) & = -\frac{\partial}{\partial \vec{p}_i}E = -kC\frac{\partial C}{\partial \vec{p}_i}. \label{eq:EForce}
 \end{align}
-Given the oscillatory nature of these equations, \comment{when using constraints that model the behaviour of springs,} damping can be introduced to stop the oscillations.  This is modelled with a force acting in the opposite direction to the velocity of the affected particles\comment{, thus slowing down motion.  Teschner wrote this as a function of the constraints as well \cite{Teschner2004}}:
+Given the oscillatory nature of these equations, when using constraints that model the behaviour of springs, damping can be introduced to stop the oscillations.  This is modelled with a force acting in the opposite direction to the velocity of the affected particles, thus slowing down motion.  Teschner wrote this as a function of the constraints as well \cite{Teschner2004}:
 \begin{align}
  \label{eq:Fdamping}
  \vec{F}^i&(\vec{p}_1,...,\vec{p}_{n},\vec{v}_1,...,\vec{v}_{n}) = \nonumber \\
@@ -877,8 +878,8 @@ where $\vec{p}_i$ and $\vec{p}_j$ are connected by a spring and $D_0$ is the res
 where $k_L$ is the linear spring constant and $k_d$ the damping constant.
 
 \subsubsection{Preservation of Area}
-This constraint is applied per triangle in the mesh.  Since Teschner and Morris \comment{%\sout{didn't find it helpful to add damping to the preservation of areas, it is avoided here.} 
-found that the use of damping for the preservation of areas does not significantly improve the stability of the simulation, it is not included here either.}  Therefore the force $\vec{F}^i_A$ is derived as follows:
+This constraint is applied per triangle in the mesh.  Since Teschner and Morris
+found that the use of damping for the preservation of areas does not significantly improve the stability of the simulation, it is not included here either.  Therefore the force $\vec{F}^i_A$ is derived as follows:
 \begin{align}
  C &= \frac{\frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|-A_0}{A_0} \\
  Area &= \frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|, \\
@@ -901,8 +902,7 @@ While the rest becomes:
 \end{align}
 
 \subsubsection{Preservation of Angles}
-The previous terms can not do anything to restore the mesh if triangles get flipped during deformation.  For this reason we included a new term that enforces the preservation of the original angles of the triangles.  [\fref{fig:forces}(c)] gives an idea of how these forces look.  Here the energy depends on the difference \comment{%\sout{of the angles between adjacent edges.} 
-between the current angle, between adjacent edges, and the angle between them at the equilibrium position.} Energy is given by\footnote{It was also considered to multiply $E_\varphi$ by the lengths of the edges, but it hasn't improved the performance of the model.}:
+The previous terms can not do anything to restore the mesh if triangles get flipped during deformation.  For this reason we included a new term that enforces the preservation of the original angles of the triangles.  [\fref{fig:forces}(c)] gives an idea of how these forces look.  Here the energy depends on the difference between the current angle, between adjacent edges, and the angle between them at the equilibrium position. Energy is given by\footnote{It was also considered to multiply $E_\varphi$ by the lengths of the edges, but it hasn't improved the performance of the model.}:
 \begin{align}
  E_\varphi(\varphi) & = \frac{1}{2}k_\varphi(\varphi - \varphi_0)^2 \\
  \varphi(p_i,p_j,p_k) & = \arccos \left( \dfrac{(p_j - p_i) \cdot (p_k - p_i)}{ \left\| p_j - p_i \right\| \left\|p_k - p_i \right\|} \right)^2 \nonumber
@@ -933,8 +933,7 @@ The terms for the preservation of length and angle model elastic deformations.  
 \subsection{Plastic Deformation}
 \begin{figure}
  \begin{algorithmicieee}{Plastic Deformation of an Edge}\label{alg:deformEdge}
- %\STATE Let $l$ be the new length of the edge, after an integration step. And $max\_\alpha$ the maximum proportional permanent deformation being allowed.
- \comment{\STATE Let $l$ be the length of the edge at time $t+h$, after an integration step where new positions of its vertices $p_i(t+h)$ where calculated.} And $max\_\alpha$ the maximum proportional permanent deformation being allowed.
+ \STATE Let $l$ be the length of the edge at time $t+h$, after an integration step where new positions of its vertices $p_i(t+h)$ where calculated. And $max\_\alpha$ the maximum proportional permanent deformation being allowed.
  \IF {$\alpha > max\_\alpha$}
   \STATE $l_0 \gets l$
  \ELSE
@@ -955,23 +954,30 @@ The simplest method to model plastic deformation consists in changing the length
 
 \subsection{Integration Scheme}
 \label{sec:ischeme}
-\comment{Rather than using traditional Newtonian equations with a numeric integration scheme like Euler or Verlet, used twice to solve the second order differential equiations,} we made the \comment{force proportional to the velocity:
+Rather than using traditional Newtonian equations with a numeric integration scheme like Euler or Verlet, used twice to solve the second order differential equiations, we made the force proportional to the velocity:
+\comment{
 \begin{align}
- F(t) = m \dfrac{\partial \vec{p}}{\partial t}
+ F(t) = \vec{p}
 \end{align}
-and applied Euler only once to solve for $p$:
+which implies the following assumptions:
+\begin{align}
+ \dfrac{\partial \vec{p}}{\partial t} = \vec{p}
+\end{align}
+this equation can only be satisfied with an exponential, thus avoiding the oscillatory behaviour of springs in favour of forcing critically damped springs to model the elastic materials.
+}
+
+Then we applied Euler only once to solve for $p$:
 \begin{equation}
  \vec{p}(t+h) = \vec{p}(t) + h \dfrac{\vec{F(t)}}{m}\label{eq:integration}
-\end{equation}}
-with $\vec{F}(t) = \vec{F}_D(t) + \vec{F}_A(t) + F_\varphi(t)$ being the sum of the forces for the preservation of length, area and angle respectively and $\vec{p}(t+h)$, the position of the vertex at time $t+h$.  \comment{We acknowledge that this is not the proper Newtonian model, however t}he simulations obtained were closer to the observed behaviour, because there is no inertia in the oscillation.
+\end{equation}
+with $\vec{F}(t) = \vec{F}_D(t) + \vec{F}_A(t) + F_\varphi(t)$ being the sum of the forces for the preservation of length, area and angle respectively and $\vec{p}(t+h)$, the position of the vertex at time $t+h$.  We acknowledge that this is not the proper Newtonian model, however the simulations obtained were closer to the observed behaviour, because there is no inertia in the oscillation.
 When experimenting with different integration steps, force values were interpolated between measurements.
 
 
 \subsection{Collision Detection}
-In the simulation, rigid objects \comment{(like the robotic finger and the table)} are treated as geometric obstacles.  \comment{When the simulation of the mesh deformation runs---used to model the sponge---the predicted positions of the vertices may indicate that the mesh penetrates an obstacle.  This should be interpreted as a collision between the sponge and an obstacle.  Since the sponge can not penetrate an obstacle, these overlaps must be eliminated. %The physical consequences of this will affect the system predictions.  For example: if the vertices of the mesh overlap the table, the sponge will remain on top of the table, with its material being more compact, which will cause the response force propagated towards the finger to be increased.
-}
+In the simulation, rigid objects (like the robotic finger and the table) are treated as geometric obstacles.  When the simulation of the mesh deformation runs---used to model the sponge---the predicted positions of the vertices may indicate that the mesh penetrates an obstacle.  This should be interpreted as a collision between the sponge and an obstacle.  Since the sponge can not penetrate an obstacle, these overlaps must be eliminated. %The physical consequences of this will affect the system predictions.  For example: if the vertices of the mesh overlap the table, the sponge will remain on top of the table, with its material being more compact, which will cause the response force propagated towards the finger to be increased.
 
-\comment{In order to model this, we model the finger and table using geometric primitives.  For the table obstacle, any interpenetration by the sponge is solved by pushing vertices of the mesh of the sponge back to the border of the table.  The springs will then propagate the effect to their neighbours.  For the finger obstacle, resolution is in two stages: by vertex and then by edge.}  A vertex will be pushed out to a distance $\epsilon$ of the finger, in the direction of the radius.  For edges, the \comment{standard} algorithm in \alref{alg:point_segment} is used to estimate the shortest distance between the centre of the finger and the edge.  Given this distance, the algorithm in \alref{alg:push_edge} indicates how far and in which direction the edge must be displaced.
+In order to model this, we model the finger and table using geometric primitives.  For the table obstacle, any interpenetration by the sponge is solved by pushing vertices of the mesh of the sponge back to the border of the table.  The springs will then propagate the effect to their neighbours.  For the finger obstacle, resolution is in two stages: by vertex and then by edge.  A vertex will be pushed out to a distance $\epsilon$ of the finger, in the direction of the radius.  For edges, the standard algorithm in \alref{alg:point_segment} is used to estimate the shortest distance between the centre of the finger and the edge.  Given this distance, the algorithm in \alref{alg:push_edge} indicates how far and in which direction the edge must be displaced.
 
 \begin{figure}
   \begin{algorithmicieee}{Closest Point on a Segment to Any Other Point}\label{alg:point_segment}
@@ -1003,11 +1009,11 @@ In the simulation, rigid objects \comment{(like the robotic finger and the table
  \caption{Algorithm to push an edge out of a circular obstacle.}
 \end{figure}
 
-\subsection{\comment{Additional} Geometric Constraints}
-\comment{While the mass-spring model incorporates constraints based on mesh geometry, these are soft constraints implemented in the form of an energy function. Even with several of these terms incorporated, such as a term for preservation of angles, the mass-spring model can cause triangles of the mesh to overlap one another and be reversed or flattened.  It is thus necessary to employ additional hard geometric constraints to make the mesh internally consistent.  We achieve this through geometric checking subroutines.}  There are two geometric constraints that the mesh is enforced to maintain:
+\subsection{Additional Geometric Constraints}
+While the mass-spring model incorporates constraints based on mesh geometry, these are soft constraints implemented in the form of an energy function. Even with several of these terms incorporated, such as a term for preservation of angles, the mass-spring model can cause triangles of the mesh to overlap one another and be reversed or flattened.  \comment{All of these situations are innadecuate since this mesh is used to model one face of a 3D object.}  It is thus necessary to employ additional hard geometric constraints to make the mesh internally consistent.  We achieve this through geometric checking subroutines.  There are two geometric constraints that the mesh is enforced to maintain:
 
 \begin{enumerate}
- \item For a reversed triangle, (one vertex crossed over an edge): the vertex gets pushed more than half the distance between the vertex and the edge in the direction of the ``reversed'' height\footnote{$3/4$ of this distance was used in our implementation.}, while both ends of the edge get pushed the same amount in the opposite direction.  This is enough for most cases, but triangles in the border of the mesh can still overlap each other.
+ \item For a reversed triangle, (one vertex crossed over an edge): the vertex gets pushed more than half the distance between the vertex and the edge in the direction of the ``reversed'' height\footnote{$3/4$ of this distance was used in our implementation.}, while both ends of the edge get pushed the same amount in the opposite direction.  This is enough for most cases, but triangles in the border of the mesh can still overlap each other \comment{which would render a bad numerical approximation to the behaviour of a surface}.
 
  \item If a triangle becomes flat: the longest edge and its opposite vertex along the perpendicular to the edge are pushed in opposite directions, to form a tiny triangle\footnote{An area of $2.0$ units was good enough.}.
 \end{enumerate}
@@ -1023,10 +1029,10 @@ Given the initial shape of the object and a set of parameters, the mass-spring s
 \end{enumerate}
 The mesh as predicted one step ahead is then fed back as the current shape for the next step and the cycle is repeated until the simulation is stopped.
 
-The next stage \comment{is} the learning process \comment{which} consists in identifying sets of parameters that produce simulations similar to the ground truth.  This problem is addressed in the following section.
+The next stage is the learning process which consists in identifying sets of parameters that produce simulations similar to the ground truth.  This problem is addressed in the following section.
 
 
-\section{\comment{Learning to Predict Deformations}}
+\section{Learning to Predict Deformations}
 \label{sec:learning}
 
 \subsection{Tracking to Provide Ground Truth}
@@ -1038,9 +1044,9 @@ The next stage \comment{is} the learning process \comment{which} consists in ide
 \label{fig:scene}
 \end{figure}
 
-The contour of the deformable object is used to obtain the ground truth for the training phase, which is the area enclosed by the contour. \comment{Since we only require a tracking algorithm which is good enough to evaluate the predictions of the mass-spring system, a very simple one was used.}  Geometrically, the contour is represented by a polygon with hundreds of sides, which can also be called a \textit{linear spline} \comment{\cite{Menet1991}. The vertices of the polygon work as control points which can be moved to adjust the polygon to the shape of the object as it gets deformed.  Even though this implementation is inspired by the theory of active contours, it works with a much simpler and faster, but less accurate, algorithm, instead of minimizing a global energy. This is explained below.}  The tracking of the deformable target in the ground truth has two stages:
+The contour of the deformable object is used to obtain the ground truth for the training phase, which is the area enclosed by the contour. Since we only require a tracking algorithm which is good enough to evaluate the predictions of the mass-spring system, a very simple one was used.  Geometrically, the contour is represented by a polygon with hundreds of sides, which can also be called a \textit{linear spline} \cite{Menet1991}. The vertices of the polygon work as control points which can be moved to adjust the polygon to the shape of the object as it gets deformed.  Even though this implementation is inspired by the theory of active contours, it works with a much simpler and faster, but less accurate, algorithm, instead of minimizing a global energy.  \comment{This causes some shadowed corners of the material to be missed at some frames, but as \fref{fig:scene}(b) at its bottom left shows, these errors are not significant in comparison to the errors made by the mass-spring model.} This is explained below.  The tracking of the deformable target in the ground truth has two stages:
 \begin{enumerate}
- \item The target object is segmented from the environment.  The Canny algorithm is used to extract the edges of the image.  \comment{  Since the object of interest has a distinctive colour, the hue of the pixels on every edge are used to keep only edges that could belong to it.  If the average hue of the pixels on an edge falls outside a previously calibrated range, the edge is eliminated.}
+ \item The target object is segmented from the environment.  The Canny algorithm is used to extract the edges of the image.  Since the object of interest has a distinctive colour, \comment{its characteristic hue range is extracted from the area enclosed by the initial contour.  Then} the hue of the pixels on every edge are used to keep only edges that could belong to it.  If the average hue of the pixels on an edge falls outside the calibrated range, the edge is eliminated.
  \item The internal representation of its contour, the linear snake, is adapted to its new shape.  The algorithm assumes that no occlusions take place and that the contour does not bend over itself.
 \end{enumerate}
 For the first frame, the snake is initialised as a rectangle around the target. This rectangle fragments itself into smaller pieces. Each new vertex adheres itself to the closest point on an edge, as reached by growing rings of pixels around its current position, up to a certain threshold distance [\fref{fig:scene}(a)].  If there is no edge within that area, the control point remains where it is. This criterion was selected to make the representation more robust against edges that are easier to detect on some frames than in others.  Once the edge reappears, the control point adapts itself again.  Also, the distance between two consecutive control points is kept within the interval $[min\_distance, max\_distance]$ and two adjacent edges do not form angles smaller than $min\_angle$.  See \alref{alg:regularise}.  This allows the snake to adapt very quickly to the complexity of the contour it represents.
@@ -1064,7 +1070,9 @@ For the first frame, the snake is initialised as a rectangle around the target. 
 
 
 \subsection{Evolutionary Algorithm}
-\comment{Since a mass-spring model is not a constitutive model, its parameters are not directly derived from the physical properties of the material, they instead depend on the geometry of the mesh used to model the object. There can thus be several sets of parameters in different regions of the parameter space that produce adequate simulations \cite{Morris2008}. We therefore chose to use an evolutionary algorithm to both perform global search, and local improvement.}
+\label{sub:EvolAlg}
+
+Since a mass-spring model is not a constitutive model, its parameters are not directly derived from the physical properties of the material, they instead depend on the geometry of the mesh used to model the object. There can thus be several sets of parameters in different regions of the parameter space that produce adequate simulations \cite{Morris2008}. We therefore chose to use an evolutionary algorithm to both perform global search, and local improvement.
 
 The evolutionary algorithm described in \alref{alg:genetic} was used to search the parameter space of the mass-spring model presented in the previous section.
 From the parameters that must be chosen for the simulation to work, some were fixed while others had to be searched for.  They are:
@@ -1072,7 +1080,7 @@ From the parameters that must be chosen for the simulation to work, some were fi
  \item The mass per vertex.  \textit{(For the moment we consider a unitary mass for all vertices.)}
  \item The elasticity constants: for the preservation of length $k_L$, area $k_A$, angles $k_{\varphi}$ and linear damping $k_d$.  \textit{(All springs will have the same values to favour generalisation.)}
  \item The plastic parameters: $yield$, $creep$ and the maximum amount of permanent deformation $max\_\alpha$.  \textit{(All springs will have the same values to favour generalisation.)}
- \item The integration time step $\Delta t$.  \textit{(It has been set to 0.1 seconds, even though values as small as 0.01 were tried as well.)}
+ \item The integration time step $\Delta t$.  \textit{(It has been set to 0.1 seconds, even though values as small as 0.01 were tried as well; \comment{however, since they didn't improve stability or accuracy in a visible way, but made the process much slower, they were disregarded as impractical}.)}
  \item An upper limit for the magnitude of the total estimated forces per vertex $max\_Force$.
  \item The minimum area before a triangle is considered \textit{flat}.  (It has been set to $2.0$ units.)
 \end{itemize}
@@ -1081,12 +1089,12 @@ To evaluate the suitability of each set of parameters, the simulation is compare
 \begin{figure}
   \begin{algorithmicieee}{Evolutionary Search}\label{alg:genetic}
  \STATE Let $N$ be the number of sets of parameters to be evaluated per generation and $M$ the number of generations.
- \STATE Let $\alpha + \beta + \gamma + \zeta = N$ denote four portions of the $N$ elements\comment{, with: \\
+ \STATE Let $\alpha + \beta + \gamma + \zeta = N$ denote four portions of the $N$ elements, with: \\
  $\alpha \leftarrow$ number of elements that survive for the next generation as they are, \\
  $\beta \leftarrow$ mutated individuals, \\
  $\gamma \leftarrow$ crossed over, and \\
  $\zeta \leftarrow$ new individuals. \\
- which will be chosen as follows:}
+ which will be chosen as follows:
  \STATE Let $\sigma_{max} > \sigma_{min}$ both be standard deviations of a Gaussian
  \STATE Let $\Delta\sigma \gets (\sigma_{max} - \sigma_{min})/M$.
  \FOR {$i=1 \to M$}
@@ -1125,19 +1133,19 @@ From which the harmonic average $F$ is derived:
  F = \frac{2}{\frac{1}{Precision} + \frac{1}{Recall}} = \frac{1}{1 + \frac{FN + FP}{2TP}}
 \end{align}
 
-This measurement \comment{is know as the F-score and} is used in the computer vision community to evaluate segmentation algorithms.  $F=1$ means that there were no false predictions ($FN+FP = 0$).  $F \rightarrow 0$\footnote{This is read: the value of $F$ goes to zero or $F$ tends to zero.}, if there are no good predictions ($TP\rightarrow0$) or if there are too many errors ($FN+FP \rightarrow \infty$).  $F$ is calculated for every frame and the score for the video \comment{ at frame $i$} is the mean over all the frames so far, $\mu(F)$:
-\comment{\begin{align}
+This measurement is know as the F-score and is used in the computer vision community to evaluate segmentation algorithms.  $F=1$ means that there were no false predictions ($FN+FP = 0$).  $F \rightarrow 0$\footnote{This is read: the value of $F$ goes to zero or $F$ tends to zero.}, if there are no good predictions ($TP\rightarrow0$) or if there are too many errors ($FN+FP \rightarrow \infty$).  $F$ is calculated for every frame and the score for the video at frame $i$ is the mean over all the frames so far, $\mu(F)$:
+\begin{align}
  \mu(F) = \sum_{t=0}^{t=i} F(frame=t)
-\end{align}}
+\end{align}
 If the predictions for all the frames were perfect, $\mu(F)$ would be equal to 1; the closer to zero, the more errors there were.  The simulation stops sometimes, if a model has become unstable; from that frame on, the value of $F$ is zero.  The model with the highest final value of $\mu(F)$ is considered the best.
 
-\section{\comment{Learning to predict forces}}
+\section{Learning to predict forces}
 %We used two methods to predict the forces.  The first one consists in measuring the total force acting on the vertex of the mesh closest to the actuator, according to the mass-spring model, after solving detected collisions.  This force is feed as input for the following simulation step.
 \label{sec:forces}
 
-Additionally and independently from the mass-spring system,  it is possible to learn to make predictions about the expected reaction force of the material, by using information from the stress-strain diagram obtained from the \comment{same} training data set \comment{as the mass-spring model.  This diagram is obtained from the video recorded by the visual system of the robot and the forces recorded by a sensor located at the wrist.  When the readings of the force sensor start to increase and the figer collides with the block of material, the point of zero deformation is identified.  From here on, the displacement of the finger is considered equivalent to the amount of deformation in the material.  Even though this method is not as rigorous as an engineering test, the estimation is good enough for robot manipulation of common materials.}
+Additionally and independently from the mass-spring system,  it is possible to learn to make predictions about the expected reaction force of the material, by using information from the stress-strain diagram obtained from the same training data set as the mass-spring model.  This diagram is obtained from the video recorded by the visual system of the robot and the forces recorded by a sensor located at the wrist.  When the readings of the force sensor start to increase and the figer collides with the block of material, the point of zero deformation is identified.  From here on, the displacement of the finger is considered equivalent to the amount of deformation in the material.  Even though this method is not as rigorous as an engineering test, the estimation is good enough for robot manipulation of common materials.
 
-The \comment{stress strain curves} in [\fref{fig:sstrain}] are approximated by segmented regression curves.  Several candidates are proposed using the least squares technique and the best are chosen as follows.  Since there is only one independent variable the equations for adjusting a line are straightforward:
+The stress strain curves in [\fref{fig:sstrain}] are approximated by segmented regression curves.  Several candidates are proposed using the least squares technique and the best are chosen as follows.  Since there is only one independent variable the equations for adjusting a line are straightforward:
 \begin{align}
  y & = mx + y_0 + Error \\
  m & = \dfrac{n\sum x_i y_i-\sum x_i \sum y_i}{n \sum x_i^2 -(\sum x_i)^2} \\
@@ -1146,12 +1154,14 @@ The \comment{stress strain curves} in [\fref{fig:sstrain}] are approximated by s
 \end{align}
 Where $y$ is the dependent variable, $x$ the independent one, $m$ is the slope of the line, and $y_0$ the $y$ intercept.  To adjust logarithmic curves a change of variable is used.  Before computing the line, the natural logarithm of the independent variable is calculated, that is: $x'_i = \ln(x_i)$.  In this case, the final equation will be of the form: $y = m \ln x + y_0$.  It would be possible to add other types of curves, but these were enough for the materials covered.
 
-\comment{For automatic calibration of the force prediction model for the pushing (as opposed to retraction) phase both families of lines (logarithmic curves and straight lines) are considered.  To determine the points of discontinuity between segments, each family is evaluated incrementally. The candidate line for a particular family is obtained by fitting a growing subset of data points and calculating the fitting error.  We begin with a small number of points (e.g. five). To detect the discontinuity new points are added until the corresponding normalized error increases beyond a threshold value.  This marks the point of discontiuity. Having discovered one best parameterized line for each family, the two resulting candidates are compared. We select the type of curve that covers more points in a single segment}.  This model is used to predict the forces for the mass-spring simulation \fref{fig:diagram} and \fref{fig:sstrain}.%The prediction can be averaged with the spring reaction force calculated from the previous step, to combine the visual and haptic modalities and test whether the quality of the prediction is improved.
+For automatic calibration of the force prediction model for the pushing (as opposed to retraction) phase both families of lines (logarithmic curves and straight lines) are considered.  To determine the points of discontinuity between segments, each family is evaluated incrementally. The candidate line for a particular family is obtained by fitting a growing subset of data points and calculating the fitting error.  We begin with a small number of points (e.g. five). To detect the discontinuity new points are added until the corresponding normalized error increases beyond a threshold value.  This marks the point of discontiuity. Having discovered one best parameterized line for each family, the two resulting candidates are compared. We select the type of curve that covers more points in a single segment.  This model is used to predict the forces for the mass-spring simulation \fref{fig:diagram} and \fref{fig:sstrain}.%The prediction can be averaged with the spring reaction force calculated from the previous step, to combine the visual and haptic modalities and test whether the quality of the prediction is improved.
 
 \section{Experimental Results}
 \label{sec:experiments}
 \subsection{Scenario}
-For the experimental scenario a rectangular block of deformable material, of $8.5 \unit{cm}$ long, $5 \unit{cm}$ wide and $1.8 \unit{cm}$ depth, is placed on a table; the robot pushes the object with a cylindrical finger, followed by a retrieval movement.  A colour firewire camera records the action perpendicularly, while a force sensor registers the reaction forces in synchrony with each photograph taken [\fref{fig:scene}(a)].  The force sensor was a DAQ-FT-Gamma, that can measure forces up to 200 Newtons in the $z$ direction (up to 65N in the others) and torques up to 5 Newton-metre.  The size of the photographs is $800 \times 600$ pixels.  The scale between the real world measurements and the pixels in the image were: $4600\frac{\unit{pixels}}{\unit{m}}$ \footnote{$\unit{m}=metre$} for the sponge and $4350\frac{\unit{pixels}}{\unit{m}}$ for the plasticine (they are different because the camera was placed at slightly different positions).
+For the experimental scenario a rectangular block of deformable material, of $8.5 \unit{cm}$ long, $5 \unit{cm}$ wide and $1.8 \unit{cm}$ depth, is placed on a table; the robot pushes the object with a cylindrical finger, followed by a retrieval movement.  A colour firewire camera records the action perpendicularly, while a force sensor registers the reaction forces in synchrony with each photograph taken [\fref{fig:scene}(a)].  \comment{This set up allowed us to study the effect of using an automatically calibrated physics based model as model for the material, while using 2D meshes, even though the same principles can be used if we use a 3D point cloud and a 3D mesh.  To generate the initial mesh for the mass-spring model a routine placed the nodes for the masses evenly spaced on a rectangular grid, given the number of squares we wanted per side.  We made experiments with grids of $3x2, 10x5$ and $20x10$ squares.  To aliviate the bias produced by the springs they were placed in a star pattern, thus compensating forces on eight directions.}
+
+The force sensor was a DAQ-FT-Gamma, that can measure forces up to 200 Newtons in the $z$ direction (up to 65N in the others) and torques up to 5 Newton-metre.  The size of the photographs is $800 \times 600$ pixels.  The scale between the real world measurements and the pixels in the image were: $4600\frac{\unit{pixels}}{\unit{m}}$ \footnote{$\unit{m}=metre$} for the sponge and $4350\frac{\unit{pixels}}{\unit{m}}$ for the plasticine (they are different because the camera was placed at slightly different positions).
 
 For both sets of experiments, each of the blocks was pushed in different positions:
 \begin{enumerate}
@@ -1188,14 +1198,14 @@ Euler & 0.88 $\pm$ 0.04 & 0.44 $\pm$ 0.13 & 0.75 $\pm$ 0.08 \\
 Verlet & 0.76 $\pm$ 0.19 & 0.53 $\pm$ 0.18 & 0.68 $\pm$ 0.19 \\
 Customised & 0.921 $\pm$ 0.008 & 0.60 $\pm$ 0.13 & 0.86 $\pm$ 0.02 \\
 \hline
-\multicolumn{4}{p{88mm}}{Where the mark is $\mu(F)$ as explained in \sref{sec:evaluation}.  \comment{Mean $\mu(F)$ and standard deviation across 24 training sesions are reported for the best performing models of every training session, worst model and average model.}}
+\multicolumn{4}{p{88mm}}{Where the mark is $\mu(F)$ as explained in \sref{sec:evaluation}.  Mean $\mu(F)$ and standard deviation across 24 training sesions are reported for the best performing models of every training session, worst model and average model.}
 \end{tabular}
 \end{table}
 
-The traditional equations of movement, estimated with Euler or Verlet show big oscillations and frequently become unstable.  Verlet seems to be badly affected by the collision resolution routines and geometric aids, that drastically affect the values of velocity and acceleration.  On the other hand, the customised first degree equations suggested in \sref{sec:ischeme} produce smooth movements that more closely resemble the ground truth, thus obtaining better marks.  From this group of experiments it was also found that evolutionary learning is as efficient when considering all elastic and plastic terms, as when using only a few of them.
+The traditional equations of movement, estimated with Euler or Verlet show big oscillations and frequently become unstable.  Verlet seems to be badly affected by the collision resolution routines and geometric aids, that drastically affect the values of velocity and acceleration.  On the other hand, the customised first degree equations suggested in \sref{sec:ischeme} produce smooth movements that more closely resemble the ground truth, thus obtaining better marks.  From this group of experiments it was also found that evolutionary learning is as efficient when considering all elastic and plastic terms, as when using only a few of them\footnote{\comment{The full list of terms is summarised at the end of \sref{sub:EvolAlg}.}}.
 
-\subsection{\comment{Results of Automatic Parameter Calibration}}
-\subsubsection{\comment{Performance for the Learned Shape Prediction Model}}
+\subsection{Results of Automatic Parameter Calibration}
+\subsubsection{Performance for the Learned Shape Prediction Model}
 The performance of the genetic learning algorithm was evaluated using the customised integration scheme and the mass-spring elastic-plastic model.  At this point no prediction of the force was included, rather, the reaction forces measured with the force sensor were used.  \fref{fig:performance} shows how the quality of the simulation throughout the whole video improved with each generation.  Both graphs show that even though the enforcing of geometric constraints with additional routines may produce simulations with lower scores at the begining of the training, they perform just as well after enough generations.  These scores reflect the degree to which areas covered by the ground truth and the mesh of the simulation match; however, when looking at the videos produced, it becomes evident that simulations with additional geometric constraints succeed more in keeping the mesh flat. % Should put images? (if there is space left)
 
 \begin{figure}[!t]
@@ -1205,7 +1215,7 @@ The performance of the genetic learning algorithm was evaluated using the custom
 \caption{Final marks of the videos after each generation of the genetic search.  The filled areas correspond to the standard deviation $\sigma(\bar{\mu}(F))$, across 15 runs of the learning algorithm.  Using the customised integration scheme, the elastic-plastic model with all preservation terms, with and without the aid of geometric recovery routines.  The block of material was represented by a mesh of $20 \times 10$ elements.}\label{fig:performance}
 \end{figure}
 
-\subsubsection{\comment{Performance for the Learned Force Prediction Model}}
+\subsubsection{Performance for the Learned Force Prediction Model}
 
 \begin{figure}[!t]
 \centering
@@ -1219,7 +1229,7 @@ Using the readings of the force sensor, and associating the deformation of the m
 
 \subsection{Prediction}
 
-One hundred photographs and force readings were taken every $0.17\pm0.007 s$ in average.  The mass spring model runs with an integration step \comment{$h=0.1s$}, where forces that were not measured directly are interpolated.  The push down movement lasts approximately 50 frames and the retrieval movement the other 50.  The continuous lines in \fref{fig:sstrain} show the predicted forces, given the amount of compression of the material (strain), while the point-lines show the actual readings.  \fref{fig:simulation_sponge} and \fref{fig:simulation_plasticine} show the actual shapes predicted \comment{by the combined FP and SP model}.
+One hundred photographs and force readings were taken every $0.17\pm0.007 s$ in average.  The mass spring model runs with an integration step $h=0.1s$, where forces that were not measured directly are interpolated.  The push down movement lasts approximately 50 frames and the retrieval movement the other 50.  The continuous lines in \fref{fig:sstrain} show the predicted forces, given the amount of compression of the material (strain), while the point-lines show the actual readings.  \fref{fig:simulation_sponge} and \fref{fig:simulation_plasticine} show the actual shapes predicted by the combined FP and SP model.
 
 \begin{figure*}[!t]
 \centering
@@ -1243,12 +1253,43 @@ One hundred photographs and force readings were taken every $0.17\pm0.007 s$ in 
 \caption{Simulation of the plasticine obtained with parameters $k_L=0, k_d=0, k_A=28202.1 k_{\phi}=34.5491, max\_Force=780.825, yield=0.772727, creep=0.67466, max\_\alpha=0.656572$.  Using the customised integration scheme, the elastic-plastic model with some preservation terms, furtherly tuned by hand,  with the aid of geometric recovery routines with the finger.  The block of material was represented by a mesh of $20 \times 10$ elements.}\label{fig:simulation_plasticine_hand}
 \end{figure*}
 
+\comment{We also compared the generalisation capabilities of our model against the system proposed in \cite{Cretu2012}.  This system uses a Growing Neural Gas (GNG) Network to calibrate a colour segmentation algorithm.  We couldn't use the HSV space as suggested because our videos have lots of shadows which produce holes inside the material regions which cause problems in further stages.  We got better results with Luv color space.  We clarify that, even though we used the HSV space in our tracking algorithm, we didn't have the same problems because the nodes of our linear snake search for nearby edges and are not affected by shadows in the middle of the object or temporary failures in detecting an edge.  Another GNG network is used to select the control points adequate for approximating the contour in the first frame.  Later, Cretu et al. use a Neural Gas (NG) algorithm to adjust that fixed number of control points to the contour of the material at every frame.  Using the coordinates of the finger, the sensed force and the coordinates of those control points through time, they train a Feedforward Neural Network (FFNN) to predict the contour of the material given the position of the finger and sensed force.  We reproduced those steps and their training method on our training video.  However, when we traid to test the generalisation capabilities of their method to new pushing actions, the weakness of the FFNN method became evident: it got tied to the specific location and type of interaction it was trained with, while our physics based model had no problem at making predictions for new pushing actions.  The results with this other method can be seen on \fref{fig:cretu_prediction}.
+
+Since the videos with the plasticine have even greater shadows it was not posible to use their tracking algorithm on them.  However, even if we could change that algorithm, we would expect the system to have the same problems and predict the deformation at the middle of the material even if is being pushed somewhere else. }
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3.5in]{sponge__result.jpg}
+\caption{Neural network approach fits quite well the training data set, but can not generalise to new pushing actions.  The green line shows the border used as ground truth, while blue lines show prediction from the FFNN.}\label{fig:cretu_prediction}
+\end{figure}
+
 \subsection{Classification}
 
-The mass-spring models \comment{calibrated for the prediction task} were used to classify \comment{materials} through recognition of their behaviour, even \comment{when the objects where pushed and deformed at novel locations.}  The models make predictions as if the \comment{material of the} object was known.  The model that makes the best predictions indicates which \comment{type of} object is being observed.  There are two criteria for selecting an \comment{object/material for the video being shown to the system}:
+The mass-spring models calibrated for the prediction task were used to classify materials through recognition of their behaviour, even when the objects where pushed and deformed at novel locations.  The models make predictions as if the material of the object was known.  The model that makes the best predictions indicates which type of object is being observed.  There are two criteria for selecting an object/material for the video being shown to the system:
 
 \begin{enumerate}
- \item Per frame: \comment{a material is selected for each frame of the interaction according to whichever model made the best prediction for that particular frame, according to the F-score.} This test was performed for every frame of the six videos, where the robot finger pushes the block of material.  \tref{tab:classperframe} shows the results for the videos that were used as training and test sets for the prediction task.
+ \item Per frame: a material is selected for each frame of the interaction according to whichever model made the best prediction for that particular frame, according to the F-score. This test was performed for every frame of the six videos, where the robot finger pushes the block of material.
+
+ \item Global: The system makes a vote about which material the object was made of, for the whole duration of the video, by making use of a weighted score. The difference in the F-score is added for all frames.  Frames where the distinction is more noticeable will receive a greater weight.
+\end{enumerate}
+
+
+
+\section{Discussion}
+\label{sec:discussion}
+We note the following points about the results and the method in general.
+\subsection{The Learning Method}
+Even though the evolutionary algorithm allowed for a uniform exploration of the logarithmic space of parameters, it failed to find the optimal solution.  Better simulations have been obtained by hand tuning some of the parameters.  %\sout{A factor that this learning algorithm fails to take into account are the significant differences in behaviour when the magnitude of a parameter is modified in factors of 10.  The random uniform distribution used to select parameters favors a given order of magnitude while the system would benefit more from stronger variantions here.}
+
+\subsection{Using Additional Geometric Constraints}
+Adding extra routines to enforce the planarity of the mesh had good aesthetic results, however that did not reflect much on the mark for the best videos of each generation during training.   Also, when attempting to model the plastic material, the geometric constraints provoked a much larger effect caused by the plasticity term, even if its corresponding constant was small.  As a consequence the plastic material also recovered its original shape after some extra frames.  It has been seen that, if the constant for linear preservation is set to zero, the problem disappears.  Even if the automatic calibration selects these extreme values with probability $\epsilon>0$, in an attempt to reproduce this finding, their derivatives obtained after applying gaussian noise to their parameters obtain better marks, even though they eventually recover their shapes, and get selected in a better position for the next generation.  We hypothesise that humans give greater weight to specific aspects of the simulation, for example: to the beginning, to the instant of greatest deformation and to the final shape.  Meanwhile, the evaluation function gives the same weight to all frames in the sequence.  It is possible to use the force learning algorithm and the commands given to the robot (push/retrieve) to detect these points, since they are correlated with discontinuities in these other modalities.  Future work will evaluate the impact of these modifications on the evaluation function.
+
+\subsection{Training With Collision Resolution with the Finger vs. Without}
+It was found that the overall score of the best simulations was similar in both cases, since only geometric similarities are under consideration.  However, there was a noticeable difference in the rate of success for the classification problem.  If no collision detection with the finger is used during training, the springs react only to the forces and, if the spring coefficients are not adequate, the shape of the mesh will be very different from the shape of the ground truth.
+
+On the other hand, if collision detection is used, the geometric constraints strongly favour a correct configuration of the mesh in the vicinity of the actuator, even though the springs did not react properly.  For subsequent frames, it is more likely, when using collision detection, that the neighbours will succeed in propagating the deformation to the rest of the material, thus producing better simulations than without it.  However, this lessens the effectiveness of the mass-spring model in distinguishing the materials.
+
+\subsection{Classification}
 
 \begin{table}[!t]
 \renewcommand{\arraystretch}{1.3}
@@ -1266,30 +1307,52 @@ Data Set & & TP & FN & Precision & & TP & FN & Precision\\
    test1 & & 167 & 132 & 0.56 & & 271 & 28 & 0.91 \\
    test2 & & 242 & 57 & 0.81 & & 289 & 10 & 0.97 \\ 
 \hline
-%\multicolumn{7}{p{68mm}}{\begin{footnotesize}* TP and FN measured in number of frames.  Final class assigned according to the performance of the models' predictions across the whole video. \end{footnotesize}}
+\multicolumn{9}{p{0.9\columnwidth}}{\begin{footnotesize}\comment{* TP and FN measured in number of frames. TP + FN = total number of frames.  Final class assigned according to the performance of the models' predictions across the whole video.} \end{footnotesize}}
 \end{tabular}
 \end{table}
+% \begin{table}[!t]
+% \renewcommand{\arraystretch}{1.3}
+% \caption{Classification per Frame}
+% \label{tab:classperframe}
+% \centering
+% \begin{tabular}{ccccccccc}
+% \hline
+%  & & \multicolumn{4}{c}{\bfseries Sponge} \\
+% Data Set & & TP & FN & TN & FP & Precision \\
+% \hline\hline
+%  \multicolumn{9}{c}{Trained with forces on vertices and no collision resolution.} \\
+% \hline
+%    training & & 167 & 132 & & & 0.56  \\
+%    test1 & & 167 & 132 & & & 0.56  \\
+%    test2 & & 242 & 57 & & & 0.81 \\ 
+% \hline
+% %\multicolumn{7}{p{68mm}}{\begin{footnotesize}* TP and FN measured in number of frames.  Final class assigned according to the performance of the models' predictions across the whole video. \end{footnotesize}}
+% \end{tabular}
+% 
+% \vspace*{1em}
+% \begin{tabular}{ccccccccc}
+% \hline
+%  & & \multicolumn{4}{c}{\bfseries Plasticine} \\
+% Data Set & & TP & FN & TN & FP & Precision\\
+% \hline\hline
+%  \multicolumn{9}{c}{Trained with forces on vertices and no collision resolution.} \\
+% \hline
+%    training & & 186 & 113 & & & 0.62 \\
+%    test1 & & 271 & 28 & & & 0.91 \\
+%    test2 & & 289 & 10 & & & 0.97 \\ 
+% \hline
+% %\multicolumn{7}{p{68mm}}{\begin{footnotesize}* TP and FN measured in number of frames.  Final class assigned according to the performance of the models' predictions across the whole video. \end{footnotesize}}
+% \end{tabular}
+% \end{table}
 
- \item Global: \comment{The system makes a vote about which material the object was made of, for the whole duration of the video, by making use of a weighted score.} The difference in the \comment{F-score} is added for all frames.  Frames where the distinction is more noticeable will receive a greater weight.
-\end{enumerate}
+\comment{
+\tref{tab:classperframe} shows the results for the classification task, frame per frame, for the videos that were used as training and test sets for the prediction task.  When the sponge model performed better for a frame of the sponge video it is marked as a true positive, when plasticine does better it is marked as a false negative (since it didn't recognize it as a sponge).  The same process is used for the other material.  Since the concept was proved with only two materials, true positives and false negatives provide all the information.
 
+It calls for attention that in some of the experiments, like the one illustrated above, the performance of classification for the sponge on the training and test1 sets are the same.  We interpret that the mass-spring physics based model generalizes naturally when the force/deformation conditions are similar, even if the place for pushing is different.  Between pushing in the middle and pushing closer to the border the qualitative behaviour of the elastic material was no so different for these models; unlike the data from the third set, where the distribution of mass and maximum force/deformation is more different from the ones seen on the training set of the model.  It is interesting to confirm that the difference in predictions between the models is bigger here in favour of a better classification.
 
+It is also remarkable that, even though, when modeling the sponge, the parameters for the plasticine were close in performance to the parameters for sponge (thus causing more problems to establish a good classification), the opposite does not happen.  That is, the parameters for the sponge are not good at modeling the plasticine on the test sets, thus yielding better results at the classification task.  This could happen because the plastic behaviour (that is, the permanent deformation of a spring) gets activated with stronger forces after the $yield$ limit is reached, which only appear when pushing the plasticine.  With the small forces feedback by the sponge, the model for the plasticine does not reach its range of plastic behaviour and thus the big differences in behaviour do not manifest.
+}
 
-\section{Discussion}
-\label{sec:discussion}
-We note the following points about the results and the method in general.
-\subsection{The Learning Method}
-Even though the evolutionary algorithm allowed for a uniform exploration of the logarithmic space of parameters, it failed to find the optimal solution.  Better simulations have been obtained by hand tuning some of the parameters.  %\sout{A factor that this learning algorithm fails to take into account are the significant differences in behaviour when the magnitude of a parameter is modified in factors of 10.  The random uniform distribution used to select parameters favors a given order of magnitude while the system would benefit more from stronger variantions here.}
-
-\subsection{Using \comment{Additional} Geometric Constraints}
-Adding extra routines to enforce the planarity of the mesh had good aesthetic results, however that did not reflect much on the mark for the best videos of each generation during training.   \comment{Also, when attempting to model the plastic material, the geometric constraints provoked a much larger effect caused by the plasticity term}, even if its corresponding constant was small.  As a consequence the plastic material also recovered its original shape after some extra frames.  It has been seen that, if the constant for linear preservation is set to zero, the problem disappears.  Even if the automatic calibration selects these extreme values with probability $\epsilon>0$, in an attempt to reproduce this finding, their derivatives obtained after applying gaussian noise to their parameters obtain better marks, even though they eventually recover their shapes, and get selected in a better position for the next generation.  We hypothesise that humans give greater weight to specific aspects of the simulation, for example: to the beginning, to the instant of greatest deformation and to the final shape.  Meanwhile, the evaluation function gives the same weight to all frames in the sequence.  It is possible to use the force learning algorithm and the commands given to the robot (push/retrieve) to detect these points, since they are correlated with discontinuities in these other modalities.  Future work will evaluate the impact of these modifications on the evaluation function.
-
-\subsection{Training With Collision Resolution with the Finger vs. Without}
-It was found that the overall score of the best simulations was similar in both cases, since only geometric similarities are under consideration.  However, there was a noticeable difference in the rate of success for the classification problem.  If no collision detection with the finger is used during training, the springs react only to the forces and, if the spring coefficients are not adequate, the shape of the mesh will be very different from the shape of the ground truth.
-
-On the other hand, if collision detection is used, the geometric constraints strongly favour a correct configuration of the mesh in the vicinity of the actuator, even though the springs did not react properly.  For subsequent frames, it is more likely, when using collision detection, that the neighbours will succeed in propagating the deformation to the rest of the material, thus producing better simulations than without it.  However, this lessens the effectiveness of the mass-spring model in distinguishing the materials.
-
-\subsection{Classification}
 The best results for classification with the mass-spring model are obtained when the training of the models uses only forces to displace the nodes in the mass-spring model\footnote{Case 2 in \sref{sec:manysteps}}, but the combination of force readings and collision resolution is used during classification\footnote{Case 3 in \sref{sec:manysteps}}.  This finding agrees with the fact that the objects are more distinguishable from the data obtained from the force sensor, than from the visual data.  The fact that the spring constants must respond to the applied forces during the training and not only to the visual appearance is reflected in a better differentiation of the behaviour of the models.  When the calibration is more sensitive to the constants of the springs, it is more robust for novel interactions, therefore the difference in quality of the predictions is a better indicator of which material is being used.
 
 \subsection{Conclusions}
