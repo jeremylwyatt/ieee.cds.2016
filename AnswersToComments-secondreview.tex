@@ -1,0 +1,220 @@
+\documentclass[letterpaper,12pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, mexico]{babel}
+
+\usepackage[top=1in, left=1.2in,right=1.2in]{geometry}
+%\longindentation=0pt
+
+
+\renewcommand*{\opening}[2]{\ifx\@empty\fromaddress
+ \thispagestyle{firstpage}%
+ {\raggedleft#2\par}%
+ \else % home address
+ \thispagestyle{empty}%
+ {\raggedleft\begin{tabular}{l@{}}\ignorespaces
+ \fromaddress \\*[2\parskip]%
+ #2 \end{tabular}\par}%
+ \fi
+ \vspace{10\parskip}%
+ {\raggedright \toname \\ \toaddress \par}%
+ \vspace{2\parskip}%
+ #1\par\nobreak}
+
+%% --- Font
+
+\renewcommand*{\familydefault}{\sfdefault}
+\renewcommand*{\sfdefault}{pag} % Avant Garde
+
+\usepackage{amssymb}
+\def\labelitemii{$\blacktriangle$} % Windows no encuentra el símbolo solicitado
+\renewcommand{\theenumii}{\alph{enumii}}
+
+%% -- Logo
+\usepackage{graphicx}
+
+\author{Verónica Esther Arriola Ríos}
+
+\begin{document}
+\begin{letter}{\textbf{}}
+\includegraphics[height=4cm, keepaspectratio=true]{escudo_UNAM.jpg}\vspace*{-4cm}
+
+\address{Universidad Nacional Autónoma de México\\ Facultad de Ciencias,\\ Departamento de Matemáticas,\\ México, D.F.}
+\telephone{5622 5426}
+
+\opening{Dear Editors,}{\today}
+\vspace{1cm}
+
+Please find attached the pdf of our revised submission to the special issue on “Sensorimotor Contingencies for Cognitive Robotics”. 
+
+We would like to thank you and the three reviewers for timely and informative reviews, and for the comments, which have helped us to substantially improve our paper. In this revised version we have now included information on an implementation of a comparison model: a growing neural gas network. We show that it produces significantly poorer results on the prediction problem, and that it is thus unsuitable to tackle the classification problem we defined. In addition, we have carefully addressed all the reviewers’ concerns about the text. We detail below how we have addressed each reviewer point one by one.
+
+We hope that you find the resulting paper much improved.
+
+
+\vspace{1cm}
+
+\signature{Verónica E. Arriola-Rios\\
+Jeremy L Wyatt}
+
+\closing{Yours sincerely,}
+
+%%enclosure listing
+%%\encl{}
+
+\end{letter}
+
+\textbf{Response to reviewers’ comments}
+
+We would like to thank all the reviewers most sincerely for their effort in reading and commenting on our paper. The remarks helped us understand where we had gone wrong, and we have tried our best to incorporate all your requests and suggestions. Thank you.
+
+\textbf{Reviewer 1}
+
+\emph{In this revision, the authors solved the initial problems on article structure, citations, figures, and contents.}
+
+We thank the reviewer for their confirmation that we have satisfied all their comments, and would like to thank them again for their remarks, which significantly improved our paper.
+
+\textbf{Reviewer 2}
+
+\emph{Page 1. Last Paragraph. There is an enumeration of novel contributions, you mentioned the First, and the Third, to avoid any confusion I would recommend to remark which is the second.}
+
+We apologise, this was a typo. We have listed two main technical contributions.
+
+\emph{Page 1-2. It is possible to infer the meaning of FEM, but in order to avoid any possible confusion you might indicate its meaning explicitly when the concept is first used.}
+
+We have fixed this.
+
+\emph{I find Fig 2, 3, and 4 difficult to read, however I don’t consider they should be necessarily changed.}
+
+We agree this was difficult to interpret. To aid the reader we have added some text descriptions for the most important elements to make the diagram more readable.
+
+\emph{At the end of subsection VII. B, when the authors refer to “all elastic and plastic terms” might be illustrative to add references to the corresponding equations.}
+
+We have added a footnote with a reference to the section where all terms are summarised.
+
+\emph{Within the Model Overview, it would be interesting if the authors would briefly highlight the advantage of having generative models for those who are not vastly familiarized with the topic.}
+
+Thank you for this suggestion. We have added a short explanation within the section Model Overview. This explains that generative models are appealing because they allow us to solve both prediction and classification problems, whereas discriminative models are typically only suitable for classification.
+
+\emph{When interpreting results what are the consequences when triangles in the border of the mesh overlap each other? Is there any consequence that might be significant to the result interpretation?}
+
+We have added some comments to clarify these points in the subsection “Additional Geometric Constraints”.
+
+\emph{In section V, during the training the segmentation assumes that the color of the object is known. Therefore, when you say that the algorithm could learn and classify previously unknown materials, at least the machine must partially know the material.}
+
+In fact, no assumption about the colour of the object is made. The object is simply marked with a bounding box in the first frame. This is used to determine the dominant hue. This hue is then used to distinguish edge pixels bounding the object from those gathered elsewhere in the scene. We have added this to the explanation of the first step of the algorithm in Section V.A.
+
+Also the authors mention that the simplified active contours approach is not the most accurate, What are the consequences of this approximation?
+
+The errors of the approximation are small, and are relatively small in comparison with the errors introduced by prediction with the mass-spring model. We added a note to this effect in section V.A  on page 8.
+
+Regarding to the chosen integration time step, does the results vary considerably when 0.01 is considered?
+
+We used a time step of 0.1. We have previously experimented with various time step parameters, and found that a time step of 0.01 didn’t improve the quality of prediction, but increased computation time.  We have added a comment on this point to section V.B.
+
+\emph{In section VII.E, Table III, is there any special reason to have the same result for the training and test1 sets  in the case of the sponge? It would be better if the authors offer deeper insights regarding the interpretation of the figures shown in Table III.}
+
+Thanks for raising this point, we needed to explain this more clearly.  To enable this Table III has been shifted to section VIII, where the discussion has been expanded to cover these issues.
+
+
+\textbf{Reviewer 3}
+
+\emph{Reading the abstract and the introduction, I was expecting a framework in which the robot creates a representation of the environment (in this case the two objects) while it is interacting with it (looking at and pushing the object).}
+
+We are sorry that this set false expectations. We have altered the wording in several places to make the reader aware that we are not tackling this problem on-line, but off-line. We have also read and noted the references you mention in the introduction.
+
+\emph{While the authors recognize the issue of the on-line learning in the introduction (page 1, col 2, line 35), they do not address that in the paper.}
+
+From your comments, we believe that mentioning on-line learning, while important, was misleading in terms of our paper, so we have withdrawn mention of it.
+
+\emph{Also they refer the problem of getting access to partial views of the objects but it seems that in this paper the object is viewed from a convenient point of view.}
+
+We have added text to make clear the restriction in our study of using a single view chosen by the user.
+
+Finally, the word “learning from data” suggests to me that the model acquires a representation of the environment based on some kind on non-parametric model, such as neural network. However, the models seem carefully designed to represent the object deformation and the stress-gain diagram. Even if the difference between learning and calibration is subtle, in my opinion, the use of the word “learning” creates an expectation that is not fulfilled in the rest of the paper.
+
+We have changed the wording in the abstract to note that we calibrate the models from data. We hope this makes it clearer where on the spectrum of parameter tuning to full autonomous learning we lie. We now emphasise that we perform off-line learning, we sometimes refer to it as calibration, and we mention that we don’t address the issues of on-line learning. We hope this changes the tone of the introduction enough so as not to mislead.
+
+\emph{What happen if we add a new material? Do we need to add a new feature space?}
+
+If the object is plastic or elastic then we don’t need to add a new feature space, but we would be wise to calibrate a new model. We have added a comment to this effect in the conclusion.
+
+\emph{I would add a figure like Fig. 9a at this point. In this way the reader can have an idea of the setup, how vision acquire information and how the mass-spring model depends on the visual information itself. For example, it might be interesting to combine Fig 9a and Fig 2 in single sketch of the model.}
+
+Thank you for this suggestion. We have prepared a new version of Figure 2, as you suggest. This incorporates elements from the old Figure 2 and Figure 9.
+
+\emph{A consideration about the organisation of the following sections. Given that the framework consists of two models, force prediction and shape prediction, I would expect section III.1 to be Force prediction and III.2 to the shape prediction (or vice-versa). However, the organization of Sections IV, V, VI, in my opinion is misleading.}
+
+We have reorganised the paper as you request.
+
+\emph{Finally, I would start describing the algorithm from the visual system. It seems that the visual system has a very important role in this paper but it is not highlighted.}
+ 
+We have slightly expanded and moved the section on the visual system as part of the paper reorganization. We also spend a little more space on vision in the model overview section. 
+
+\emph{I would like to know how the particles are placed inside the object. What happens if we change the size of the object? Do we need to change the number of particles? What happen if the object is not rectangular?}
+
+We describe the way that the particles are placed inside the object in detail in Section VII.A on p.10. We specify a total number of cells in the mass-spring model, and then the particles (which are the nodes of the mass-spring model) are then spaced evenly in a grid. If we change the size of the object the method will allocate particles more widely spaced for a given grid size. No version of the algorithm has been specified for non-rectangular, we suggest that a Voronoi triangulation would be the way to proceed. We mention this in the conclusion.
+
+\emph{Eq. 19. I really do not understand how the force could be proportional to the velocity. This point should be clarified. My understanding is that the authors assumed the acceleration (a) to be constant during the interval h, so that h*F = h*a*m => F = v*m/h. Given that h is a constant, the force (F), the velocity (v) or the mass (m) are recovered with a scale factor. Is that correct? If so, what is the difference between this approach and the quasi-static approach proposed by Frank. Please, explain.}
+
+The essential difference is that Frank models the system as being quasi-static, i.e. that acceleration is not only constant, but is zero. In contrast we model the acceleration as non-zero and non-constant. One point of possible confusion is that we are using a numerical method for approximate solution of the differential equations that model each mass particle. This numerical method simply assumes that between two successive points in time that acceleration is constant. Over multiple time steps, however, the acceleration does change.
+
+Regarding the physics, the corresponding math would be F = c m v  =>  a = v  =>  (a = dv/dt) = v which can only be solved with an exponential. Thus the constraint a=v forces us to solve with an exponential, and has the benefit of preventing oscillations of the springs in the model.  This explanation has been added to the “Integration scheme” section. 
+
+\emph{This section is quite long and I think it could be simplified notably. The authors could simply state the energy $E = Sum(i=1:N) [ 0.5 k_i * C_i(p1, pn)^2]$, where N is the number of constraints. There are several constraints to preserve the length, the area, etc. and the force is given as negative gradient of the potential energy with respect to the position of the particle. Details about all the equation could be reported in an appendix to make the paper more readable. About the equation, personally I don’t like the symbol composed of multiple letters such as Area, forcemag, forcedir, etc.}
+
+We have shortened the section as requested.
+
+\emph{Do the authors use just one video for the training and two video for the testing? It seems that the dataset is quite small to have a systematic test of the algorithm. Even if there are only two objects, the authors should test different motions of the finger (i.e. pushing velocity, penetration, …)}
+
+We accept that the test data set is rather small. We believe however that it is sufficient to show through a comparison with the GNGN method that our approach is considerably better than the state of the art when it comes to generalising deformation predictions with respect to push position. Also, we should note that the data needed for successful training is also very small: just one movie of each object. We will gather additional data, but our current plan is to use this for future work. 
+
+\emph{I don’t see the results of the classification. I would expect a confusion matrix to show how many times the sponge was classified as sponge and as plasticine and vice-versa. Table III seems to show the results about the classification of the pixels.}
+
+Table III was moved to the discussion section were this point was clarified in the caption. The results show the classification not of the pixel, but of the frame. The classification of a whole movie is described in the text.
+
+\emph{Moreover, I would like to see a comparison against a baseline approach. They could some of the models proposed in the literature or some simple models. For example, the authors could assume that the material “disappears” when the finger penetrates the object and report the F-Score of this method. Alternatively, they could use a simple model with only one spring between the finger and the base of the object.}
+
+We have implemented a Growing Neural Gas Network (GNGN) previously published by Cretu et al. We have added additional results in a comparison of this method with our own. This is now described in section VII.D. The very poor generalization performance of the GNGN on the prediction problem is shown in a new Fig 17.
+
+\emph{Page 12. Col 2. Line 3. Please, can you clarify the hand tuning? It seems that the genetic algorithm is not the best way to find the parameters? Have you tried to use other method like gradient descent? Is it possible to use the model to mass-spring model to predict the force exerted on the finger? In that case, the authors could use this prediction error as fitness function and use the gradient descent to find the parameters.}
+
+The hand tuned solutions we tried were obtained by slightly modifying some of the parameters of the solutions proposed by the algorithm.  However, the f-score of the solution chosen by the search algorithm is better than the f-score of the solution that was hand tuned, that is why the algorithm does not select it. This explanation was added to section IX.A.
+
+Gradient descent was not used because the space of parameters for a mass-spring model can offer good solutions in very separated regions.  Therefore, gradient descent would not make a proper exploration of the space and would get stuck on local minima quite quickly.
+
+It could be possible to estimate the reaction force by adding the total forces on the particles in touch with the finger.  At some point we did check if they were similar to the measured forces and found out that for some selected sets they are similar, but we didn’t try to use this criterion as evaluation function.  The suggestion was added in the discussion section (IX.A).
+
+Other comments:
+
+\emph{Fig. 1 is not referenced in the paper.}
+
+We have decided that this figure added little, hence it was not referenced naturally anywhere in the text. We have thus decided to remove it to save space, since other requested changes have added considerable length. 
+
+\emph{Page 2, Col 1, Line 17. Section VI is not mentioned.}
+
+We have fixed this.
+
+\emph{Page 2. Col 2, Line 5: FEM is not defined. Finite-element models?}
+
+We have defined this.
+
+\emph{Fig 2. Instead of use symbols, I would write Vision, strain, force, etc.}
+
+Thank you, this chimes with the comments of Reviewer 2, we have fixed this in Figures 1, 2 and 3.
+
+\emph{Page 3, Col 1, line 57. Cretu et al. -> cite [10]?}
+
+We have added this reference.
+
+\emph{Page 8. Col 2, Line 27. Linear snake = linear spline?}
+
+The term “linear spline” is associated with the geometric curve, while “linear snake” to the tracking algorithm that makes use of the linear spline.  A clarification was added in section IV.A and the use of both terms was reviewed to make sure it was consistent with their definition.  Thank you for noticing.
+
+\emph{Algorithm 5. I would specify that the F-Score is the fitness function of the algorithm. Moreover, it would be nice to know the values used for the parameters of the algorithm (perhaps using a table).}
+
+This information has been added to section VIII. C., the values for the parameters are on Table III.
+
+\emph{Page 10. Col 1. Line 45. Please specify that there are two objects, a sponge and plasticine, with a rectangular shape and so on.}
+
+We have added this information.
+\end{document}
