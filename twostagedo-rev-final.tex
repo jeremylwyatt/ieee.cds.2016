@@ -929,21 +929,22 @@ The constraint for the potential energy is given by:
 where $\vec{p}_i$ and $\vec{p}_j$ are connected by a spring and $D_0$ is the rest length of that spring.  The force derived from this constraint pulls the masses in the direction of the spring that joins them [\fref{fig:forces}(a)].  Teschner normalised the value dividing by $D_0$ to make the elasticity constants scale independent \cite{Teschner2004}.  Morris \cite{Morris2008} omitted that in his final equations for the force.  Here we use the normalised force $\vec{F}^i_D$ \eref{eq:FDlength}, which has the effect that, if we obtain a good set of parameters for a certain mesh of high resolution, the same set can be used for a mesh of lesser resolution that preserves the same type of symmetries.  Details about the final form of this and following equations are in \aref{ap:formulas}.
 
 \subsubsection{Preservation of Area}
-This constraint is applied per triangle in the mesh.  Since Teschner and Morris
-found that the use of damping for the preservation of areas does not significantly improve the stability of the simulation, it is not included here either.  Therefore the force $\vec{F}^i_A$ is derived from the constraint and \eref{eq:EForce}: 
+The constraint for the potential energy is given by:
 \begin{align}
  C &= \frac{\frac{1}{2}|(\vec{p}_j-\vec{p}_i)\times(\vec{p}_k-\vec{p}_i)|-A_0}{A_0}
 \end{align}
-where $A_0$ is the initial area of the triangle and $k_A$ the proportionality constant.
+where $A_0$ is the initial area of the triangle.  This constraint is applied per triangle in the mesh.  Since Teschner and Morris found that the use of damping for the preservation of areas does not significantly improve the stability of the simulation, it is not included here either.  Therefore the force $\vec{F}^i_A$ is derived from the constraint and \eref{eq:EForce} as shown in the appendix.
+
 
 \subsubsection{Preservation of Angles}
-The previous terms can not do anything to restore the mesh if triangles get flipped during deformation, which is not a valid state since the mesh models the surface of a 3D object.  For this reason we included a new term that enforces the preservation of the original angles of the triangles.  [\fref{fig:forces}(c)] gives an idea of how these forces look.  Here the energy depends on the difference between the current angle, between adjacent edges, and the angle between them at the equilibrium position. Energy is given by\footnote{It was also considered to multiply $E_\varphi$ by the lengths of the edges, but it hasn't improved the performance of the model.}:
+The previous terms can not do anything to restore the mesh if triangles get flipped during deformation, which is not a valid state since the mesh models the surface of a 3D object.  For this reason we included a new term that enforces the preservation of the original angles of the triangles.  [\fref{fig:forces}(c)] gives an idea of how these forces look.  Here the energy depends on the difference between the current angle, between adjacent edges, and the angle between them at the equilibrium position. The constraint for this potential energy is given by\footnote{It was also considered to multiply $E_\varphi$ by the lengths of the edges, but it hasn't improved the performance of the model.}:
 \begin{align}
- E_\varphi(\varphi) & = \frac{1}{2}k_\varphi(\varphi - \varphi_0)^2 \\
+ %E_\varphi(\varphi) & = \frac{1}{2}k_\varphi(\varphi - \varphi_0)^2 \\
+ C &= \varphi - \varphi_0 \\
  \varphi(p_i,p_j,p_k) & = \arccos \left( \dfrac{(p_j - p_i) \cdot (p_k - p_i)}{ \left\| p_j - p_i \right\| \left\|p_k - p_i \right\|} \right)^2 \nonumber
 \end{align}
-
-where $\varphi$ is the angle between adjacent edges, $E_\varphi$ is the energy associated with changes in the angle, $k_\varphi$ is the corresponding stiffness constant, and the $p_i$s are the Cartesian coordinates of the mass particles.
+where $\varphi$ is the angle between adjacent edges,% $E_\varphi$ is the energy associated with changes in the angle, $k_\varphi$ is the corresponding stiffness constant, 
+and the $p_i$s are the Cartesian coordinates of the mass particles.
 
 The force emerging from this term is a linear combination of the vectors along the edges that form the angle of interest, acting in the direction of the gradient.  It tends to restore the angles in the most efficient way, but does not take the original size into account [\fref{fig:forces}(c)].  Therefore, it helps to recover a similar triangle, but it may produce tiny or very big triangles if it is not accompanied by some of the other terms that tend to restore the original dimensions, in addition to the angles.
 
@@ -1423,6 +1424,7 @@ The force is derived from:  %An additional line in the code also forces an inver
  F_\varphi(p_i) & = k_\varphi(\varphi - \varphi_0)\dfrac{\partial \varphi}{\partial p_i} \\
  \dfrac{\partial \varphi}{\partial p_i} & = \dfrac{\partial}{\partial p_i} arccos \left(\frac{(\vec{p}_j-\vec{p}_i)\cdot(\vec{p}_k-\vec{p}_i)}{\left\|\vec{p}_j-\vec{p}_i\right\|\left\|\vec{p}_k-\vec{p}_i\right\|}\right) \displaybreak[0] \\
 \end{align}
+where $k_\varphi$ is the corresponding stiffness constant.
 
 The force is:
 \begin{align}
