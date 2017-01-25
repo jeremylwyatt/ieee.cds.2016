@@ -943,8 +943,8 @@ The previous terms can not do anything to restore the mesh if triangles get flip
  C &= \varphi - \varphi_0 \\
  \varphi(p_i,p_j,p_k) & = \arccos \left( \dfrac{(p_j - p_i) \cdot (p_k - p_i)}{ \left\| p_j - p_i \right\| \left\|p_k - p_i \right\|} \right)^2 \nonumber
 \end{align}
-where $\varphi$ is the angle between adjacent edges,% $E_\varphi$ is the energy associated with changes in the angle, $k_\varphi$ is the corresponding stiffness constant, 
-and the $p_i$s are the Cartesian coordinates of the mass particles.
+where $\varphi$ is the angle between adjacent edges, and $\varphi_0$ is the angle at rest.  % $E_\varphi$ is the energy associated with changes in the angle, $k_\varphi$ is the corresponding stiffness constant, 
+%and the $p_i$s are the Cartesian coordinates of the mass particles.
 
 The force emerging from this term is a linear combination of the vectors along the edges that form the angle of interest, acting in the direction of the gradient.  It tends to restore the angles in the most efficient way, but does not take the original size into account [\fref{fig:forces}(c)].  Therefore, it helps to recover a similar triangle, but it may produce tiny or very big triangles if it is not accompanied by some of the other terms that tend to restore the original dimensions, in addition to the angles.
 
