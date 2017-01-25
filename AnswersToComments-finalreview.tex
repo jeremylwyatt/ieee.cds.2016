@@ -1,0 +1,90 @@
+\documentclass[letterpaper,12pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, mexico]{babel}
+\usepackage{calligra}
+
+\usepackage[top=1in, left=1.2in,right=1.2in]{geometry}
+%\longindentation=0pt
+
+
+\renewcommand*{\opening}[2]{\ifx\@empty\fromaddress
+ \thispagestyle{firstpage}%
+ {\raggedleft#2\par}%
+ \else % home address
+ \thispagestyle{empty}%
+ {\raggedleft\begin{tabular}{l@{}}\ignorespaces
+ \fromaddress \\*[2\parskip]%
+ #2 \end{tabular}\par}%
+ \fi
+ \vspace{10\parskip}%
+ {\raggedright \toname \\ \toaddress \par}%
+ \vspace{2\parskip}%
+ #1\par\nobreak}
+
+%% --- Font
+
+\renewcommand*{\familydefault}{\sfdefault}
+\renewcommand*{\sfdefault}{pag} % Avant Garde
+
+\usepackage{amssymb}
+\def\labelitemii{$\blacktriangle$} % Windows no encuentra el símbolo solicitado
+\renewcommand{\theenumii}{\alph{enumii}}
+
+%% -- Logo
+\usepackage{graphicx}
+
+\author{Verónica Esther Arriola Ríos}
+
+\begin{document}
+\begin{letter}{\textbf{}}
+\includegraphics[height=4cm, keepaspectratio=true]{escudo_UNAM.jpg}\vspace*{-4cm}
+
+\address{Universidad Nacional Autónoma de México\\ Facultad de Ciencias,\\ Departamento de Matemáticas,\\ México, D.F.}
+\telephone{5622 5426}
+
+\opening{Dear Editors,}{\today}
+\vspace{1cm}
+
+Please find attached the pdf of our revised submission to the special issue on “Sensorimotor Contingencies for Cognitive Robotics”. 
+
+We would like to thank you and all reviewers for timely and informative reviews, and for the comments, which have helped us to substantially improve our paper. In this final revised version we address the comments from the two reviewers who still made observations. We detail below how we have addressed each reviewer point one by one.
+
+We look forward to hearing from you.
+
+
+\vspace{1cm}
+
+\signature{Verónica E. Arriola-Rios\\
+Jeremy L Wyatt}
+
+\closing{Yours sincerely,}
+
+%%enclosure listing
+%%\encl{}
+
+\end{letter}
+
+\textbf{Response to reviewers’ comments}
+
+We would like to thank all the reviewers most sincerely for their effort in reading and commenting on our paper.  We address now their final remarks.
+
+\textbf{Reviewer: 1}
+
+{\calligra\large The authors have successfully modified the work according to the reviewers comments. In my opinion the work is ready to be published under one condition: equation 11 should be replaced with equation 23 from the appendix.}
+
+Thanks to this observation we noticed an inconsistency between the text and the equations, which suggested we should include equation 23 were we had 11.  However, since all lengthy equations were moved to the appendix, instead of bringing equation 23 back, we arranged the text in section VI.A. so that only equations for the constraints would be shown here, and all derived forces could be found in the appendix.  We hope this will make the presentation clearer.
+
+
+\textbf{Reviewer: 2}
+
+{\calligra\large In this revision, the authors solved the major problems in previous manuscript, but there are several small problems:}
+
+{\calligra\large 1, Equation (5) shows $F=m\frac{\partial p}{\partial t}$, but it seems that $F=m\frac{\partial^2 p}{\partial t^2}$ is more reasonable, since force equals mass multiplying acceleration. This problem remains in Equation (6) and the paragraph between Equation (5) and Equation (6).}
+
+Sorry you are right, we mixed notation which was not used in the article where the momentum of the particle is defined as $p=mv$.  All the affected equations were modified to avoid this and keep $p$ as the position of the particle.
+
+{\calligra\large 2, Equation (13) and Equation (14) are confusing. Is it a symbol conflict? Why does the derivative of $\vec{p}$ equal $\vec{p}$?}
+
+It is a mathematical trick to force over damped systems of springs, which do not oscillate.  The text in this paragraph was modified to make this more explicit.  Also, we added a quick explanation about the differential equation of the form $f(x) = f'(x)$.
+
+\end{document}
